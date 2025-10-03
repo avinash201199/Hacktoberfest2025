@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Hacktoberfest 2025 — Guide</title>
 
-    <!-- OpenGraph / Social preview -->
     <meta
       property="og:title"
       content="How to Participate in Hacktoberfest 2025 — Guide"
@@ -20,7 +19,6 @@
 
     <link rel="stylesheet" href="assets/style.css" />
 
-    <!-- Highlight.js and Marked (CDN) -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css"
@@ -29,6 +27,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
 
     <style>
+      /* Global Reset & Base */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box; /* Added for predictable layout */
+      }
+
       :root {
         --hf-orange: #ff8a65;
         --hf-purple: #9b59b6;
@@ -37,6 +42,15 @@
         --spacing-sm: 0.5rem;
         --spacing-md: 1rem;
         --spacing-lg: 2rem;
+      }
+
+      /* Focus Ring Improvement */
+      a:focus,
+      button:focus,
+      input:focus {
+        outline: 3px solid var(--hf-orange);
+        outline-offset: 2px;
+        border-radius: 3px;
       }
 
       .logo-blob {
@@ -63,13 +77,21 @@
       .brand {
         display: flex;
         align-items: center;
+        text-decoration: none;
+        color: var(--hf-light);
+        transition: transform 0.3s ease;
+      }
+
+      .brand:hover {
+        transform: scale(1.02); /* Subtle hover for brand */
       }
 
       /* Subtle shadow animation for header */
       .site {
         position: relative;
+        display: flex; /* Added for sidebar/content layout */
       }
-
+      
       .site::after {
         content: "";
         position: absolute;
@@ -85,6 +107,7 @@
         );
         z-index: 1;
         animation: shine 1.5s infinite;
+        background-size: 200% 100%; /* Needed for the shine effect */
       }
 
       @keyframes shine {
@@ -204,6 +227,7 @@
           rgba(255, 138, 101, 0.1)
         );
         min-height: calc(100vh - 60px);
+        flex-grow: 1; /* Allow content to fill remaining space */
       }
 
       .content-inner {
@@ -252,348 +276,12 @@
 
       /* Improved readability */
       #article {
-        font-size: 15px;
-        padding: 0 1rem;
+        font-size: 16px;
+        line-height: 1.8;
+        color: var(--hf-light);
+        max-width: 800px;
+        margin: 0 auto;
       }
-
-      #article h1 { font-size: 2rem; }
-      #article h2 { font-size: 1.5rem; }
-      #article h3 { font-size: 1.2rem; }
-    }
-
-    /* Sidebar styles for collapsed state */
-    .sidebar.collapsed {
-      width: 0;
-      padding: 0;
-      overflow: hidden;
-      border: none;
-      box-shadow: none;
-      margin: 0;
-      min-width: 0;
-    }
-
-    .show-btn {
-      position: fixed;
-      left: 10px;
-      top: 80px;
-      background: rgba(24, 49, 83, 0.95);
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      display: none;
-      backdrop-filter: blur(10px);
-      z-index: 100;
-    }
-
-    .sidebar.collapsed + .show-btn {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .fade-in {
-      animation: fadeIn 0.8s ease-out forwards;
-    }
-
-    /* Smooth transitions */
-    .toc-item a {
-      transition: all 0.3s ease;
-    }
-
-    .toc-item a:hover {
-      transform: translateX(10px);
-      color: var(--hf-orange);
-    }
-
-    /* Active link indicator */
-    .toc-item a.active {
-      color: var(--hf-orange);
-      font-weight: 600;
-      padding-left: 1rem;
-      border-left: 3px solid var(--hf-orange);
-    }
-
-    /* Search results highlight */
-    mark {
-      background: linear-gradient(120deg, var(--hf-orange), var(--hf-purple));
-      padding: 0.1em 0.3em;
-      border-radius: 3px;
-      color: var(--hf-light);
-    }
-
-    /* Section highlight animation */
-    .highlight-section {
-      animation: highlight-pulse 1s ease-out;
-    }
-
-    @keyframes highlight-pulse {
-      0% { background: rgba(255, 138, 101, 0.2); }
-      100% { background: transparent; }
-    }
-
-    /* Better sidebar positioning */
-    .sidebar {
-      position: sticky;
-      top: 60px;
-      height: calc(100vh - 60px);
-      overflow-y: auto;
-      background: rgba(24, 49, 83, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 1rem;
-    }
-
-    /* Resources Section Styles */
-    .resources-section {
-      padding: var(--spacing-lg) 0;
-      background: linear-gradient(135deg, rgba(24,49,83,0.1), rgba(155,89,182,0.05));
-      margin: var(--spacing-lg) 0;
-      border-radius: 20px;
-    }
-
-    .resources-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: var(--spacing-lg);
-      margin-top: var(--spacing-lg);
-    }
-
-    .resource-category {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      padding: var(--spacing-lg);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    .resource-category:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(155, 89, 182, 0.2);
-      border-color: rgba(255, 138, 101, 0.3);
-    }
-
-    .resource-category h4 {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: var(--spacing-md);
-      color: var(--hf-orange);
-      font-size: 1.3rem;
-    }
-
-    .resource-category h4::before {
-      content: attr(data-icon);
-      font-size: 1.5rem;
-    }
-
-    .resource-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .resource-item {
-      margin-bottom: var(--spacing-sm);
-      padding: 0.8rem;
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 8px;
-      border-left: 3px solid transparent;
-      transition: all 0.3s ease;
-    }
-
-    .resource-item:hover {
-      background: rgba(255, 138, 101, 0.1);
-      border-left-color: var(--hf-orange);
-      transform: translateX(5px);
-    }
-
-    .resource-item a {
-      color: rgba(255, 255, 255, 0.9);
-      text-decoration: none;
-      display: flex;
-      align-items: flex-start;
-      gap: 0.8rem;
-      line-height: 1.5;
-    }
-
-    .resource-item a:hover {
-      color: var(--hf-light);
-    }
-
-    .resource-emoji {
-      font-size: 1.2rem;
-      min-width: 1.5rem;
-    }
-
-    .resource-content {
-      flex: 1;
-    }
-
-    .resource-title {
-      font-weight: 600;
-      margin-bottom: 0.2rem;
-    }
-
-    .resource-desc {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.7);
-      line-height: 1.4;
-    }
-
-    .resource-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
-
-    .resource-tag {
-      background: rgba(155, 89, 182, 0.2);
-      color: var(--hf-light);
-      padding: 0.2rem 0.6rem;
-      border-radius: 12px;
-      font-size: 0.75rem;
-      border: 1px solid rgba(155, 89, 182, 0.3);
-    }
-
-    .resources-intro {
-      text-align: center;
-      margin-bottom: var(--spacing-lg);
-      padding: var(--spacing-md);
-      background: rgba(255, 138, 101, 0.1);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 138, 101, 0.2);
-    }
-
-    .resources-intro p {
-      margin: 0;
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-
-
-    /* Footer Styles */
-    .site-footer {
-      background: linear-gradient(135deg, rgba(24,49,83,0.96), rgba(155,89,182,0.92));
-      backdrop-filter: blur(12px);
-      color: var(--hf-light);
-      margin-top: var(--spacing-lg);
-      box-shadow: 0 -6px 25px rgba(0,0,0,0.22);
-      padding: var(--spacing-lg) 0 var(--spacing-md);
-    }
-
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 var(--spacing-lg);
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: var(--spacing-lg);
-      align-items: start;
-    }
-
-    .footer-brand {
-      display: flex;
-      gap: 0.9rem;
-      align-items: flex-start;
-    }
-
-    .footer-brand .logo-blob {
-      width: 2.4em;
-      height: 2.4em;
-      margin-right: 0;
-      box-shadow: 0 0 24px rgba(255,138,101,0.18);
-    }
-
-    .footer-col h4 {
-      margin: 0 0 var(--spacing-sm);
-      font-size: 1.15rem;
-      color: var(--hf-orange);
-    }
-
-    .footer-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-    }
-
-    .footer-desc {
-      margin: 0.45rem 0 0;
-      color: rgba(255,255,255,0.86);
-      font-size: 0.96rem;
-      line-height: 1.6;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      margin: 0;
-    }
-
-    .footer-links a {
-      color: rgba(255,255,255,0.85);
-      text-decoration: none;
-      transition: color 0.22s ease, transform 0.22s ease;
-    }
-
-    .footer-links a:hover {
-      color: var(--hf-orange);
-      transform: translateX(4px);
-    }
-
-    .footer-socials {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .footer-socials a {
-      color: rgba(255,255,255,0.88);
-      text-decoration: none;
-      transition: transform 0.18s ease, color 0.18s ease;
-    }
-
-    .footer-socials a:hover {
-      color: var(--hf-orange);
-      transform: translateX(6px);
-    }
-
-    .footer-bottom {
-      max-width: 1200px;
-      margin: 1.25rem auto 0;
-      padding: var(--spacing-sm) var(--spacing-lg) 0;
-      border-top: 1px solid rgba(255,255,255,0.04);
-      text-align: center;
-      color: rgba(255,255,255,0.72);
-      font-size: 0.95rem;
-    }
-  </style>
-</head>
-<body>
-  <header class="topnav" role="banner">
-    <div class="topnav-inner">
-      <a class="brand" href="./" title="Home"><span class="logo-blob" aria-hidden="true"></span><span class="brand-text">Hacktoberfest 2025</span></a>
-
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="#what-is-hacktoberfest">Overview</a>
-        <a href="#my-beginners-friendly-repos-to-contribute">Projects</a>
-        <a href="#how-to-participate-step-by-step">How To</a>
-        <a href="#resources">Resources</a>
-      </nav>
-
-      <div class="nav-actions">
-        <button id="nav-search-btn" class="nav-btn" title="Search (/)" aria-label="Open search">🔎</button>
-        <a class="nav-cta" href="https://github.com/avinash201199/Hacktoberfest2025" target="_blank" rel="noopener">GitHub</a>
-        <button id="hamburger" class="nav-btn" aria-label="Toggle sidebar">☰</button>
-      </div>
-    </div>
-  </header>
 
       #article h1 {
         font-size: 2.5rem;
@@ -602,43 +290,520 @@
         background: linear-gradient(90deg, var(--hf-orange), var(--hf-purple));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        position: relative;
       }
 
       #article h2 {
         font-size: 1.8rem;
         margin: 2rem 0 1rem;
         color: var(--hf-light);
+        position: relative;
       }
 
-      <nav id="toc" class="toc">
-        <div class="toc-empty">Loading contents…</div>
-      </nav>
+      #article h3 {
+        font-size: 1.4rem;
+        margin: 1.5rem 0 1rem;
+        color: var(--hf-orange);
+        position: relative;
+      }
 
-      <button id="toc-toggle" class="toc-toggle" aria-expanded="true" aria-controls="toc">Hide</button>
+      /* Anchor Link Styling */
+      .heading-anchor {
+        text-decoration: none;
+        font-weight: normal;
+        margin-left: 0.5rem;
+        position: absolute;
+        right: 100%; 
+        padding-right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: rgba(255, 255, 255, 0.4);
+        opacity: 0;
+        font-size: 0.8em;
+        transition: opacity 0.2s ease, color 0.2s ease;
+      }
 
-      <footer class="sidebar-footer">
-        <a class="btn" href="README.md">View raw README</a>
-      </footer>
-    </aside>
+      /* Make it appear on hover of the parent heading */
+      #article h1:hover .heading-anchor,
+      #article h2:hover .heading-anchor,
+      #article h3:hover .heading-anchor {
+        opacity: 1;
+        color: var(--hf-orange);
+      }
+      /* Fallback/better positioning for smaller headings */
+      #article h4,
+      #article h5,
+      #article h6 {
+        position: relative;
+      }
+      #article h4 .heading-anchor,
+      #article h5 .heading-anchor,
+      #article h6 .heading-anchor {
+        right: auto;
+        left: calc(100% + 5px);
+        transform: translateY(-50%);
+      }
+      
+      #article p {
+        margin-bottom: 1.2rem;
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.9);
+      }
 
-    <button id="show-sidebar" class="show-btn">Show Sidebar</button>
+      #article ul,
+      #article ol {
+        padding-left: 1.5rem;
+        margin-bottom: 1.2rem;
+      }
 
-    <main class="content" id="content" role="main">
-      <div class="bg-decor" aria-hidden="true">
-        <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:var(--hf-purple);stop-opacity:0.1" />
-              <stop offset="100%" style="stop-color:var(--hf-orange);stop-opacity:0.1" />
-            </linearGradient>
-          </defs>
-          <path d="M0,0 L100,0 L100,100 L0,100 Z" fill="url(#grad)" />
-        </svg>
-      </div>
-      <div class="content-inner fade-in">
-        <article id="article">
-          <h1 class="loading-title">Loading README.md…</h1>
-        </article>
+      #article li {
+        margin-bottom: 0.5rem;
+      }
+
+      #article code {
+        background: rgba(155, 89, 182, 0.2);
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 0.9em;
+        color: var(--hf-light);
+      }
+
+      #article pre {
+        margin: 1.5rem 0;
+        padding: 1rem;
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.3);
+      }
+
+      #article table {
+        width: 100%;
+        margin: 1.5rem 0;
+        border-collapse: collapse;
+      }
+
+      #article th,
+      #article td {
+        padding: 0.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      #article th {
+        background: rgba(155, 89, 182, 0.1);
+        color: var(--hf-orange);
+      }
+
+      /* Enhanced search results */
+      .search-highlight {
+        background: linear-gradient(
+          120deg,
+          rgba(255, 138, 101, 0.2),
+          rgba(155, 89, 182, 0.2)
+        );
+        border-radius: 3px;
+        padding: 0.2em 0;
+      }
+
+      .search-wrapper input:focus + .search-ico {
+        color: var(--hf-orange);
+        opacity: 1;
+      }
+
+      /* Smooth scroll padding for header */
+      html {
+        scroll-padding-top: 80px;
+      }
+
+      /* Mobile optimizations */
+      @media (max-width: 900px) { /* Changed breakpoint to align with JS */
+        #article {
+          font-size: 15px;
+          padding: 0 1rem;
+        }
+
+        #article h1 {
+          font-size: 2rem;
+        }
+        #article h2 {
+          font-size: 1.5rem;
+        }
+        #article h3 {
+          font-size: 1.2rem;
+        }
+      }
+      
+      /* Sidebar specific mobile collapse styles */
+      @media (max-width: 900px) {
+        .sidebar {
+          position: fixed; /* Fix sidebar on mobile */
+          width: 250px;
+          min-width: 250px;
+          top: 60px;
+          left: 0;
+          transform: translateX(0);
+          transition: transform 0.3s ease-in-out;
+        }
+        
+        .sidebar.collapsed {
+          transform: translateX(-100%);
+          visibility: hidden;
+        }
+        
+        .show-btn {
+          display: block !important;
+          left: 10px;
+          top: 70px;
+        }
+        
+        .sidebar:not(.collapsed) + .show-btn {
+            display: none !important;
+        }
+      }
+
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in {
+        animation: fadeIn 0.8s ease-out forwards;
+      }
+
+      /* Smooth transitions */
+      .toc-item a {
+        transition: all 0.3s ease;
+      }
+
+      .toc-item a:hover {
+        transform: translateX(4px);
+        color: var(--hf-orange);
+      }
+
+      /* Active link indicator */
+      .toc-item a.active {
+        color: var(--hf-orange);
+        font-weight: 600;
+        padding-left: 1rem;
+        border-left: 3px solid var(--hf-orange);
+      }
+
+      /* Search results highlight */
+      mark {
+        background: linear-gradient(120deg, var(--hf-orange), var(--hf-purple));
+        padding: 0.1em 0.3em;
+        border-radius: 3px;
+        color: var(--hf-light);
+      }
+
+      /* Section highlight animation */
+      .highlight-section {
+        animation: highlight-pulse 1s ease-out;
+      }
+
+      @keyframes highlight-pulse {
+        0% {
+          background: rgba(255, 138, 101, 0.2);
+        }
+        100% {
+          background: transparent;
+        }
+      }
+
+      /* Better sidebar positioning */
+      .sidebar {
+        position: sticky;
+        top: 60px;
+        min-width: 280px; /* Set a default desktop width */
+        height: calc(100vh - 60px);
+        overflow-y: auto;
+        background: rgba(24, 49, 83, 0.95);
+        backdrop-filter: blur(10px);
+        padding: var(--spacing-md);
+        box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+      }
+      
+      .show-btn {
+          display: none;
+      }
+
+
+      /* Resources Section Styles (Kept as is) */
+      .resources-section {
+        padding: var(--spacing-lg) 0;
+        background: linear-gradient(
+          135deg,
+          rgba(24, 49, 83, 0.1),
+          rgba(155, 89, 182, 0.05)
+        );
+        margin: var(--spacing-lg) 0;
+        border-radius: 20px;
+      }
+
+      .resources-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: var(--spacing-lg);
+        margin-top: var(--spacing-lg);
+      }
+
+      .resource-category {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: var(--spacing-lg);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .resource-category:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(155, 89, 182, 0.2);
+        border-color: rgba(255, 138, 101, 0.3);
+      }
+
+      .resource-category h4 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: var(--spacing-md);
+        color: var(--hf-orange);
+        font-size: 1.3rem;
+      }
+
+      .resource-category h4::before {
+        content: attr(data-icon);
+        font-size: 1.5rem;
+      }
+
+      .resource-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .resource-item {
+        margin-bottom: var(--spacing-sm);
+        padding: 0.8rem;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 8px;
+        border-left: 3px solid transparent;
+        transition: all 0.3s ease;
+      }
+
+      .resource-item:hover {
+        background: rgba(255, 138, 101, 0.1);
+        border-left-color: var(--hf-orange);
+        transform: translateX(5px);
+      }
+
+      .resource-item a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.8rem;
+        line-height: 1.5;
+      }
+
+      .resource-item a:hover {
+        color: var(--hf-light);
+      }
+
+      .resource-emoji {
+        font-size: 1.2rem;
+        min-width: 1.5rem;
+      }
+
+      .resource-content {
+        flex: 1;
+      }
+
+      .resource-title {
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+
+      .resource-desc {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.4;
+      }
+
+      .resource-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .resource-tag {
+        background: rgba(155, 89, 182, 0.2);
+        color: var(--hf-light);
+        padding: 0.2rem 0.6rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        border: 1px solid rgba(155, 89, 182, 0.3);
+      }
+
+      .resources-intro {
+        text-align: center;
+        margin-bottom: var(--spacing-lg);
+        padding: var(--spacing-md);
+        background: rgba(255, 138, 101, 0.1);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 138, 101, 0.2);
+      }
+
+      .resources-intro p {
+        margin: 0;
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      /* Footer Styles */
+      .site-footer {
+        background: linear-gradient(
+          135deg,
+          rgba(24, 49, 83, 0.96),
+          rgba(155, 89, 182, 0.92)
+        );
+        backdrop-filter: blur(12px);
+        color: var(--hf-light);
+        margin-top: var(--spacing-lg);
+        box-shadow: 0 -6px 25px rgba(0, 0, 0, 0.22);
+        padding: var(--spacing-lg) 0 var(--spacing-md);
+      }
+
+      .footer-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 var(--spacing-lg);
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: var(--spacing-lg);
+        align-items: start;
+      }
+
+      .footer-brand {
+        display: flex;
+        gap: 0.9rem;
+        align-items: flex-start;
+      }
+
+      .footer-brand .logo-blob {
+        width: 2.4em;
+        height: 2.4em;
+        margin-right: 0;
+        box-shadow: 0 0 24px rgba(255, 138, 101, 0.18);
+      }
+
+      .footer-col h4 {
+        margin: 0 0 var(--spacing-sm);
+        font-size: 1.15rem;
+        color: var(--hf-orange);
+      }
+
+      .footer-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+
+      .footer-desc {
+        margin: 0.45rem 0 0;
+        color: rgba(255, 255, 255, 0.86);
+        font-size: 0.96rem;
+        line-height: 1.6;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        margin: 0;
+      }
+
+      .footer-links a {
+        color: rgba(255, 255, 255, 0.85);
+        text-decoration: none;
+        transition: color 0.22s ease, transform 0.22s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--hf-orange);
+        transform: translateX(4px);
+      }
+
+      .footer-socials {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .footer-socials a {
+        color: rgba(255, 255, 255, 0.88);
+        text-decoration: none;
+        transition: transform 0.18s ease, color 0.18s ease;
+      }
+
+      .footer-socials a:hover {
+        color: var(--hf-orange);
+        transform: translateX(6px);
+      }
+
+      .footer-bottom {
+        max-width: 1200px;
+        margin: 1.25rem auto 0;
+        padding: var(--spacing-sm) var(--spacing-lg) 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
+        text-align: center;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 0.95rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topnav" role="banner">
+      <div class="topnav-inner">
+        <a class="brand" href="./" title="Home"
+          ><span class="logo-blob" aria-hidden="true"></span
+          ><span class="brand-text">Hacktoberfest 2025</span></a
+        >
+
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#what-is-hacktoberfest">Overview</a>
+          <a href="#my-beginners-friendly-repos-to-contribute">Projects</a>
+          <a href="#how-to-participate-step-by-step">How To</a>
+          <a href="#resources">Resources</a>
+        </nav>
+
+        <div class="nav-actions">
+          <button
+            id="nav-search-btn"
+            class="nav-btn"
+            title="Search (/)"
+            aria-label="Open search"
+          >
+            🔎
+          </button>
+          <a
+            class="nav-cta"
+            href="https://github.com/avinash201199/Hacktoberfest2025"
+            target="_blank"
+            rel="noopener"
+            >GitHub</a
+          >
+          <button id="hamburger" class="nav-btn" aria-label="Toggle sidebar">
+            ☰
+          </button>
+        </div>
       </div>
     </header>
 
@@ -681,6 +846,8 @@
           <a class="btn" href="README.md">View raw README</a>
         </footer>
       </aside>
+
+      <button id="show-sidebar" class="show-btn">Show Sidebar</button>
 
       <main class="content" id="content" role="main">
         <div class="bg-decor" aria-hidden="true">
@@ -770,7 +937,7 @@
               a.className = "heading-anchor";
               a.href = "#" + id;
               a.title = "Link to " + h.textContent.trim();
-              a.innerHTML = "¶";
+              a.innerHTML = "#"; /* Using '#' for a modern look */
               h.appendChild(a);
             });
 
@@ -837,8 +1004,6 @@
       // Search: client-side simple search across headings and content
       function initSearch(mdText) {
         const input = document.getElementById("search");
-        const toc = document.getElementById("toc");
-        const content = document.getElementById("article");
         let searchTimeout;
 
         input.addEventListener("input", () => {
@@ -854,9 +1019,6 @@
 
             if (!q) {
               items.forEach((i) => i.classList.remove("dim"));
-              document
-                .querySelectorAll("#article mark")
-                .forEach((m) => (m.outerHTML = m.innerHTML));
               return;
             }
 
@@ -873,7 +1035,9 @@
             while (walker.nextNode()) textNodes.push(walker.currentNode);
 
             textNodes.forEach((node) => {
+              // Exclude nodes within code, pre, anchor links, and the anchor symbol itself
               if (
+                !node.parentElement.closest("code, pre, a, .heading-anchor") &&
                 !node.parentElement.matches("code, pre, a, .heading-anchor")
               ) {
                 const v = node.nodeValue;
@@ -901,57 +1065,26 @@
             if (first) first.click();
           }
         });
-      }, options);
-
-      document.querySelectorAll('#article h1, #article h2, #article h3').forEach(h => obs.observe(h));
-    }
-
-    // TOC toggle for small screens
-    document.getElementById('toc-toggle').addEventListener('click', (e) => {
-      const sidebar = document.getElementById('sidebar');
-      const expanded = sidebar.classList.toggle('collapsed');
-      e.target.textContent = expanded ? 'Show' : 'Hide';
-      e.target.setAttribute('aria-expanded', String(!expanded));
-    });
-
-    // Show sidebar button
-    document.getElementById('show-sidebar').addEventListener('click', () => {
-      const sidebar = document.getElementById('sidebar');
-      sidebar.classList.remove('collapsed');
-    });
-
-    // Navbar interactions: focus search and toggle sidebar
-    document.getElementById('nav-search-btn').addEventListener('click', () => {
-      const s = document.getElementById('search'); if (s) { s.focus(); s.scrollIntoView({behavior:'smooth', block:'center'}); }
-    });
-    document.getElementById('hamburger').addEventListener('click', () => {
-      const sidebar = document.getElementById('sidebar'); sidebar.classList.toggle('collapsed');
-    });
-
-    // keyboard shortcut: press '/' to focus search
-    document.addEventListener('keydown', (e) => {
-      if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-        e.preventDefault(); document.getElementById('search').focus();
       }
-    });
 
-    // Smooth scroll for nav links
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const id = link.getAttribute('href').slice(1);
-        let element = document.getElementById(id);
-        
-        // If element not found, try to find it by searching through headings
-        if (!element) {
-          const headings = document.querySelectorAll('#article h1, #article h2, #article h3, #article h4, #article h5, #article h6');
-          for (const heading of headings) {
-            const headingText = heading.textContent.trim().toLowerCase();
-            const cleanId = headingText.replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g, '');
-            if (cleanId === id || heading.id === id) {
-              element = heading;
-              heading.id = id; // Ensure the ID is set correctly
-              break;
+      // Highlight active heading via IntersectionObserver
+      function initActiveObserver() {
+        const options = {
+          root: null,
+          rootMargin: "0px 0px -60% 0px",
+          threshold: 0,
+        };
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const id = entry.target.id;
+            const tocLink = document.querySelector(
+              '.toc-item a[href="#' + id + '"]'
+            );
+            if (entry.isIntersecting) {
+              document
+                .querySelectorAll(".toc-item a.active")
+                .forEach((a) => a.classList.remove("active"));
+              if (tocLink) tocLink.classList.add("active");
             }
           });
         }, options);
@@ -967,6 +1100,12 @@
         const expanded = sidebar.classList.toggle("collapsed");
         e.target.textContent = expanded ? "Show" : "Hide";
         e.target.setAttribute("aria-expanded", String(!expanded));
+      });
+
+      // Show sidebar button for mobile
+      document.getElementById('show-sidebar').addEventListener('click', () => {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.remove('collapsed');
       });
 
       // Navbar interactions: focus search and toggle sidebar
@@ -992,6 +1131,7 @@
         if (isMobile) {
           sidebar.classList.add("collapsed");
         } else {
+          // On larger screens, ensure it's not collapsed by default
           sidebar.classList.remove("collapsed");
         }
       }
@@ -1032,7 +1172,8 @@
       document.querySelectorAll(".nav-links a").forEach((link) => {
         link.addEventListener("click", (e) => {
           e.preventDefault();
-          const id = link.getAttribute("href").slice(1);
+          const hash = link.getAttribute("href");
+          const id = hash.slice(1);
           let element = document.getElementById(id);
 
           // If element not found, try to find it by searching through headings
@@ -1040,12 +1181,16 @@
             const headings = document.querySelectorAll(
               "#article h1, #article h2, #article h3, #article h4, #article h5, #article h6"
             );
-            for (const heading of headings) {
-              const headingText = heading.textContent.trim().toLowerCase();
-              const cleanId = headingText
+            // Function to normalize heading text to a valid ID format
+            const normalize = (text) =>
+              text
+                .trim()
+                .toLowerCase()
                 .replace(/[^a-z0-9]+/g, "-")
                 .replace(/^-+|-+$/g, "");
-              if (cleanId === id || heading.id === id) {
+
+            for (const heading of headings) {
+              if (heading.id === id || normalize(heading.textContent) === id) {
                 element = heading;
                 heading.id = id; // Ensure the ID is set correctly
                 break;
@@ -1056,7 +1201,7 @@
           if (element) {
             element.scrollIntoView({ behavior: "smooth", block: "start" });
             setTimeout(() => {
-              history.pushState(null, "", "#" + id);
+              history.pushState(null, "", hash);
               element.classList.add("highlight-section");
               setTimeout(
                 () => element.classList.remove("highlight-section"),
@@ -1066,73 +1211,15 @@
           } else {
             console.warn("Element not found for ID:", id);
             // Fallback: just update the URL
-            history.pushState(null, "", "#" + id);
+            history.pushState(null, "", hash);
           }
         });
       });
 
-      // Enhanced renderReadme function
-      async function renderReadme() {
-        try {
-          const res = await fetch("README.md");
-          if (!res.ok) throw new Error("README.md not found");
-          const md = await res.text();
-
-          // Configure marked and highlight
-          marked.setOptions({
-            headerIds: true,
-            mangle: false,
-            highlight: function (code, lang) {
-              try {
-                return hljs.highlightAuto(code, lang ? [lang] : undefined)
-                  .value;
-              } catch (e) {
-                return hljs.highlightAuto(code).value;
-              }
-            },
-          });
-
-          const html = marked.parse(md);
-          const article = document.getElementById("article");
-          article.innerHTML = html;
-
-          // Add anchors to headings and small animated anchor links
-          document
-            .querySelectorAll(
-              "#article h1, #article h2, #article h3, #article h4, #article h5, #article h6"
-            )
-            .forEach((h) => {
-              const id =
-                h.id ||
-                h.textContent
-                  .trim()
-                  .toLowerCase()
-                  .replace(/[^a-z0-9]+/g, "-");
-              h.id = id;
-              const a = document.createElement("a");
-              a.className = "heading-anchor";
-              a.href = "#" + id;
-              a.title = "Link to " + h.textContent.trim();
-              a.innerHTML = "¶";
-              h.appendChild(a);
-            });
-
-          buildTOC();
-          initSearch(md);
-          initActiveObserver();
-          hljs.highlightAll();
-        } catch (err) {
-          document.getElementById("article").innerHTML =
-            '<div class="error-panel"><h2>Unable to load README</h2><p>' +
-            err.message +
-            '</p><p><a href="README.md">Open raw README.md</a></p></div>';
-        }
-      }
-
+      // Rerun initial rendering function
       renderReadme();
     </script>
 
-    <!-- Footer Section  -->
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-col footer-brand">
