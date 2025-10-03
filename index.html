@@ -377,6 +377,10 @@
       animation: fadeIn 0.8s ease-out forwards;
     }
 
+    .toc{
+      scrollbar-width: none;
+    }
+
     /* Smooth transitions */
     .toc-item a {
       transition: all 0.3s ease;
@@ -736,20 +740,36 @@
 
     // Highlight active heading via IntersectionObserver
     function initActiveObserver() {
-      const options = { root: null, rootMargin: '0px 0px -60% 0px', threshold: 0 };
-      const obs = new IntersectionObserver((entries) => {
+    const options = { root: null, rootMargin: '0px 0px -60% 0px', threshold: 0 };
+    const obs = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          const id = entry.target.id;
-          const tocLink = document.querySelector('.toc-item a[href="#' + id + '"]');
-          if (entry.isIntersecting) {
-            document.querySelectorAll('.toc-item a.active').forEach(a => a.classList.remove('active'));
-            if (tocLink) tocLink.classList.add('active');
-          }
-        });
-      }, options);
+            const id = entry.target.id;
+            const tocLink = document.querySelector('.toc-item a[href="#' + id + '"]');
+            if (entry.isIntersecting) {
+                document.querySelectorAll('.toc-item a.active').forEach(a => a.classList.remove('active'));
+                if (tocLink) {
+                    tocLink.classList.add('active');
+                    
+                    // 1. Get the parent container
+                    const tocContainer = document.getElementById('toc');
+                    const activeItem = tocLink.parentElement; // The <li> element
+                    
+                    // 2. Check if the active item is out of view (needs scrolling)
+                    const containerRect = tocContainer.getBoundingClientRect();
+                    const itemRect = activeItem.getBoundingClientRect();
 
-      document.querySelectorAll('#article h1, #article h2, #article h3').forEach(h => obs.observe(h));
-    }
+                    if (itemRect.top < containerRect.top || itemRect.bottom > containerRect.bottom) {
+                        // Scroll the TOC container to bring the active item into view
+                        // Uses scrollIntoView({ block: 'nearest' }) for smooth scrolling
+                        activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }
+            }
+        });
+    }, options);
+
+    document.querySelectorAll('#article h1, #article h2, #article h3').forEach(h => obs.observe(h));
+}
 
     // TOC toggle for small screens
     document.getElementById('toc-toggle').addEventListener('click', (e) => {
