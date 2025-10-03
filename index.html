@@ -534,6 +534,9 @@
       </nav>
 
       <div class="nav-actions">
+        <button id="theme-toggle" class="nav-btn" title="Toggle theme" aria-label="Toggle dark/light mode">
+          <span class="theme-icon">🌙</span>
+        </button>
         <button id="nav-search-btn" class="nav-btn" title="Search (/)" aria-label="Open search">🔎</button>
         <a class="nav-cta" href="https://github.com/avinash201199/Hacktoberfest2025" target="_blank" rel="noopener">GitHub</a>
         <button id="hamburger" class="nav-btn" aria-label="Toggle sidebar">☰</button>
@@ -773,6 +776,41 @@
         e.preventDefault(); document.getElementById('search').focus();
       }
     });
+
+    // Theme toggle functionality
+    function initTheme() {
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeIcon = themeToggle.querySelector('.theme-icon');
+      const html = document.documentElement;
+      
+      // Get saved theme or default to dark
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      html.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme, themeIcon);
+      
+      // Toggle theme on button click
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme, themeIcon);
+        
+        // Add a subtle animation
+        themeToggle.style.transform = 'rotate(360deg)';
+        setTimeout(() => {
+          themeToggle.style.transform = '';
+        }, 300);
+      });
+    }
+    
+    function updateThemeIcon(theme, iconElement) {
+      iconElement.textContent = theme === 'dark' ? '🌙' : '☀️';
+    }
+    
+    // Initialize theme on page load
+    initTheme();
 
     // Smooth scroll for nav links
     document.querySelectorAll('.nav-links a').forEach(link => {
