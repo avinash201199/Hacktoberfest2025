@@ -674,9 +674,9 @@
 
   <div class="site">
     <aside class="sidebar" id="sidebar" aria-label="Table of contents">
-      <div class="brand">
+      <!-- <div class="brand">
         <a href="./" title="Home"><span class="logo-blob" aria-hidden="true"></span>Hacktoberfest 2025</a>
-      </div>
+      </div> -->
 
       <div class="search-wrapper">
         <input id="search" placeholder="Search headings & content..." aria-label="Search README contents" />
@@ -743,7 +743,6 @@
         const article = document.getElementById('article');
         article.innerHTML = html;
 
-        // Add anchors to headings and small animated anchor links
         document.querySelectorAll('#article h1, #article h2, #article h3, #article h4, #article h5, #article h6')
           .forEach(h => {
             const id = h.id || h.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g,'-');
