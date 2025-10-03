@@ -32,22 +32,45 @@
     
     .logo-blob {
       display: inline-block;
-      width: 2em;
-      height: 2em;
-      margin-right: 0.5em;
+      width: 2.2em;
+      height: 2.2em;
+      margin-right: 0.75em;
       background: linear-gradient(135deg, var(--hf-orange), var(--hf-purple));
       border-radius: 50%;
-      animation: blob 2.5s infinite ease-in-out;
-      box-shadow: 0 0 15px rgba(255, 138, 101, 0.3);
+      animation: blob 3s infinite ease-in-out;
+      box-shadow: 0 0 20px rgba(255, 138, 101, 0.4), 0 0 40px rgba(139, 92, 246, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-blob::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      animation: shine 4s infinite;
     }
 
     @keyframes blob {
       0%, 100% {
-        transform: scale(1);
+        transform: scale(1) rotate(0deg);
       }
-      50% {
-        transform: scale(1.1);
+      33% {
+        transform: scale(1.05) rotate(120deg);
       }
+      66% {
+        transform: scale(0.95) rotate(240deg);
+      }
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+      100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    }
     }
 
     .brand {
