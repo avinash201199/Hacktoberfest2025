@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Hacktoberfest 2025 — Guide</title>
 
-    <!-- OpenGraph / Social preview -->
     <meta
       property="og:title"
       content="How to Participate in Hacktoberfest 2025 — Guide"
@@ -20,7 +19,6 @@
 
     <link rel="stylesheet" href="assets/style.css" />
 
-    <!-- Highlight.js and Marked (CDN) -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css"
@@ -29,6 +27,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
 
     <style>
+      /* Global Reset & Base */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box; /* Added for predictable layout */
+      }
+
       :root {
         --hf-orange: #ff8a65;
         --hf-purple: #9b59b6;
@@ -37,6 +42,15 @@
         --spacing-sm: 0.5rem;
         --spacing-md: 1rem;
         --spacing-lg: 2rem;
+      }
+
+      /* Focus Ring Improvement */
+      a:focus,
+      button:focus,
+      input:focus {
+        outline: 3px solid var(--hf-orange);
+        outline-offset: 2px;
+        border-radius: 3px;
       }
 
       .logo-blob {
@@ -63,6 +77,13 @@
       .brand {
         display: flex;
         align-items: center;
+        text-decoration: none;
+        color: var(--hf-light);
+        transition: transform 0.3s ease;
+      }
+
+      .brand:hover {
+        transform: scale(1.02); /* Subtle hover for brand */
       }
 
       /* Subtle shadow animation for header */
@@ -85,6 +106,7 @@
         );
         z-index: 1;
         animation: shine 1.5s infinite;
+        background-size: 200% 100%; /* Needed for the shine effect */
       }
 
       @keyframes shine {
@@ -266,19 +288,60 @@
         background: linear-gradient(90deg, var(--hf-orange), var(--hf-purple));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        position: relative; /* Needed for anchor link positioning */
       }
 
       #article h2 {
         font-size: 1.8rem;
         margin: 2rem 0 1rem;
         color: var(--hf-light);
+        position: relative; /* Needed for anchor link positioning */
       }
 
       #article h3 {
         font-size: 1.4rem;
         margin: 1.5rem 0 1rem;
         color: var(--hf-orange);
+        position: relative; /* Needed for anchor link positioning */
       }
+
+      /* --- Anchor Link (Pilcrow) Style Fix --- */
+      .heading-anchor {
+        text-decoration: none;
+        font-weight: normal;
+        margin-left: 0.5rem;
+        position: absolute;
+        right: 100%; /* Position outside the main text flow */
+        padding-right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: rgba(255, 255, 255, 0.4);
+        opacity: 0;
+        font-size: 0.8em;
+        transition: opacity 0.2s ease, color 0.2s ease;
+      }
+
+      /* Make it appear on hover of the parent heading */
+      #article h1:hover .heading-anchor,
+      #article h2:hover .heading-anchor,
+      #article h3:hover .heading-anchor {
+        opacity: 1;
+        color: var(--hf-orange);
+      }
+      /* Fallback/better positioning for smaller headings */
+      #article h4,
+      #article h5,
+      #article h6 {
+        position: relative;
+      }
+      #article h4 .heading-anchor,
+      #article h5 .heading-anchor,
+      #article h6 .heading-anchor {
+        right: auto;
+        left: calc(100% + 5px);
+        transform: translateY(-50%);
+      }
+      /* --- End Anchor Link Fix --- */
 
       #article p {
         margin-bottom: 1.2rem;
@@ -297,10 +360,11 @@
       }
 
       #article code {
-        background: rgba(155, 89, 182, 0.1);
+        background: rgba(155, 89, 182, 0.2); /* Increased contrast */
         padding: 0.2em 0.4em;
         border-radius: 3px;
         font-size: 0.9em;
+        color: var(--hf-light); /* Ensure text is visible */
       }
 
       #article pre {
@@ -468,6 +532,7 @@
         background: rgba(24, 49, 83, 0.95);
         backdrop-filter: blur(10px);
         padding: 1rem;
+        transition: width 0.3s ease; /* Added for smoother collapse */
       }
 
       /* Resources Section Styles */
@@ -870,7 +935,7 @@
               a.className = "heading-anchor";
               a.href = "#" + id;
               a.title = "Link to " + h.textContent.trim();
-              a.innerHTML = "¶";
+              a.innerHTML = "#"; /* Changed from '¶' to '#' for a modern look */
               h.appendChild(a);
             });
 
@@ -973,7 +1038,9 @@
             while (walker.nextNode()) textNodes.push(walker.currentNode);
 
             textNodes.forEach((node) => {
+              // Exclude nodes within code, pre, anchor links, and the anchor symbol itself
               if (
+                !node.parentElement.closest("code, pre, a, .heading-anchor") &&
                 !node.parentElement.matches("code, pre, a, .heading-anchor")
               ) {
                 const v = node.nodeValue;
@@ -1061,7 +1128,10 @@
         if (isMobile) {
           sidebar.classList.add("collapsed");
         } else {
-          sidebar.classList.remove("collapsed");
+          // Only remove collapsed if it's the original state
+          if (window.innerWidth > 900) {
+            sidebar.classList.remove("collapsed");
+          }
         }
       }
 
@@ -1101,7 +1171,8 @@
       document.querySelectorAll(".nav-links a").forEach((link) => {
         link.addEventListener("click", (e) => {
           e.preventDefault();
-          const id = link.getAttribute("href").slice(1);
+          const hash = link.getAttribute("href");
+          const id = hash.slice(1);
           let element = document.getElementById(id);
 
           // If element not found, try to find it by searching through headings
@@ -1109,12 +1180,16 @@
             const headings = document.querySelectorAll(
               "#article h1, #article h2, #article h3, #article h4, #article h5, #article h6"
             );
-            for (const heading of headings) {
-              const headingText = heading.textContent.trim().toLowerCase();
-              const cleanId = headingText
+            // Function to normalize heading text to a valid ID format
+            const normalize = (text) =>
+              text
+                .trim()
+                .toLowerCase()
                 .replace(/[^a-z0-9]+/g, "-")
                 .replace(/^-+|-+$/g, "");
-              if (cleanId === id || heading.id === id) {
+
+            for (const heading of headings) {
+              if (heading.id === id || normalize(heading.textContent) === id) {
                 element = heading;
                 heading.id = id; // Ensure the ID is set correctly
                 break;
@@ -1125,7 +1200,7 @@
           if (element) {
             element.scrollIntoView({ behavior: "smooth", block: "start" });
             setTimeout(() => {
-              history.pushState(null, "", "#" + id);
+              history.pushState(null, "", hash);
               element.classList.add("highlight-section");
               setTimeout(
                 () => element.classList.remove("highlight-section"),
@@ -1135,73 +1210,15 @@
           } else {
             console.warn("Element not found for ID:", id);
             // Fallback: just update the URL
-            history.pushState(null, "", "#" + id);
+            history.pushState(null, "", hash);
           }
         });
       });
 
-      // Enhanced renderReadme function
-      async function renderReadme() {
-        try {
-          const res = await fetch("README.md");
-          if (!res.ok) throw new Error("README.md not found");
-          const md = await res.text();
-
-          // Configure marked and highlight
-          marked.setOptions({
-            headerIds: true,
-            mangle: false,
-            highlight: function (code, lang) {
-              try {
-                return hljs.highlightAuto(code, lang ? [lang] : undefined)
-                  .value;
-              } catch (e) {
-                return hljs.highlightAuto(code).value;
-              }
-            },
-          });
-
-          const html = marked.parse(md);
-          const article = document.getElementById("article");
-          article.innerHTML = html;
-
-          // Add anchors to headings and small animated anchor links
-          document
-            .querySelectorAll(
-              "#article h1, #article h2, #article h3, #article h4, #article h5, #article h6"
-            )
-            .forEach((h) => {
-              const id =
-                h.id ||
-                h.textContent
-                  .trim()
-                  .toLowerCase()
-                  .replace(/[^a-z0-9]+/g, "-");
-              h.id = id;
-              const a = document.createElement("a");
-              a.className = "heading-anchor";
-              a.href = "#" + id;
-              a.title = "Link to " + h.textContent.trim();
-              a.innerHTML = "¶";
-              h.appendChild(a);
-            });
-
-          buildTOC();
-          initSearch(md);
-          initActiveObserver();
-          hljs.highlightAll();
-        } catch (err) {
-          document.getElementById("article").innerHTML =
-            '<div class="error-panel"><h2>Unable to load README</h2><p>' +
-            err.message +
-            '</p><p><a href="README.md">Open raw README.md</a></p></div>';
-        }
-      }
-
+      // Rerun initial rendering function
       renderReadme();
     </script>
 
-    <!-- Footer Section  -->
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-col footer-brand">
