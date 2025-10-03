@@ -305,7 +305,7 @@
         position: relative; /* Needed for anchor link positioning */
       }
 
-      /* --- Anchor Link (Pilcrow) Style Fix --- */
+      /* --- Anchor Link Styling (Fix) --- */
       .heading-anchor {
         text-decoration: none;
         font-weight: normal;
@@ -433,40 +433,36 @@
 
       /* Sidebar styles for collapsed state */
       .sidebar.collapsed {
-        width: 80px;
+        /* Adjusted for the mobile view to show a hamburger icon space */
+        width: 0;
+        padding: 0;
+        overflow: hidden;
+        border: none;
+        box-shadow: none;
+        margin: 0;
+        min-width: 0;
       }
-
-      .sidebar.collapsed .brand {
-        justify-content: center;
-      }
-
-      .sidebar.collapsed .brand .logo-blob {
-        margin-right: 0;
-      }
-
-      .sidebar.collapsed #toc {
+      
+      /* New button to show sidebar when collapsed */
+      .show-btn {
+        position: fixed;
+        left: 10px;
+        top: 80px;
+        background: rgba(24, 49, 83, 0.95);
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
         display: none;
+        backdrop-filter: blur(10px);
+        z-index: 100;
       }
 
-      .sidebar.collapsed .toc-toggle {
-        display: none;
+      .sidebar.collapsed + .show-btn {
+        display: block;
       }
 
-      .sidebar.collapsed .sidebar-footer {
-        display: none;
-      }
-
-      .sidebar.collapsed .search-wrapper {
-        display: none;
-      }
-
-      .sidebar.collapsed .nav-btn {
-        display: none;
-      }
-
-      .sidebar.collapsed .nav-cta {
-        display: none;
-      }
 
       @keyframes fadeIn {
         from {
@@ -533,9 +529,31 @@
         backdrop-filter: blur(10px);
         padding: 1rem;
         transition: width 0.3s ease; /* Added for smoother collapse */
+        /* To prevent content overlap when collapsed on desktop */
+        min-width: 250px; 
+      }
+      
+      /* Make main content take up space next to sidebar */
+      .site {
+        display: flex;
+        min-height: 100vh;
+      }
+      
+      .main.content {
+          flex-grow: 1;
+      }
+      
+      /* New: Ensure sidebar content is visible when not collapsed */
+      .sidebar:not(.collapsed) .brand,
+      .sidebar:not(.collapsed) .search-wrapper,
+      .sidebar:not(.collapsed) .toc,
+      .sidebar:not(.collapsed) .toc-toggle,
+      .sidebar:not(.collapsed) .sidebar-footer {
+          display: block;
       }
 
-      /* Resources Section Styles */
+
+      /* Resources Section Styles (Kept as is) */
       .resources-section {
         padding: var(--spacing-lg) 0;
         background: linear-gradient(
@@ -846,6 +864,8 @@
           <a class="btn" href="README.md">View raw README</a>
         </footer>
       </aside>
+      
+      <button id="show-sidebar" class="show-btn">Show Sidebar</button>
 
       <main class="content" id="content" role="main">
         <div class="bg-decor" aria-hidden="true">
@@ -935,7 +955,7 @@
               a.className = "heading-anchor";
               a.href = "#" + id;
               a.title = "Link to " + h.textContent.trim();
-              a.innerHTML = "#"; /* Changed from '¶' to '#' for a modern look */
+              a.innerHTML = "#"; /* Using '#' for a modern look */
               h.appendChild(a);
             });
 
@@ -1105,6 +1125,12 @@
         e.target.setAttribute("aria-expanded", String(!expanded));
       });
 
+      // Show sidebar button for mobile
+      document.getElementById('show-sidebar').addEventListener('click', () => {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.remove('collapsed');
+      });
+
       // Navbar interactions: focus search and toggle sidebar
       document
         .getElementById("nav-search-btn")
@@ -1128,10 +1154,8 @@
         if (isMobile) {
           sidebar.classList.add("collapsed");
         } else {
-          // Only remove collapsed if it's the original state
-          if (window.innerWidth > 900) {
-            sidebar.classList.remove("collapsed");
-          }
+          // On larger screens, ensure it's not collapsed by default
+          sidebar.classList.remove("collapsed");
         }
       }
 
