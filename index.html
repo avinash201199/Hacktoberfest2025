@@ -19,288 +19,259 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/5.1.1/marked.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
 
-  <!-- Theme variables and styles live in assets/style.css. The inline block was removed to avoid duplication.
-       Below we pick a random accent palette at runtime and set CSS variables so the black theme gets a fresh accent. -->
-  <script>
-    (function(){
-      const palettes = [
-        {name:'violet-orange', a:'#9b59b6', b:'#f97316', rgb:'155,89,182'},
-        {name:'teal-cyan', a:'#06b6d4', b:'#06b6d4', rgb:'6,182,212'},
-        {name:'indigo-pink', a:'#6366f1', b:'#ec4899', rgb:'99,102,241'},
-        {name:'sunset', a:'#ff8a65', b:'#f97316', rgb:'255,138,101'},
-        {name:'mint', a:'#22c55e', b:'#16a34a', rgb:'34,197,94'}
-      ];
-      const p = palettes[Math.floor(Math.random()*palettes.length)];
-      const r = document.documentElement;
-      r.style.setProperty('--accent-1', p.a);
-      r.style.setProperty('--accent-2', p.b);
-      r.style.setProperty('--accent-rgb', p.rgb);
-      r.style.setProperty('--accent-gradient', `linear-gradient(135deg, ${p.a}, ${p.b})`);
-      r.style.setProperty('--accent-primary', p.a);
-      r.style.setProperty('--accent-secondary', p.b);
-      r.style.setProperty('--hf-gradient', `linear-gradient(135deg, ${p.a}, ${p.b})`);
-    })();
-  </script>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Hacktoberfest 2025 — Guide</title>
-
-    <!-- OpenGraph / Social preview -->
-    <meta
-      property="og:title"
-      content="How to Participate in Hacktoberfest 2025 — Guide"
-    />
-    <meta
-      property="og:description"
-      content="Step-by-step guide, beginner repos, best practices and resources for Hacktoberfest 2025."
-    />
-    <meta property="og:image" content="assets/og-image.svg" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-
-    <link rel="stylesheet" href="assets/style.css" />
-
-    <!-- Highlight.js and Marked (CDN) -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/5.1.1/marked.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-
-    <style>
-      :root {
-        --hf-orange: #ff8a65;
-        --hf-purple: #9b59b6;
-        --hf-dark: #183153;
-        --hf-light: #ffffff;
-        --spacing-sm: 0.5rem;
-        --spacing-md: 1rem;
-        --spacing-lg: 2rem;
-      }
-
-      .logo-blob {
-        display: inline-block;
-        width: 2em;
-        height: 2em;
-        margin-right: 0.5em;
-        background: linear-gradient(135deg, var(--hf-orange), var(--hf-purple));
-        border-radius: 50%;
-        animation: blob 2.5s infinite ease-in-out;
-        box-shadow: 0 0 15px rgba(255, 138, 101, 0.3);
-      }
-
-      @keyframes blob {
-        0%,
-        100% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.1);
-        }
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-      }
-
-      /* Subtle shadow animation for header */
-      .site {
-        position: relative;
-      }
-
-      .site::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(
-          to right,
-          transparent,
-          rgba(255, 255, 255, 0.3),
-          transparent
-        );
-        z-index: 1;
-        animation: shine 1.5s infinite;
-      }
-
-      @keyframes shine {
-        0% {
-          background-position: -200% 0;
-        }
-        100% {
-          background-position: 200% 0;
-        }
-      }
-
-      .bg-decor {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 0;
-        pointer-events: none;
-        overflow: hidden;
-      }
-
-      .bg-decor svg {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        opacity: 0.1;
-        animation: float 6s ease-in-out infinite;
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translate(-50%, -50%) scale(1);
-        }
-        50% {
-          transform: translate(-50%, -50%) scale(1.05);
-        }
-      }
-
-      /* Top navigation bar styles */
-      .topnav {
-        background: linear-gradient(135deg, var(--hf-dark), var(--hf-purple));
-        color: var(--hf-light);
-        padding: var(--spacing-md) var(--spacing-lg);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-      }
-
-      .topnav-inner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 1.5rem;
-      }
-
-      .nav-links a {
-        position: relative;
-        padding: 0.5rem 1rem;
-        color: var(--hf-light);
-        text-decoration: none;
-        transition: all 0.3s ease;
-      }
-
-      .nav-links a:hover {
-        color: var(--hf-orange);
-      }
-
-      .nav-actions {
-        display: flex;
-        gap: 1rem;
-      }
-
-      .nav-btn {
-        background: none;
-        border: none;
-        color: #9fb1c7;
-        font-size: 1.2rem;
-        cursor: pointer;
-        transition: color 0.3s;
-      }
-
-      .nav-btn:hover {
-        color: #fff;
-      }
-
-      .nav-cta {
-        background: linear-gradient(135deg, var(--hf-orange), var(--hf-purple));
-        padding: 0.8rem 1.5rem;
-        border-radius: 50px;
-        color: var(--hf-light);
-        text-decoration: none;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
-      }
-
-      .nav-cta:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
-      }
-
-      /* Content layout and search enhancements */
-      .content {
-        padding: var(--spacing-lg);
-        background: linear-gradient(
-          135deg,
-          rgba(155, 89, 182, 0.1),
-          rgba(255, 138, 101, 0.1)
-        );
-        min-height: calc(100vh - 60px);
-      }
-
-      .content-inner {
-        max-width: 1200px;
-        margin: 0 auto;
-        background: rgba(255, 255, 255, 0.02);
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: var(--spacing-lg);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      }
-
-      .search-wrapper {
-        position: relative;
-        max-width: 600px;
-        margin: var(--spacing-md) auto;
-      }
-
-      .search-wrapper input {
-        width: 100%;
-        padding: 1rem 3rem 1rem 1.5rem;
-        background: rgba(255, 255, 255, 0.1);
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        border-radius: 50px;
-        color: var(--hf-light);
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-      }
-
-      .search-wrapper input:focus {
-        background: rgba(255, 255, 255, 0.15);
-        border-color: var(--hf-purple);
-        box-shadow: 0 0 25px rgba(155, 89, 182, 0.2);
-        outline: none;
-      }
-
-      .search-ico {
-        position: absolute;
-        right: 1.2rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--hf-light);
-        opacity: 0.7;
-        pointer-events: none;
-      }
-
-      /* Improved readability */
-      #article {
-        font-size: 15px;
-        padding: 0 1rem;
-      }
-
-      #article h1 { font-size: 2rem; }
-      #article h2 { font-size: 1.5rem; }
-      #article h3 { font-size: 1.2rem; }
+  <style>
+    :root {
+      --hf-orange: #ff8a65;
+      --hf-purple: #9b59b6;
+      --hf-dark: #183153;
+      --hf-light: #ffffff;
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #1a1a1a;
+      --text-primary: #ffffff;
+      --text-secondary: #9fb1c7;
+      --spacing-sm: 0.5rem;
+      --spacing-md: 1rem;
+      --spacing-lg: 2rem;
     }
+
+    [data-theme="light"] {
+      --hf-dark: #ffffff;
+      --hf-light: #183153;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --text-primary: #183153;
+      --text-secondary: #6c757d;
+    }
+
+    /* Theme toggle button */
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: color 0.3s;
+      padding: 0.5rem;
+      border-radius: 50%;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .logo-blob {
+      display: inline-block;
+      width: 2em;
+      height: 2em;
+      margin-right: 0.5em;
+      background: linear-gradient(135deg, var(--hf-orange), var(--hf-purple));
+      border-radius: 50%;
+      animation: blob 2.5s infinite ease-in-out;
+      box-shadow: 0 0 15px rgba(255, 138, 101, 0.3);
+    }
+
+    @keyframes blob {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+    }
+
+    /* Subtle shadow animation for header */
+    .site { position: relative; }
+
+    .site::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+      z-index: 1;
+      animation: shine 1.5s infinite;
+    }
+
+    @keyframes shine {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .bg-decor {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .bg-decor svg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.1;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.05); }
+    }
+
+    /* Top navigation bar styles */
+    .topnav {
+      background: linear-gradient(135deg, var(--hf-dark), var(--hf-purple));
+      color: var(--hf-light);
+      padding: var(--spacing-md) var(--spacing-lg);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .topnav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 0.5rem 1rem;
+      color: var(--hf-light);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--hf-orange);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      color: #9fb1c7;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .nav-btn:hover {
+      color: #fff;
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--hf-orange), var(--hf-purple));
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      color: var(--hf-light);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
+    }
+
+    /* Content layout and search enhancements */
+    .content {
+      padding: var(--spacing-lg);
+      background: var(--bg-primary);
+      min-height: calc(100vh - 60px);
+      color: var(--text-primary);
+    }
+
+    .content-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: var(--bg-secondary);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: var(--spacing-lg);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-wrapper {
+      position: relative;
+      max-width: 600px;
+      margin: var(--spacing-md) auto;
+    }
+
+    .search-wrapper input {
+      width: 100%;
+      padding: 1rem 3rem 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    .search-wrapper input:focus {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--hf-purple);
+      box-shadow: 0 0 25px rgba(155, 89, 182, 0.2);
+      outline: none;
+    }
+
+    .search-ico {
+      position: absolute;
+      right: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-primary);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    /* Improved readability */
+    #article {
+      font-size: 15px;
+      padding: 0 1rem;
+      line-height: 1.6;
+    }
+
+    #article h1 { 
+      font-size: 2.5rem; 
+      margin: 2rem 0 1.5rem;
+      color: var(--hf-orange);
+      background: linear-gradient(90deg, var(--hf-orange), var(--hf-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    #article h2 { 
+      font-size: 1.8rem; 
+      margin: 2rem 0 1rem;
+      color: var(--text-primary);
+    }
+
+    #article h3 { font-size: 1.2rem; }
 
     /* Sidebar styles for collapsed state */
     .sidebar.collapsed {
@@ -326,6 +297,11 @@
       display: none;
       backdrop-filter: blur(10px);
       z-index: 100;
+    }
+
+    [data-theme="light"] .show-btn {
+      background: rgba(255, 255, 255, 0.95);
+      color: #183153;
     }
 
     .sidebar.collapsed + .show-btn {
@@ -386,6 +362,18 @@
       background: rgba(24, 49, 83, 0.95);
       backdrop-filter: blur(10px);
       padding: 1rem;
+      width: 300px;
+      flex-shrink: 0;
+      color: var(--text-primary);
+    }
+
+    [data-theme="light"] .sidebar {
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .site {
+      display: flex;
+      min-height: calc(100vh - 60px);
     }
 
     /* Resources Section Styles */
@@ -394,6 +382,10 @@
       background: linear-gradient(135deg, rgba(24,49,83,0.1), rgba(155,89,182,0.05));
       margin: var(--spacing-lg) 0;
       border-radius: 20px;
+    }
+
+    [data-theme="light"] .resources-section {
+      background: linear-gradient(135deg, rgba(255,255,255,0.5), rgba(155,89,182,0.1));
     }
 
     .resources-grid {
@@ -410,6 +402,11 @@
       padding: var(--spacing-lg);
       border: 1px solid rgba(255, 255, 255, 0.1);
       transition: all 0.3s ease;
+    }
+
+    [data-theme="light"] .resource-category {
+      background: rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .resource-category:hover {
@@ -447,6 +444,10 @@
       transition: all 0.3s ease;
     }
 
+    [data-theme="light"] .resource-item {
+      background: rgba(0, 0, 0, 0.03);
+    }
+
     .resource-item:hover {
       background: rgba(255, 138, 101, 0.1);
       border-left-color: var(--hf-orange);
@@ -462,8 +463,16 @@
       line-height: 1.5;
     }
 
+    [data-theme="light"] .resource-item a {
+      color: rgba(0, 0, 0, 0.9);
+    }
+
     .resource-item a:hover {
       color: var(--hf-light);
+    }
+
+    [data-theme="light"] .resource-item a:hover {
+      color: var(--hf-dark);
     }
 
     .resource-emoji {
@@ -484,6 +493,10 @@
       font-size: 0.9rem;
       color: rgba(255, 255, 255, 0.7);
       line-height: 1.4;
+    }
+
+    [data-theme="light"] .resource-desc {
+      color: rgba(0, 0, 0, 0.7);
     }
 
     .resource-tags {
@@ -517,7 +530,9 @@
       color: rgba(255, 255, 255, 0.9);
     }
 
-
+    [data-theme="light"] .resources-intro p {
+      color: rgba(0, 0, 0, 0.9);
+    }
 
     /* Footer Styles */
     .site-footer {
@@ -527,6 +542,11 @@
       margin-top: var(--spacing-lg);
       box-shadow: 0 -6px 25px rgba(0,0,0,0.22);
       padding: var(--spacing-lg) 0 var(--spacing-md);
+    }
+
+    [data-theme="light"] .site-footer {
+      background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(155,89,182,0.92));
+      color: var(--hf-dark);
     }
 
     .footer-inner {
@@ -570,6 +590,10 @@
       line-height: 1.6;
     }
 
+    [data-theme="light"] .footer-desc {
+      color: rgba(0,0,0,0.86);
+    }
+
     .footer-links {
       display: flex;
       flex-direction: column;
@@ -581,6 +605,10 @@
       color: rgba(255,255,255,0.85);
       text-decoration: none;
       transition: color 0.22s ease, transform 0.22s ease;
+    }
+
+    [data-theme="light"] .footer-links a {
+      color: rgba(0,0,0,0.85);
     }
 
     .footer-links a:hover {
@@ -600,6 +628,10 @@
       transition: transform 0.18s ease, color 0.18s ease;
     }
 
+    [data-theme="light"] .footer-socials a {
+      color: rgba(0,0,0,0.88);
+    }
+
     .footer-socials a:hover {
       color: var(--hf-orange);
       transform: translateX(6px);
@@ -614,12 +646,129 @@
       color: rgba(255,255,255,0.72);
       font-size: 0.95rem;
     }
+
+    [data-theme="light"] .footer-bottom {
+      border-top: 1px solid rgba(0,0,0,0.04);
+      color: rgba(0,0,0,0.72);
+    }
+
+    /* TOC Styles */
+    .toc {
+      margin: 1rem 0;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .toc-item {
+      margin-bottom: 0.5rem;
+    }
+
+    .toc-item a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      display: block;
+      padding: 0.5rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .toc-item a:hover, .toc-item a.active {
+      background: rgba(255, 138, 101, 0.1);
+      color: var(--hf-orange);
+    }
+
+    .toc-toggle {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: var(--text-primary);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--hf-orange);
+      color: var(--hf-light);
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: var(--hf-purple);
+    }
+
+    .heading-anchor {
+      opacity: 0;
+      margin-left: 0.5rem;
+      color: var(--hf-orange);
+      text-decoration: none;
+      font-size: 0.8em;
+      transition: opacity 0.3s;
+    }
+
+    h1:hover .heading-anchor, h2:hover .heading-anchor, h3:hover .heading-anchor {
+      opacity: 1;
+    }
+
+    .error-panel {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255, 0, 0, 0.1);
+      border-radius: 8px;
+      color: var(--text-primary);
+    }
+
+    .loading-title {
+      text-align: center;
+      opacity: 0.6;
+    }
   </style>
+
+  <!-- Theme variables and styles live in assets/style.css. The inline block was removed to avoid duplication.
+       Below we pick a random accent palette at runtime and set CSS variables so the black theme gets a fresh accent. -->
+  <script>
+    (function(){
+      const palettes = [
+        {name:'violet-orange', a:'#9b59b6', b:'#f97316', rgb:'155,89,182'},
+        {name:'teal-cyan', a:'#06b6d4', b:'#06b6d4', rgb:'6,182,212'},
+        {name:'indigo-pink', a:'#6366f1', b:'#ec4899', rgb:'99,102,241'},
+        {name:'sunset', a:'#ff8a65', b:'#f97316', rgb:'255,138,101'},
+        {name:'mint', a:'#22c55e', b:'#16a34a', rgb:'34,197,94'}
+      ];
+      const p = palettes[Math.floor(Math.random()*palettes.length)];
+      const r = document.documentElement;
+      r.style.setProperty('--accent-1', p.a);
+      r.style.setProperty('--accent-2', p.b);
+      r.style.setProperty('--accent-rgb', p.rgb);
+      r.style.setProperty('--accent-gradient', `linear-gradient(135deg, ${p.a}, ${p.b})`);
+      r.style.setProperty('--accent-primary', p.a);
+      r.style.setProperty('--accent-secondary', p.b);
+      r.style.setProperty('--hf-gradient', `linear-gradient(135deg, ${p.a}, ${p.b})`);
+    })();
+  </script>
 </head>
-<body>
+<body data-theme="dark">
   <header class="topnav" role="banner">
     <div class="topnav-inner">
-      <a class="brand" href="./" title="Home"><span class="logo-blob" aria-hidden="true"></span><span class="brand-text">Hacktoberfest 2025</span></a>
+      <a class="brand" href="./" title="Home">
+        <span class="logo-blob" aria-hidden="true"></span>
+        <span class="brand-text">Hacktoberfest 2025</span>
+      </a>
 
       <nav class="nav-links" aria-label="Main navigation">
         <a href="#what-is-hacktoberfest">Overview</a>
@@ -630,26 +779,28 @@
 
       <div class="nav-actions">
         <button id="nav-search-btn" class="nav-btn" title="Search (/)" aria-label="Open search">🔎</button>
+        <button id="theme-toggle" class="nav-btn theme-toggle" title="Toggle theme" aria-label="Toggle light/dark mode">🌙</button>
         <a class="nav-cta" href="https://github.com/avinash201199/Hacktoberfest2025" target="_blank" rel="noopener">GitHub</a>
         <button id="hamburger" class="nav-btn" aria-label="Toggle sidebar">☰</button>
       </div>
     </div>
   </header>
 
-      #article h1 {
-        font-size: 2.5rem;
-        margin: 2rem 0 1.5rem;
-        color: var(--hf-orange);
-        background: linear-gradient(90deg, var(--hf-orange), var(--hf-purple));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
+  <div class="site">
+    <aside class="sidebar" id="sidebar" aria-label="Table of contents">
+      <div class="brand">
+        <a href="./" title="Home">
+          <span class="logo-blob" aria-hidden="true"></span>
+          Hacktoberfest 2025
+        </a>
+      </div>
 
-      #article h2 {
-        font-size: 1.8rem;
-        margin: 2rem 0 1rem;
-        color: var(--hf-light);
-      }
+      <div class="search-wrapper">
+        <input id="search" placeholder="Search headings & content..." aria-label="Search README contents" />
+        <svg class="search-ico" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79L20 21.5 21.5 20l-6-6z"></path>
+        </svg>
+      </div>
 
       <nav id="toc" class="toc">
         <div class="toc-empty">Loading contents…</div>
@@ -684,11 +835,68 @@
     </main>
   </div>
 
+  <!-- Footer Section -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-col footer-brand">
+        <a href="./" class="footer-brand-link">
+          <span class="logo-blob" aria-hidden="true"></span>
+          <span class="footer-title">Hacktoberfest 2025</span>
+        </a>
+        <p class="footer-desc">A small guide to help you get started contributing to open source during Hacktoberfest 2025.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="#what-is-hacktoberfest">Overview</a>
+          <a href="#my-beginners-friendly-repos-to-contribute">Projects</a>
+          <a href="#how-to-participate-step-by-step">How To</a>
+          <a href="#useful-resources--repositories">Resources</a>
+        </nav>
+      </div>
+
+      <div class="footer-col">
+        <h4>Stay Connected</h4>
+        <ul class="footer-socials" aria-label="Social links">
+          <li>
+            <a href="https://github.com/avinash201199/Hacktoberfest2025" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.754-1.333-1.754-1.09-.744.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.807 1.305 3.492.998.108-.776.418-1.305.76-1.605-2.665-.3-5.466-1.334-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.5 11.5 0 0 1 3-.405c1.02.005 2.045.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.435.375.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+              </svg> 
+              GitHub
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p><small>&copy; <span id="year">2025</span> <strong>Hacktoberfest 2025</strong> — Open-source & community-driven.</small></p>
+    </div>
+  </footer>
+
   <noscript>
-    <div style="padding:18px; max-width:720px; margin:18px auto; background:#081226; border-radius:10px; color:#9fb1c7">JavaScript is required to render this site preview. Open <a href="README.md">README.md</a> directly to view the content.</div>
+    <div style="padding:18px; max-width:720px; margin:18px auto; background:var(--bg-secondary); border-radius:10px; color:var(--text-secondary)">
+      JavaScript is required to render this site preview. Open <a href="README.md">README.md</a> directly to view the content.
+    </div>
   </noscript>
 
   <script>
+    // Theme Toggle Functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    html.setAttribute('data-theme', currentTheme);
+    themeToggle.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+
+    themeToggle.addEventListener('click', () => {
+      const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    });
+
     // Utility: smooth-scrolling behavior
     document.documentElement.style.scrollBehavior = 'smooth';
 
@@ -709,9 +917,9 @@
           }
         });
 
-        const html = marked.parse(md);
+        const htmlContent = marked.parse(md);
         const article = document.getElementById('article');
-        article.innerHTML = html;
+        article.innerHTML = htmlContent;
 
         // Add anchors to headings and small animated anchor links
         document.querySelectorAll('#article h1, #article h2, #article h3, #article h4, #article h5, #article h6')
@@ -722,614 +930,243 @@
             a.className = 'heading-anchor';
             a.href = '#' + id;
             a.title = 'Link to ' + h.textContent.trim();
-            a.innerHTML = '';
+            a.innerHTML = '¶';
             h.appendChild(a);
           });
-    </header>
 
-    <div class="site">
-      <aside class="sidebar" id="sidebar" aria-label="Table of contents">
-        <div class="brand">
-          <a href="./" title="Home"
-            ><span class="logo-blob" aria-hidden="true"></span>Hacktoberfest
-            2025</a
-          >
-        </div>
+        buildTOC();
+        initSearch(md);
+        initActiveObserver();
+        hljs.highlightAll();
+      } catch (err) {
+        document.getElementById("article").innerHTML =
+          '<div class="error-panel"><h2>Unable to load README</h2><p>' +
+          err.message +
+          '</p><p><a href="README.md">Open raw README.md</a></p></div>';
+      }
+    }
 
-        <div class="search-wrapper">
-          <input
-            id="search"
-            placeholder="Search headings & content..."
-            aria-label="Search README contents"
-          />
-          <svg class="search-ico" viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79L20 21.5 21.5 20l-6-6z"
-            ></path>
-          </svg>
-        </div>
-
-        <nav id="toc" class="toc">
-          <div class="toc-empty">Loading contents…</div>
-        </nav>
-
-        <button
-          id="toc-toggle"
-          class="toc-toggle"
-          aria-expanded="true"
-          aria-controls="toc"
-        >
-          Hide
-        </button>
-
-        <footer class="sidebar-footer">
-          <a class="btn" href="README.md">View raw README</a>
-        </footer>
-      </aside>
-
-      <main class="content" id="content" role="main">
-        <div class="bg-decor" aria-hidden="true">
-          <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop
-                  offset="0%"
-                  style="stop-color: var(--hf-purple); stop-opacity: 0.1"
-                />
-                <stop
-                  offset="100%"
-                  style="stop-color: var(--hf-orange); stop-opacity: 0.1"
-                />
-              </linearGradient>
-            </defs>
-            <path d="M0,0 L100,0 L100,100 L0,100 Z" fill="url(#grad)" />
-          </svg>
-        </div>
-        <div class="content-inner fade-in">
-          <article id="article">
-            <h1 class="loading-title">Loading README.md…</h1>
-          </article>
-        </div>
-      </main>
-    </div>
-
-    <noscript>
-      <div
-        style="
-          padding: 18px;
-          max-width: 720px;
-          margin: 18px auto;
-          background: #081226;
-          border-radius: 10px;
-          color: #9fb1c7;
-        "
-      >
-        JavaScript is required to render this site preview. Open
-        <a href="README.md">README.md</a> directly to view the content.
-      </div>
-    </noscript>
-
-    <script>
-      // Utility: smooth-scrolling behavior
-      document.documentElement.style.scrollBehavior = "smooth";
-
-      // Fetch and render README.md
-      async function renderReadme() {
-        try {
-          const res = await fetch("README.md");
-          if (!res.ok) throw new Error("README.md not found");
-          const md = await res.text();
-
-          // Configure marked and highlight
-          marked.setOptions({
-            headerIds: true,
-            mangle: false,
-            highlight: function (code, lang) {
-              try {
-                return hljs.highlightAuto(code, lang ? [lang] : undefined)
-                  .value;
-              } catch (e) {
-                return hljs.highlightAuto(code).value;
-              }
-            },
-          });
-
-          const html = marked.parse(md);
-          const article = document.getElementById("article");
-          article.innerHTML = html;
-
-          // Add anchors to headings and small animated anchor links
-          document
-            .querySelectorAll(
-              "#article h1, #article h2, #article h3, #article h4, #article h5, #article h6"
-            )
-            .forEach((h) => {
-              const id =
-                h.id ||
-                h.textContent
-                  .trim()
-                  .toLowerCase()
-                  .replace(/[^a-z0-9]+/g, "-");
-              h.id = id;
-              const a = document.createElement("a");
-              a.className = "heading-anchor";
-              a.href = "#" + id;
-              a.title = "Link to " + h.textContent.trim();
-              a.innerHTML = "¶";
-              h.appendChild(a);
-            });
-
-          buildTOC();
-          initSearch(md);
-          initActiveObserver();
-          hljs.highlightAll();
-        } catch (err) {
-          document.getElementById("article").innerHTML =
-            '<div class="error-panel"><h2>Unable to load README</h2><p>' +
-            err.message +
-            '</p><p><a href="README.md">Open raw README.md</a></p></div>';
-        }
+    // Build TOC from headings
+    function buildTOC() {
+      const toc = document.getElementById("toc");
+      toc.innerHTML = "";
+      const headings = Array.from(document.querySelectorAll("#article h1, #article h2, #article h3"));
+      if (headings.length === 0) {
+        toc.innerHTML = '<div class="toc-empty">No headings found</div>';
+        return;
       }
 
-      // Build TOC from headings
-      function buildTOC() {
-        const toc = document.getElementById("toc");
-        toc.innerHTML = "";
-        const headings = Array.from(
-          document.querySelectorAll("#article h1, #article h2, #article h3")
-        );
-        if (headings.length === 0) {
-          toc.innerHTML = '<div class="toc-empty">No headings found</div>';
-          return;
-        }
+      const list = document.createElement("ul");
+      list.className = "toc-list";
 
-        const list = document.createElement("ul");
-        list.className = "toc-list";
+      headings.forEach((h) => {
+        const li = document.createElement("li");
+        li.className = "toc-item toc-" + h.tagName.toLowerCase();
+        const a = document.createElement("a");
+        a.href = "#" + h.id;
+        a.textContent = h.textContent.trim();
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          const target = document.getElementById(h.id);
+          if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+          history.replaceState(null, "", "#" + h.id);
+        });
+        li.appendChild(a);
+        list.appendChild(li);
+      });
 
-        headings.forEach((h) => {
-          const li = document.createElement("li");
-          li.className = "toc-item toc-" + h.tagName.toLowerCase();
-          const a = document.createElement("a");
-          a.href = "#" + h.id;
-          a.textContent = h.textContent.trim();
-          a.addEventListener("click", (e) => {
-            e.preventDefault();
-            const target = document.getElementById(h.id);
-            if (target)
-              target.scrollIntoView({ behavior: "smooth", block: "start" });
-            history.replaceState(null, "", "#" + h.id);
+      toc.appendChild(list);
+
+      // Add small animated reveal for TOC items
+      const tocLinks = Array.from(document.querySelectorAll(".toc-item"));
+      tocLinks.forEach((li, i) => {
+        li.style.opacity = 0;
+        li.style.transform = "translateX(-6px)";
+        setTimeout(() => {
+          li.style.transition = "opacity .36s ease, transform .36s cubic-bezier(.2,.9,.2,1)";
+          li.style.opacity = 1;
+          li.style.transform = "none";
+        }, 120 + i * 40);
+      });
+    }
+
+    // Search: client-side simple search across headings and content
+    function initSearch(mdText) {
+      const input = document.getElementById("search");
+      const toc = document.getElementById("toc");
+      const content = document.getElementById("article");
+      let searchTimeout;
+
+      input.addEventListener("input", () => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+          const q = input.value.trim().toLowerCase();
+          const items = Array.from(document.querySelectorAll(".toc-item"));
+
+          // Clear previous highlights
+          document.querySelectorAll("#article mark").forEach((m) => {
+            m.outerHTML = m.innerHTML;
           });
-          li.appendChild(a);
-          list.appendChild(li);
-        });
 
-        toc.appendChild(list);
-
-        // Add small animated reveal for TOC items
-        const tocLinks = Array.from(document.querySelectorAll(".toc-item"));
-        tocLinks.forEach((li, i) => {
-          li.style.opacity = 0;
-          li.style.transform = "translateX(-6px)";
-          setTimeout(() => {
-            li.style.transition =
-              "opacity .36s ease, transform .36s cubic-bezier(.2,.9,.2,1)";
-            li.style.opacity = 1;
-            li.style.transform = "none";
-          }, 120 + i * 40);
-        });
-      }
-
-      // Search: client-side simple search across headings and content
-      function initSearch(mdText) {
-        const input = document.getElementById("search");
-        const toc = document.getElementById("toc");
-        const content = document.getElementById("article");
-        let searchTimeout;
-
-        input.addEventListener("input", () => {
-          clearTimeout(searchTimeout);
-          searchTimeout = setTimeout(() => {
-            const q = input.value.trim().toLowerCase();
-            const items = Array.from(document.querySelectorAll(".toc-item"));
-
-            // Clear previous highlights
-            document.querySelectorAll("#article mark").forEach((m) => {
-              m.outerHTML = m.innerHTML;
-            });
-
-            if (!q) {
-              items.forEach((i) => i.classList.remove("dim"));
-              document
-                .querySelectorAll("#article mark")
-                .forEach((m) => (m.outerHTML = m.innerHTML));
-              return;
-            }
-
-            // Highlight matches in article text
-            const regex = new RegExp(
-              "(" + q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")",
-              "ig"
-            );
-            const walker = document.createTreeWalker(
-              document.getElementById("article"),
-              NodeFilter.SHOW_TEXT
-            );
-            const textNodes = [];
-            while (walker.nextNode()) textNodes.push(walker.currentNode);
-
-            textNodes.forEach((node) => {
-              if (
-                !node.parentElement.matches("code, pre, a, .heading-anchor")
-              ) {
-                const v = node.nodeValue;
-                if (v.match(regex)) {
-                  const span = document.createElement("span");
-                  span.innerHTML = v.replace(regex, "<mark>$1</mark>");
-                  node.parentNode.replaceChild(span, node);
-                }
-              }
-            });
-
-            // Dim non-matching TOC items
-            items.forEach((i) => {
-              const text = i.textContent.toLowerCase();
-              if (text.includes(q)) i.classList.remove("dim");
-              else i.classList.add("dim");
-            });
-          }, 300); // Debounce search for better performance
-        });
-
-        // Allow pressing Enter to focus first match
-        input.addEventListener("keydown", (e) => {
-          if (e.key === "Enter") {
-            const first = document.querySelector(".toc-item:not(.dim) a");
-            if (first) first.click();
+          if (!q) {
+            items.forEach((i) => i.classList.remove("dim"));
+            return;
           }
-        });
-      }, options);
 
-      document.querySelectorAll('#article h1, #article h2, #article h3').forEach(h => obs.observe(h));
+          // Highlight matches in article text
+          const regex = new RegExp("(" + q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "ig");
+          const walker = document.createTreeWalker(document.getElementById("article"), NodeFilter.SHOW_TEXT);
+          const textNodes = [];
+          while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+          textNodes.forEach((node) => {
+            if (!node.parentElement.matches("code, pre, a, .heading-anchor")) {
+              const v = node.nodeValue;
+              if (v.match(regex)) {
+                const span = document.createElement("span");
+                span.innerHTML = v.replace(regex, "<mark>$1</mark>");
+                node.parentNode.replaceChild(span, node);
+              }
+            }
+          });
+
+          // Dim non-matching TOC items
+          items.forEach((i) => {
+            const text = i.textContent.toLowerCase();
+            if (text.includes(q)) i.classList.remove("dim");
+            else i.classList.add("dim");
+          });
+        }, 300); // Debounce search for better performance
+      });
+
+      // Allow pressing Enter to focus first match
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          const first = document.querySelector(".toc-item:not(.dim) a");
+          if (first) first.click();
+        }
+      });
+    }
+
+    // Active TOC observer
+    function initActiveObserver() {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.id;
+          document.querySelectorAll(".toc-item a").forEach((a) => a.classList.remove("active"));
+          const activeLink = document.querySelector(`.toc-item a[href="#${id}"]`);
+          if (activeLink) activeLink.classList.add("active");
+        });
+      }, { rootMargin: "-20% 0px -80% 0px" });
+
+      document.querySelectorAll("#article h1, #article h2, #article h3").forEach((h) => obs.observe(h));
     }
 
     // TOC toggle for small screens
-    document.getElementById('toc-toggle').addEventListener('click', (e) => {
+    document.getElementById("toc-toggle").addEventListener("click", (e) => {
       e.preventDefault();
-      const sidebar = document.getElementById('sidebar');
-      const isCollapsed = sidebar.classList.contains('collapsed');
-      
-      if (isCollapsed) {
-        sidebar.classList.remove('collapsed');
-        e.target.textContent = 'Hide';
-        e.target.setAttribute('aria-expanded', 'true');
-      } else {
-        sidebar.classList.add('collapsed');
-        e.target.textContent = 'Show';
-        e.target.setAttribute('aria-expanded', 'false');
-      }
+      const sidebar = document.getElementById("sidebar");
+      const expanded = sidebar.classList.toggle("collapsed");
+      e.target.textContent = expanded ? "Show" : "Hide";
+      e.target.setAttribute("aria-expanded", String(!expanded));
     });
 
     // Show sidebar button
-    document.getElementById('show-sidebar').addEventListener('click', () => {
-      const sidebar = document.getElementById('sidebar');
-      sidebar.classList.remove('collapsed');
+    document.getElementById("show-sidebar").addEventListener("click", () => {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.remove("collapsed");
     });
 
     // Navbar interactions: focus search and toggle sidebar
-    document.getElementById('nav-search-btn').addEventListener('click', () => {
-      const s = document.getElementById('search'); if (s) { s.focus(); s.scrollIntoView({behavior:'smooth', block:'center'}); }
-    });
-    document.getElementById('hamburger').addEventListener('click', () => {
-      const sidebar = document.getElementById('sidebar');
-      const isCollapsed = sidebar.classList.contains('collapsed');
-      
-      if (isCollapsed) {
-        sidebar.classList.remove('collapsed');
-      } else {
-        sidebar.classList.add('collapsed');
+    document.getElementById("nav-search-btn").addEventListener("click", () => {
+      const s = document.getElementById("search");
+      if (s) {
+        s.focus();
+        s.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     });
 
-    // keyboard shortcut: press '/' to focus search
-    document.addEventListener('keydown', (e) => {
-      if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-        e.preventDefault(); document.getElementById('search').focus();
+    document.getElementById("hamburger").addEventListener("click", () => {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("collapsed");
+    });
+
+    // Auto-collapse sidebar on mobile and handle window resize
+    function handleSidebarResponsiveness() {
+      const sidebar = document.getElementById("sidebar");
+      const isMobile = window.innerWidth <= 900;
+
+      if (isMobile) {
+        sidebar.classList.add("collapsed");
+      } else {
+        sidebar.classList.remove("collapsed");
+      }
+    }
+
+    // Initial check and window resize listener
+    handleSidebarResponsiveness();
+    window.addEventListener("resize", handleSidebarResponsiveness);
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener("click", (e) => {
+      const sidebar = document.getElementById("sidebar");
+      const hamburger = document.getElementById("hamburger");
+      const isMobile = window.innerWidth <= 900;
+
+      if (isMobile && !sidebar.contains(e.target) && !hamburger.contains(e.target) && !sidebar.classList.contains("collapsed")) {
+        sidebar.classList.add("collapsed");
+      }
+    });
+
+    // Keyboard shortcut: press '/' to focus search
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "/" && document.activeElement.tagName !== "INPUT" && document.activeElement.tagName !== "TEXTAREA") {
+        e.preventDefault();
+        document.getElementById("search").focus();
       }
     });
 
     // Smooth scroll for nav links
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', (e) => {
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", (e) => {
         e.preventDefault();
-        const id = link.getAttribute('href').slice(1);
+        const id = link.getAttribute("href").slice(1);
         let element = document.getElementById(id);
-        
+
         // If element not found, try to find it by searching through headings
         if (!element) {
-          const headings = document.querySelectorAll('#article h1, #article h2, #article h3, #article h4, #article h5, #article h6');
+          const headings = document.querySelectorAll("#article h1, #article h2, #article h3, #article h4, #article h5, #article h6");
           for (const heading of headings) {
             const headingText = heading.textContent.trim().toLowerCase();
-            const cleanId = headingText.replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g, '');
+            const cleanId = headingText.replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
             if (cleanId === id || heading.id === id) {
               element = heading;
               heading.id = id; // Ensure the ID is set correctly
               break;
             }
-          });
-        }, options);
-
-        document
-          .querySelectorAll("#article h1, #article h2, #article h3")
-          .forEach((h) => obs.observe(h));
-      }
-
-      // TOC toggle for small screens
-      document.getElementById("toc-toggle").addEventListener("click", (e) => {
-        const sidebar = document.getElementById("sidebar");
-        const expanded = sidebar.classList.toggle("collapsed");
-        e.target.textContent = expanded ? "Show" : "Hide";
-        e.target.setAttribute("aria-expanded", String(!expanded));
-      });
-
-      // Navbar interactions: focus search and toggle sidebar
-      document
-        .getElementById("nav-search-btn")
-        .addEventListener("click", () => {
-          const s = document.getElementById("search");
-          if (s) {
-            s.focus();
-            s.scrollIntoView({ behavior: "smooth", block: "center" });
           }
-        });
-      document.getElementById("hamburger").addEventListener("click", () => {
-        const sidebar = document.getElementById("sidebar");
-        sidebar.classList.toggle("collapsed");
-      });
-
-      // Auto-collapse sidebar on mobile and handle window resize
-      function handleSidebarResponsiveness() {
-        const sidebar = document.getElementById("sidebar");
-        const isMobile = window.innerWidth <= 900;
-
-        if (isMobile) {
-          sidebar.classList.add("collapsed");
-        } else {
-          sidebar.classList.remove("collapsed");
         }
-      }
 
-      // Initial check and window resize listener
-      handleSidebarResponsiveness();
-      window.addEventListener("resize", handleSidebarResponsiveness);
-
-      // Close sidebar when clicking outside on mobile
-      document.addEventListener("click", (e) => {
-        const sidebar = document.getElementById("sidebar");
-        const hamburger = document.getElementById("hamburger");
-        const isMobile = window.innerWidth <= 900;
-
-        if (
-          isMobile &&
-          !sidebar.contains(e.target) &&
-          !hamburger.contains(e.target) &&
-          !sidebar.classList.contains("collapsed")
-        ) {
-          sidebar.classList.add("collapsed");
-        }
-      });
-
-      // keyboard shortcut: press '/' to focus search
-      document.addEventListener("keydown", (e) => {
-        if (
-          e.key === "/" &&
-          document.activeElement.tagName !== "INPUT" &&
-          document.activeElement.tagName !== "TEXTAREA"
-        ) {
-          e.preventDefault();
-          document.getElementById("search").focus();
-        }
-      });
-
-  <!-- Footer Section  -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="footer-inner">
-      <div class="footer-col footer-brand">
-        <a href="./" class="footer-brand-link"><span class="logo-blob" aria-hidden="true"></span><span class="footer-title">Hacktoberfest 2025</span></a>
-        <p class="footer-desc">A small guide to help you get started contributing to open source during Hacktoberfest 2025.</p>
-      </div>
-
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <nav class="footer-links" aria-label="Footer navigation">
-          <a href="#what-is-hacktoberfest">Overview</a>
-          <a href="#my-beginners-friendly-repos-to-contribute">Projects</a>
-          <a href="#how-to-participate-step-by-step">How To</a>
-          <a href="#useful-resources--repositories">Resources</a>
-        </nav>
-      </div>
-
-      <div class="footer-col">
-        <h4>Stay Connected</h4>
-        <ul class="footer-socials" aria-label="Social links">
-          <li><a href="https://github.com/avinash201199/Hacktoberfest2025" target="_blank" rel="noopener" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.754-1.333-1.754-1.09-.744.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.807 1.305 3.492.998.108-.776.418-1.305.76-1.605-2.665-.3-5.466-1.334-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.5 11.5 0 0 1 3-.405c1.02.005 2.045.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.435.375.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> GitHub</a></li>
-        </ul>
-      // Smooth scroll for nav links
-      document.querySelectorAll(".nav-links a").forEach((link) => {
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-          const id = link.getAttribute("href").slice(1);
-          let element = document.getElementById(id);
-
-          // If element not found, try to find it by searching through headings
-          if (!element) {
-            const headings = document.querySelectorAll(
-              "#article h1, #article h2, #article h3, #article h4, #article h5, #article h6"
-            );
-            for (const heading of headings) {
-              const headingText = heading.textContent.trim().toLowerCase();
-              const cleanId = headingText
-                .replace(/[^a-z0-9]+/g, "-")
-                .replace(/^-+|-+$/g, "");
-              if (cleanId === id || heading.id === id) {
-                element = heading;
-                heading.id = id; // Ensure the ID is set correctly
-                break;
-              }
-            }
-          }
-
-          if (element) {
-            element.scrollIntoView({ behavior: "smooth", block: "start" });
-            setTimeout(() => {
-              history.pushState(null, "", "#" + id);
-              element.classList.add("highlight-section");
-              setTimeout(
-                () => element.classList.remove("highlight-section"),
-                1000
-              );
-            }, 100);
-          } else {
-            console.warn("Element not found for ID:", id);
-            // Fallback: just update the URL
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+          setTimeout(() => {
             history.pushState(null, "", "#" + id);
-          }
-        });
-      });
-
-      // Enhanced renderReadme function
-      async function renderReadme() {
-        try {
-          const res = await fetch("README.md");
-          if (!res.ok) throw new Error("README.md not found");
-          const md = await res.text();
-
-          // Configure marked and highlight
-          marked.setOptions({
-            headerIds: true,
-            mangle: false,
-            highlight: function (code, lang) {
-              try {
-                return hljs.highlightAuto(code, lang ? [lang] : undefined)
-                  .value;
-              } catch (e) {
-                return hljs.highlightAuto(code).value;
-              }
-            },
-          });
-
-          const html = marked.parse(md);
-          const article = document.getElementById("article");
-          article.innerHTML = html;
-
-          // Add anchors to headings and small animated anchor links
-          document
-            .querySelectorAll(
-              "#article h1, #article h2, #article h3, #article h4, #article h5, #article h6"
-            )
-            .forEach((h) => {
-              const id =
-                h.id ||
-                h.textContent
-                  .trim()
-                  .toLowerCase()
-                  .replace(/[^a-z0-9]+/g, "-");
-              h.id = id;
-              const a = document.createElement("a");
-              a.className = "heading-anchor";
-              a.href = "#" + id;
-              a.title = "Link to " + h.textContent.trim();
-              a.innerHTML = "¶";
-              h.appendChild(a);
-            });
-
-          buildTOC();
-          initSearch(md);
-          initActiveObserver();
-          hljs.highlightAll();
-        } catch (err) {
-          document.getElementById("article").innerHTML =
-            '<div class="error-panel"><h2>Unable to load README</h2><p>' +
-            err.message +
-            '</p><p><a href="README.md">Open raw README.md</a></p></div>';
+            element.classList.add("highlight-section");
+            setTimeout(() => element.classList.remove("highlight-section"), 1000);
+          }, 100);
+        } else {
+          console.warn("Element not found for ID:", id);
+          // Fallback: just update the URL
+          history.pushState(null, "", "#" + id);
         }
-      }
+      });
+    });
 
-      renderReadme();
-    </script>
+    // Update year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    <!-- Footer Section  -->
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div class="footer-col footer-brand">
-          <span class="logo-blob" aria-hidden="true"></span>
-          <span class="footer-title">Hacktoberfest 2025</span>
-        </div>
-
-        <div class="footer-col">
-          <h4>Quick Links</h4>
-          <nav class="footer-links" aria-label="Footer navigation">
-            <a href="#what-is-hacktoberfest">Overview</a>
-            <a
-              href="https://github.com/avinash201199/Hacktoberfest2025"
-              target="_blank"
-              rel="noopener"
-              >Projects</a
-            >
-            <a href="#resources">Resources</a>
-          </nav>
-        </div>
-
-        <div class="footer-col">
-          <h4>Stay Connected</h4>
-          <div class="footer-socials">
-            <a
-              href="https://github.com/avinash201199/Hacktoberfest2025"
-              target="_blank"
-              rel="noopener"
-              aria-label="GitHub"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                style="margin-right: 6px"
-              >
-                <path
-                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 
-              3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 
-              0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61 
-              -.546-1.385-1.333-1.754-1.333-1.754-1.09-.744.084-.729.084-.729 
-              1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.807 
-              1.305 3.492.998.108-.776.418-1.305.76-1.605-2.665-.3-5.466-1.334-5.466-5.93 
-              0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 
-              0 0 1.005-.322 3.3 1.23a11.5 11.5 0 0 1 3-.405c1.02.005 
-              2.045.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23 
-              .645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 
-              1.23 3.22 0 4.61-2.805 5.625-5.475 
-              5.92.435.375.81 1.096.81 2.22 
-              0 1.606-.015 2.896-.015 3.286 
-              0 .315.21.69.825.57C20.565 22.092 
-              24 17.592 24 12.297c0-6.627-5.373-12-12-12"
-                />
-              </svg>
-              GitHub
-            </a>
-          </div>
-        </div>
-      </div>
-
-    <div class="footer-bottom">
-      <p><small>&copy; <span id="year">2025</span> <strong>Hacktoberfest 2025</strong> — Open-source & community-driven.</small></p>
-    </div>
-  </footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    // Initial render
+    renderReadme();
+  </script>
 </body>
-      <div class="footer-bottom">
-        <p>
-          <strong>Hacktoberfest 2025</strong>. Open-source & community-driven.
-        </p>
-      </div>
-    </footer>
-  </body>
 </html>
