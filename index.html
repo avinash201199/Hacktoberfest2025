@@ -14,13 +14,10 @@
 
   <link rel="stylesheet" href="assets/style.css" />
 
-  <!-- Highlight.js and Marked (CDN) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/5.1.1/marked.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-  <!-- Theme variables and styles live in assets/style.css. The inline block was removed to avoid duplication.
-       Below we pick a random accent palette at runtime and set CSS variables so the black theme gets a fresh accent. -->
+  <!-- Theme variables and styles -->
   <script>
     (function(){
       const palettes = [
@@ -41,325 +38,409 @@
       r.style.setProperty('--hf-gradient', `linear-gradient(135deg, ${p.a}, ${p.b})`);
     })();
   </script>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Hacktoberfest 2025 — Guide</title>
 
-    <!-- OpenGraph / Social preview -->
-    <meta
-      property="og:title"
-      content="How to Participate in Hacktoberfest 2025 — Guide"
-    />
-    <meta
-      property="og:description"
-      content="Step-by-step guide, beginner repos, best practices and resources for Hacktoberfest 2025."
-    />
-    <meta property="og:image" content="assets/og-image.svg" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-
-    <link rel="stylesheet" href="assets/style.css" />
-
-    <!-- Highlight.js and Marked (CDN) -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/5.1.1/marked.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-
-    <style>
-      :root {
-        --hf-orange: #ff8a65;
-        --hf-purple: #9b59b6;
-        --hf-dark: #183153;
-        --hf-light: #ffffff;
-        --spacing-sm: 0.5rem;
-        --spacing-md: 1rem;
-        --spacing-lg: 2rem;
-      }
-
-      .logo-blob {
-        display: inline-block;
-        width: 2em;
-        height: 2em;
-        margin-right: 0.5em;
-        background: linear-gradient(135deg, var(--hf-orange), var(--hf-purple));
-        border-radius: 50%;
-        animation: blob 2.5s infinite ease-in-out;
-        box-shadow: 0 0 15px rgba(255, 138, 101, 0.3);
-      }
-
-      @keyframes blob {
-        0%,
-        100% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.1);
-        }
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-      }
-
-      /* Subtle shadow animation for header */
-      .site {
-        position: relative;
-      }
-
-      .site::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(
-          to right,
-          transparent,
-          rgba(255, 255, 255, 0.3),
-          transparent
-        );
-        z-index: 1;
-        animation: shine 1.5s infinite;
-      }
-
-      @keyframes shine {
-        0% {
-          background-position: -200% 0;
-        }
-        100% {
-          background-position: 200% 0;
-        }
-      }
-
-      .bg-decor {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 0;
-        pointer-events: none;
-        overflow: hidden;
-      }
-
-      .bg-decor svg {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        opacity: 0.1;
-        animation: float 6s ease-in-out infinite;
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translate(-50%, -50%) scale(1);
-        }
-        50% {
-          transform: translate(-50%, -50%) scale(1.05);
-        }
-      }
-
-      /* Top navigation bar styles */
-      .topnav {
-        background: linear-gradient(135deg, var(--hf-dark), var(--hf-purple));
-        color: var(--hf-light);
-        padding: var(--spacing-md) var(--spacing-lg);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-      }
-
-      .topnav-inner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 1.5rem;
-      }
-
-      .nav-links a {
-        position: relative;
-        padding: 0.5rem 1rem;
-        color: var(--hf-light);
-        text-decoration: none;
-        transition: all 0.3s ease;
-      }
-
-      .nav-links a:hover {
-        color: var(--hf-orange);
-      }
-
-      .nav-actions {
-        display: flex;
-        gap: 1rem;
-      }
-
-      .nav-btn {
-        background: none;
-        border: none;
-        color: #9fb1c7;
-        font-size: 1.2rem;
-        cursor: pointer;
-        transition: color 0.3s;
-      }
-
-      .nav-btn:hover {
-        color: #fff;
-      }
-
-      .nav-cta {
-        background: linear-gradient(135deg, var(--hf-orange), var(--hf-purple));
-        padding: 0.8rem 1.5rem;
-        border-radius: 50px;
-        color: var(--hf-light);
-        text-decoration: none;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
-      }
-
-      .nav-cta:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
-      }
-
-      /* Content layout and search enhancements */
-      .content {
-        padding: var(--spacing-lg);
-        background: linear-gradient(
-          135deg,
-          rgba(155, 89, 182, 0.1),
-          rgba(255, 138, 101, 0.1)
-        );
-        min-height: calc(100vh - 60px);
-      }
-
-      .content-inner {
-        max-width: 1200px;
-        margin: 0 auto;
-        background: rgba(255, 255, 255, 0.02);
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: var(--spacing-lg);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      }
-
-      .search-wrapper {
-        position: relative;
-        max-width: 600px;
-        margin: var(--spacing-md) auto;
-      }
-
-      .search-wrapper input {
-        width: 100%;
-        padding: 1rem 3rem 1rem 1.5rem;
-        background: rgba(255, 255, 255, 0.1);
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        border-radius: 50px;
-        color: var(--hf-light);
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-      }
-
-      .search-wrapper input:focus {
-        background: rgba(255, 255, 255, 0.15);
-        border-color: var(--hf-purple);
-        box-shadow: 0 0 25px rgba(155, 89, 182, 0.2);
-        outline: none;
-      }
-
-      .search-ico {
-        position: absolute;
-        right: 1.2rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--hf-light);
-        opacity: 0.7;
-        pointer-events: none;
-      }
-
-      /* Improved readability */
-      #article {
-        font-size: 15px;
-        padding: 0 1rem;
-      }
-
-      #article h1 { font-size: 2rem; }
-      #article h2 { font-size: 1.5rem; }
-      #article h3 { font-size: 1.2rem; }
+  <style>
+    :root {
+      --hf-orange: #ff8a65;
+      --hf-purple: #9b59b6;
+      --hf-dark: #183153;
+      --hf-light: #ffffff;
+      --spacing-sm: 0.5rem;
+      --spacing-md: 1rem;
+      --spacing-lg: 2rem;
     }
 
-    /* Sidebar styles for collapsed state */
-    .sidebar.collapsed {
-      width: 0;
-      padding: 0;
-      overflow: hidden;
-      border: none;
-      box-shadow: none;
-      margin: 0;
-      min-width: 0;
+    .logo-blob {
+      display: inline-block;
+      width: 2.5em;
+      height: 2.5em;
+      margin-right: 0.5em;
     }
 
-    .show-btn {
-      position: fixed;
-      left: 10px;
-      top: 80px;
-      background: rgba(24, 49, 83, 0.95);
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      display: none;
-      backdrop-filter: blur(10px);
-      z-index: 100;
+    .logo-blob img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      animation: blob 2.5s infinite ease-in-out;
     }
 
-    .sidebar.collapsed + .show-btn {
-      display: block;
+    @keyframes blob {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .brand {
+      display: flex;
+      align-items: center;
     }
 
-    .fade-in {
-      animation: fadeIn 0.8s ease-out forwards;
+    /* Top navigation bar styles */
+    .topnav {
+      background: linear-gradient(135deg, var(--hf-dark), var(--hf-purple));
+      color: var(--hf-light);
+      padding: var(--spacing-md) var(--spacing-lg);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
     }
 
-    /* Smooth transitions */
-    .toc-item a {
+    .topnav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 0.5rem 1rem;
+      color: var(--hf-light);
+      text-decoration: none;
       transition: all 0.3s ease;
     }
 
-    .toc-item a:hover {
-      transform: translateX(10px);
+    .nav-links a:hover {
       color: var(--hf-orange);
     }
 
-    /* Active link indicator */
-    .toc-item a.active {
+    .nav-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      color: #9fb1c7;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .nav-btn:hover {
+      color: #fff;
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--hf-orange), var(--hf-purple));
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      color: var(--hf-light);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
+    }
+
+    /* Site layout */
+    .site {
+      display: flex;
+      min-height: calc(100vh - 60px);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 300px;
+      min-width: 300px;
+      background: rgba(24, 49, 83, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem;
+      position: sticky;
+      top: 60px;
+      height: calc(100vh - 60px);
+      overflow-y: auto;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar.collapsed {
+      width: 0;
+      min-width: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .search-wrapper {
+      position: relative;
+      margin: var(--spacing-md) 0;
+    }
+
+    .search-wrapper input {
+      width: 100%;
+      padding: 1rem 3rem 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      color: var(--hf-light);
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    .search-wrapper input:focus {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--hf-purple);
+      box-shadow: 0 0 25px rgba(155, 89, 182, 0.2);
+      outline: none;
+    }
+
+    .search-ico {
+      position: absolute;
+      right: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--hf-light);
+      opacity: 0.7;
+      pointer-events: none;
+      font-size: 1.1rem;
+    }
+
+    .toc {
+      margin-top: var(--spacing-md);
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .toc-title {
       color: var(--hf-orange);
       font-weight: 600;
-      padding-left: 1rem;
-      border-left: 3px solid var(--hf-orange);
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    /* Search results highlight */
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      flex: 1;
+    }
+
+    .toc-item {
+      margin: 0.5rem 0;
+    }
+
+    .toc-item a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      transition: all 0.3s ease;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+
+    .toc-item a i {
+      font-size: 1.3rem;
+      color: var(--hf-orange);
+      width: 24px;
+      flex-shrink: 0;
+    }
+
+    .toc-item a span {
+      flex: 1;
+    }
+
+    .toc-item a:hover {
+      color: var(--hf-light);
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateX(8px);
+    }
+
+    .toc-item a.active {
+      color: var(--hf-light);
+      font-weight: 600;
+      background: rgba(255, 138, 101, 0.2);
+      border-left: 4px solid var(--hf-orange);
+    }
+
+    .toc-item.dim {
+      opacity: 0.3;
+    }
+
+    .sidebar-cta {
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, rgba(155, 89, 182, 0.2), rgba(255, 138, 101, 0.2));
+      border-radius: 12px;
+      border: 1px solid rgba(255, 138, 101, 0.3);
+      text-align: center;
+    }
+
+    .sidebar-cta h4 {
+      color: var(--hf-light);
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .sidebar-cta h4 i {
+      color: var(--hf-orange);
+    }
+
+    .register-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--hf-orange), var(--hf-purple));
+      color: var(--hf-light);
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .register-btn:hover {
+      background: linear-gradient(135deg, var(--hf-purple), var(--hf-orange));
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(255, 138, 101, 0.4);
+    }
+
+    .toc-toggle {
+      display: none;
+    }
+
+    .sidebar-footer {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--hf-light);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-2px);
+      border-color: var(--hf-orange);
+    }
+
+    .btn-github {
+      background: rgba(155, 89, 182, 0.15);
+      border-color: rgba(155, 89, 182, 0.3);
+    }
+
+    .btn-github:hover {
+      background: rgba(155, 89, 182, 0.25);
+      border-color: var(--hf-purple);
+    }
+
+    /* Content area */
+    .content {
+      flex: 1;
+      padding: var(--spacing-lg);
+      background: linear-gradient(135deg, rgba(155, 89, 182, 0.1), rgba(255, 138, 101, 0.1));
+      min-height: calc(100vh - 60px);
+    }
+
+    .content-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: var(--spacing-lg);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .bg-decor {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    #article {
+      position: relative;
+      z-index: 1;
+      color: var(--hf-light);
+    }
+
+    #article h1 {
+      font-size: 2.5rem;
+      margin: 2rem 0 1.5rem;
+      color: var(--hf-orange);
+      background: linear-gradient(90deg, var(--hf-orange), var(--hf-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    #article h2 {
+      font-size: 1.8rem;
+      margin: 2rem 0 1rem;
+      color: var(--hf-light);
+    }
+
+    #article h3 {
+      font-size: 1.2rem;
+      margin: 1.5rem 0 1rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    #article a {
+      color: var(--hf-orange);
+      text-decoration: none;
+    }
+
+    #article a:hover {
+      text-decoration: underline;
+    }
+
+    .heading-anchor {
+      margin-left: 0.5rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    #article h1:hover .heading-anchor,
+    #article h2:hover .heading-anchor,
+    #article h3:hover .heading-anchor {
+      opacity: 1;
+    }
+
     mark {
       background: linear-gradient(120deg, var(--hf-orange), var(--hf-purple));
       padding: 0.1em 0.3em;
@@ -367,139 +448,847 @@
       color: var(--hf-light);
     }
 
-    /* Section highlight animation */
-    .highlight-section {
-      animation: highlight-pulse 1s ease-out;
-    }
-
-    @keyframes highlight-pulse {
-      0% { background: rgba(255, 138, 101, 0.2); }
-      100% { background: transparent; }
-    }
-
-    /* Better sidebar positioning */
-    .sidebar {
-      position: sticky;
-      top: 60px;
-      height: calc(100vh - 60px);
-      overflow-y: auto;
-      background: rgba(24, 49, 83, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 1rem;
-    }
-
-    /* Resources Section Styles */
-    .resources-section {
-      padding: var(--spacing-lg) 0;
-      background: linear-gradient(135deg, rgba(24,49,83,0.1), rgba(155,89,182,0.05));
+    /* Overview Section */
+    .overview-section {
+      padding: var(--spacing-lg);
+      background: linear-gradient(135deg, rgba(24,49,83,0.4), rgba(155,89,182,0.2));
       margin: var(--spacing-lg) 0;
       border-radius: 20px;
     }
 
-    .resources-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: var(--spacing-lg);
-      margin-top: var(--spacing-lg);
+    .overview-section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--hf-orange);
     }
 
-    .resource-category {
+    .overview-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .intro-text {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .goals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .goal-card {
       background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
+      padding: 2rem;
       border-radius: 15px;
-      padding: var(--spacing-lg);
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      will-change: transform;
+    }
+
+    .goal-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(155, 89, 182, 0.3);
+      border-color: var(--hf-orange);
+    }
+
+    .goal-card i {
+      font-size: 3rem;
+      color: var(--hf-orange);
+      margin-bottom: 1rem;
+    }
+
+    .goal-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--hf-light);
+    }
+
+    .goal-card p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .timeline-section {
+      margin: 3rem 0;
+    }
+
+    .timeline-section h3 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: var(--hf-orange);
+    }
+
+    .timeline {
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--hf-purple), var(--hf-orange));
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      display: flex;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .timeline-item:nth-child(odd) {
+      flex-direction: row;
+    }
+
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .timeline-marker {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--hf-purple), var(--hf-orange));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      z-index: 2;
+      margin: 0 auto;
+    }
+
+    .timeline-marker i {
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .timeline-content {
+      flex: 1;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      margin: 0 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      max-width: calc(50% - 60px);
+    }
+
+    .timeline-content h4 {
+      color: var(--hf-orange);
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    .timeline-content p {
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-note {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: rgba(155, 89, 182, 0.3);
+      border-radius: 12px;
+      font-size: 0.85rem;
+      color: var(--hf-light);
+    }
+
+    .kickoff-banner {
+      text-align: center;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, rgba(155, 89, 182, 0.2), rgba(255, 138, 101, 0.2));
+      border-radius: 15px;
+      margin-top: 2rem;
+      border: 1px solid rgba(255, 138, 101, 0.3);
+    }
+
+    .kickoff-banner i {
+      color: var(--hf-orange);
+      margin-right: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .rewards-section {
+      margin: 3rem 0;
+    }
+
+    .rewards-section h3 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: var(--hf-orange);
+    }
+
+    .rewards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .reward-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
       border: 1px solid rgba(255, 255, 255, 0.1);
       transition: all 0.3s ease;
     }
 
-    .resource-category:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(155, 89, 182, 0.2);
-      border-color: rgba(255, 138, 101, 0.3);
+    .reward-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(255, 138, 101, 0.3);
+      border-color: var(--hf-orange);
     }
 
-    .resource-category h4 {
+    .reward-icon {
+      font-size: 3rem;
+      color: var(--hf-orange);
+      margin-bottom: 1rem;
+    }
+
+    .reward-card h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--hf-light);
+    }
+
+    .reward-card p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9rem;
+    }
+
+    .rewards-note {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(255, 138, 101, 0.1);
+      border-radius: 10px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .rewards-note i {
+      color: var(--hf-orange);
+      margin-right: 0.5rem;
+    }
+
+    .why-join-section {
+      margin: 3rem 0;
+    }
+
+    .why-join-section h3 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: var(--hf-orange);
+    }
+
+    .benefits-list {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      border-left: 4px solid var(--hf-orange);
+      transition: all 0.3s ease;
+    }
+
+    .benefit-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateX(10px);
+    }
+
+    .benefit-item > i {
+      font-size: 2.5rem;
+      color: var(--hf-orange);
+      flex-shrink: 0;
+    }
+
+    .benefit-item h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--hf-light);
+    }
+
+    .benefit-item p {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .timeline::before {
+        left: 30px;
+      }
+
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even) {
+        flex-direction: row;
+      }
+
+      .timeline-content {
+        max-width: 100%;
+        margin-left: 1rem;
+      }
+
+      .timeline-marker {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    /* How to Participate Section */
+    .how-to-section {
+      padding: var(--spacing-lg);
+      background: linear-gradient(135deg, rgba(24,49,83,0.4), rgba(155,89,182,0.2));
+      margin: var(--spacing-lg) 0;
+      border-radius: 20px;
+    }
+
+    .how-to-section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--hf-orange);
+    }
+
+    .how-to-intro {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .how-to-intro p {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .steps-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .step-card {
+      display: flex;
+      gap: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .step-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--hf-orange);
+      transform: translateX(10px);
+    }
+
+    .step-number {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--hf-purple), var(--hf-orange));
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      margin-bottom: var(--spacing-md);
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--hf-light);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .step-content h3 i {
+      color: var(--hf-orange);
+    }
+
+    .step-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 1rem;
+    }
+
+    .step-list li {
+      padding: 0.75rem 0;
+      padding-left: 2rem;
+      position: relative;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+    }
+
+    .step-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--hf-orange);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .step-list code {
+      background: rgba(155, 89, 182, 0.2);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      color: var(--hf-orange);
+    }
+
+    .step-note {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: rgba(255, 138, 101, 0.15);
+      border-radius: 10px;
+      border-left: 4px solid var(--hf-orange);
+      margin-top: 1rem;
+    }
+
+    .step-note.success {
+      background: rgba(34, 197, 94, 0.15);
+      border-left-color: #22c55e;
+    }
+
+    .step-note i {
       color: var(--hf-orange);
       font-size: 1.3rem;
     }
 
-    .resource-category h4::before {
-      content: attr(data-icon);
-      font-size: 1.5rem;
+    .step-note.success i {
+      color: #22c55e;
     }
 
-    .resource-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .step-resources {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
     }
 
-    .resource-item {
-      margin-bottom: var(--spacing-sm);
-      padding: 0.8rem;
-      background: rgba(255, 255, 255, 0.03);
+    .resource-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--hf-light);
+      text-decoration: none;
       border-radius: 8px;
-      border-left: 3px solid transparent;
       transition: all 0.3s ease;
     }
 
-    .resource-item:hover {
-      background: rgba(255, 138, 101, 0.1);
-      border-left-color: var(--hf-orange);
-      transform: translateX(5px);
+    .resource-link:hover {
+      background: var(--hf-orange);
+      transform: translateY(-2px);
     }
 
-    .resource-item a {
-      color: rgba(255, 255, 255, 0.9);
-      text-decoration: none;
+    .code-example {
+      margin-top: 1rem;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .code-example pre {
+      margin: 0;
+      padding: 1.5rem;
+      overflow-x: auto;
+    }
+
+    .code-example code {
+      color: #22c55e;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .requirements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .requirement-box {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .requirement-box i {
+      font-size: 2.5rem;
+      color: var(--hf-orange);
+      margin-bottom: 0.75rem;
+    }
+
+    .requirement-box code {
+      background: rgba(155, 89, 182, 0.2);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      color: var(--hf-orange);
+    }
+
+    .quick-start-section {
+      margin-top: 3rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(155, 89, 182, 0.15), rgba(255, 138, 101, 0.15));
+      border-radius: 15px;
+    }
+
+    .quick-start-section h3 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--hf-orange);
+    }
+
+    .quick-start-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .quick-start-card {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .quick-start-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .qs-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--hf-orange), var(--hf-purple));
       display: flex;
-      align-items: flex-start;
-      gap: 0.8rem;
-      line-height: 1.5;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 0 auto 1rem;
     }
 
-    .resource-item a:hover {
+    .quick-start-card h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
       color: var(--hf-light);
     }
 
-    .resource-emoji {
-      font-size: 1.2rem;
-      min-width: 1.5rem;
+    .quick-start-card p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
     }
 
-    .resource-content {
-      flex: 1;
+    .best-practices-preview {
+      margin-top: 3rem;
     }
 
-    .resource-title {
-      font-weight: 600;
-      margin-bottom: 0.2rem;
+    .best-practices-preview h3 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--hf-orange);
     }
 
-    .resource-desc {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.7);
-      line-height: 1.4;
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
     }
 
-    .resource-tags {
+    .tip-item {
+      display: flex;
+      gap: 1.5rem;
+      padding: 2rem;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .tip-item.do {
+      border-left: 4px solid #22c55e;
+    }
+
+    .tip-item.dont {
+      border-left: 4px solid #ef4444;
+    }
+
+    .tip-item > i {
+      font-size: 3rem;
+      flex-shrink: 0;
+    }
+
+    .tip-item.do > i {
+      color: #22c55e;
+    }
+
+    .tip-item.dont > i {
+      color: #ef4444;
+    }
+
+    .tip-item h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--hf-light);
+    }
+
+    .tip-item ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .tip-item ul li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .tip-item.do ul li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #22c55e;
+      font-weight: bold;
+    }
+
+    .tip-item.dont ul li::before {
+      content: "✗";
+      position: absolute;
+      left: 0;
+      color: #ef4444;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .step-card {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .step-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+      }
+
+      .step-resources {
+        flex-direction: column;
+      }
+    }
+
+    /* Projects Section */
+    .projects-section {
+      padding: var(--spacing-lg);
+      background: linear-gradient(135deg, rgba(24,49,83,0.35), rgba(155,89,182,0.18));
+      margin: var(--spacing-lg) 0;
+      border-radius: 20px;
+    }
+
+    .projects-section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--hf-orange);
+    }
+
+    .projects-intro {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .projects-intro p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card {
+      will-change: transform;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 35px rgba(155, 89, 182, 0.35);
+      border-color: rgba(255, 138, 101, 0.5);
+    }
+
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-header i {
+      font-size: 2.5rem;
+      color: var(--hf-orange);
+    }
+
+    .project-header h3 {
+      font-size: 1.4rem;
+      color: var(--hf-light);
+      margin: 0;
+    }
+
+    .project-desc {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .project-tech {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-top: 0.5rem;
+      margin-bottom: 1.5rem;
     }
 
-    .resource-tag {
-      background: rgba(155, 89, 182, 0.2);
+    .tech-tag {
+      background: rgba(155, 89, 182, 0.25);
       color: var(--hf-light);
-      padding: 0.2rem 0.6rem;
-      border-radius: 12px;
-      font-size: 0.75rem;
-      border: 1px solid rgba(155, 89, 182, 0.3);
+      padding: 0.4rem 0.9rem;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      border: 1px solid rgba(155, 89, 182, 0.4);
+    }
+
+    .project-footer {
+      margin-top: auto;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--hf-purple), var(--hf-orange));
+      color: var(--hf-light);
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .project-link:hover {
+      background: linear-gradient(135deg, var(--hf-orange), var(--hf-purple));
+      transform: scale(1.05);
+      box-shadow: 0 5px 20px rgba(255, 138, 101, 0.4);
+    }
+
+    .add-repo-cta {
+      text-align: center;
+      padding: 3rem;
+      background: linear-gradient(135deg, rgba(155, 89, 182, 0.2), rgba(255, 138, 101, 0.2));
+      border-radius: 15px;
+      border: 2px dashed rgba(255, 138, 101, 0.4);
+    }
+
+    .add-repo-cta i {
+      font-size: 3rem;
+      color: var(--hf-orange);
+      margin-bottom: 1rem;
+    }
+
+    .add-repo-cta h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--hf-light);
+    }
+
+    .add-repo-cta p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--hf-orange), var(--hf-purple));
+      color: var(--hf-light);
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background: linear-gradient(135deg, var(--hf-purple), var(--hf-orange));
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 138, 101, 0.5);
+    }
+
+    /* Resources Section */
+    .resources-section {
+      padding: var(--spacing-lg) 0;
+      background: linear-gradient(135deg, rgba(24,49,83,0.3), rgba(155,89,182,0.15));
+      margin: var(--spacing-lg) 0;
+      border-radius: 20px;
+    }
+
+    .resources-section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
     }
 
     .resources-intro {
@@ -517,9 +1306,112 @@
       color: rgba(255, 255, 255, 0.9);
     }
 
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+      padding: 0 var(--spacing-md);
+    }
 
+    .resource-category {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: var(--spacing-lg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      will-change: transform;
+    }
 
-    /* Footer Styles */
+    .resource-category:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(155, 89, 182, 0.3);
+      border-color: rgba(255, 138, 101, 0.4);
+    }
+
+    .resource-category h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: var(--spacing-md);
+      color: var(--hf-orange);
+      font-size: 1.5rem;
+    }
+
+    .resource-category h3 i {
+      font-size: 1.8rem;
+    }
+
+    .resource-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .resource-item {
+      margin-bottom: var(--spacing-md);
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 10px;
+      border-left: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .resource-item:hover {
+      background: rgba(255, 138, 101, 0.1);
+      border-left-color: var(--hf-orange);
+      transform: translateX(8px);
+    }
+
+    .resource-item a {
+      color: rgba(255, 255, 255, 0.95);
+      text-decoration: none;
+      display: block;
+    }
+
+    .resource-item a:hover {
+      color: var(--hf-light);
+    }
+
+    .resource-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .resource-title i {
+      color: var(--hf-orange);
+      font-size: 0.9rem;
+    }
+
+    .resource-desc {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+      margin-top: 0.3rem;
+    }
+
+    .resource-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .resource-tag {
+      background: rgba(155, 89, 182, 0.25);
+      color: var(--hf-light);
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      border: 1px solid rgba(155, 89, 182, 0.4);
+    }
+
+    /* Footer */
     .site-footer {
       background: linear-gradient(135deg, rgba(24,49,83,0.96), rgba(155,89,182,0.92));
       backdrop-filter: blur(12px);
@@ -536,26 +1428,17 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: var(--spacing-lg);
-      align-items: start;
-    }
-
-    .footer-brand {
-      display: flex;
-      gap: 0.9rem;
-      align-items: flex-start;
-    }
-
-    .footer-brand .logo-blob {
-      width: 2.4em;
-      height: 2.4em;
-      margin-right: 0;
-      box-shadow: 0 0 24px rgba(255,138,101,0.18);
     }
 
     .footer-col h4 {
       margin: 0 0 var(--spacing-sm);
       font-size: 1.15rem;
       color: var(--hf-orange);
+    }
+
+    .footer-brand .logo-blob {
+      width: 2.4em;
+      height: 2.4em;
     }
 
     .footer-title {
@@ -574,13 +1457,12 @@
       display: flex;
       flex-direction: column;
       gap: 0.6rem;
-      margin: 0;
     }
 
     .footer-links a {
       color: rgba(255,255,255,0.85);
       text-decoration: none;
-      transition: color 0.22s ease, transform 0.22s ease;
+      transition: all 0.22s ease;
     }
 
     .footer-links a:hover {
@@ -597,7 +1479,9 @@
     .footer-socials a {
       color: rgba(255,255,255,0.88);
       text-decoration: none;
-      transition: transform 0.18s ease, color 0.18s ease;
+      transition: all 0.18s ease;
+      display: flex;
+      align-items: center;
     }
 
     .footer-socials a:hover {
@@ -614,12 +1498,119 @@
       color: rgba(255,255,255,0.72);
       font-size: 0.95rem;
     }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 60px;
+        z-index: 999;
+      }
+
+      .sidebar.collapsed {
+        left: -100%;
+      }
+
+      .toc-toggle {
+        display: block;
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background: var(--hf-orange);
+        border: none;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #0a1628;
+      color: #e8eef5;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(24, 49, 83, 0.3);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, var(--hf-purple), var(--hf-orange));
+      border-radius: 10px;
+      border: 2px solid rgba(24, 49, 83, 0.3);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, var(--hf-orange), var(--hf-purple));
+      box-shadow: 0 0 10px rgba(255, 138, 101, 0.5);
+    }
+
+    /* Firefox Scrollbar */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--hf-purple) rgba(24, 49, 83, 0.3);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    /* Performance optimizations */
+    section {
+      contain: layout style;
+      will-change: transform;
+    }
+
+    .overview-section,
+    .how-to-section,
+    .projects-section,
+    .resources-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    }
+
+    .overview-section.visible,
+    .how-to-section.visible,
+    .projects-section.visible,
+    .resources-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Reduce animation complexity on scroll */
+    * {
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
   </style>
 </head>
 <body>
   <header class="topnav" role="banner">
     <div class="topnav-inner">
-      <a class="brand" href="./" title="Home"><span class="logo-blob" aria-hidden="true"></span><span class="brand-text">Hacktoberfest 2025</span></a>
+      <a class="brand" href="./" title="Home">
+        <span class="logo-blob" aria-hidden="true">
+          <img src="hackto.png" alt="Hacktoberfest Logo" />
+        </span>
+        <span class="brand-text">Hacktoberfest 2025</span>
+      </a>
 
       <nav class="nav-links" aria-label="Main navigation">
         <a href="#what-is-hacktoberfest">Overview</a>
@@ -629,707 +1620,1138 @@
       </nav>
 
       <div class="nav-actions">
-        <button id="nav-search-btn" class="nav-btn" title="Search (/)" aria-label="Open search">🔎</button>
-        <a class="nav-cta" href="https://github.com/avinash201199/Hacktoberfest2025" target="_blank" rel="noopener">GitHub</a>
-        <button id="hamburger" class="nav-btn" aria-label="Toggle sidebar">☰</button>
+        <button id="nav-search-btn" class="nav-btn" title="Search (/)" aria-label="Open search"><i class="fas fa-search"></i></button>
+        <a class="nav-cta" href="https://github.com/avinash201199/Hacktoberfest2025" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+        <button id="hamburger" class="nav-btn" aria-label="Toggle sidebar"><i class="fas fa-bars"></i></button>
       </div>
     </div>
   </header>
 
-      #article h1 {
-        font-size: 2.5rem;
-        margin: 2rem 0 1.5rem;
-        color: var(--hf-orange);
-        background: linear-gradient(90deg, var(--hf-orange), var(--hf-purple));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
+  <div class="site">
+    <aside class="sidebar" id="sidebar" aria-label="Table of contents">
 
-      #article h2 {
-        font-size: 1.8rem;
-        margin: 2rem 0 1rem;
-        color: var(--hf-light);
-      }
+      <div class="search-wrapper">
+        <input id="search" placeholder="Search headings & content..." aria-label="Search README contents" />
+        <i class="fas fa-search search-ico" aria-hidden="true"></i>
+      </div>
 
       <nav id="toc" class="toc">
-        <div class="toc-empty">Loading contents…</div>
+        <div class="toc-title">
+          <i class="fas fa-list"></i> Table of Contents
+        </div>
+        <div class="toc-list">
+          <div class="toc-item">
+            <a href="#what-is-hacktoberfest">
+              <i class="fas fa-info-circle"></i>
+              <span>What is Hacktoberfest?</span>
+            </a>
+          </div>
+          <div class="toc-item">
+            <a href="#how-to-participate-step-by-step">
+              <i class="fas fa-list-check"></i>
+              <span>How to Participate</span>
+            </a>
+          </div>
+          <div class="toc-item">
+            <a href="#my-beginners-friendly-repos-to-contribute">
+              <i class="fas fa-code-branch"></i>
+              <span>Beginner Projects</span>
+            </a>
+          </div>
+          <div class="toc-item">
+            <a href="#resources">
+              <i class="fas fa-book-open"></i>
+              <span>Learning Resources</span>
+            </a>
+          </div>
+        </div>
       </nav>
 
       <button id="toc-toggle" class="toc-toggle" aria-expanded="true" aria-controls="toc">Hide</button>
 
       <footer class="sidebar-footer">
-        <a class="btn" href="README.md">View raw README</a>
+        <a class="btn btn-github" href="https://github.com/avinash201199/Hacktoberfest2025" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i> View on GitHub
+        </a>
       </footer>
     </aside>
 
-    <button id="show-sidebar" class="show-btn">Show Sidebar</button>
-
     <main class="content" id="content" role="main">
-      <div class="bg-decor" aria-hidden="true">
-        <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:var(--hf-purple);stop-opacity:0.1" />
-              <stop offset="100%" style="stop-color:var(--hf-orange);stop-opacity:0.1" />
-            </linearGradient>
-          </defs>
-          <path d="M0,0 L100,0 L100,100 L0,100 Z" fill="url(#grad)" />
-        </svg>
-      </div>
       <div class="content-inner fade-in">
         <article id="article">
-          <h1 class="loading-title">Loading README.md…</h1>
+          <!-- Content sections below -->
         </article>
+
+        <!-- Overview Section -->
+        <section id="what-is-hacktoberfest" class="overview-section">
+          <h2><i class="fas fa-info-circle"></i> What is Hacktoberfest?</h2>
+
+          <div class="overview-content">
+            <p class="intro-text">
+              Hacktoberfest is a <strong>month-long open-source celebration</strong> organized every October by <strong>DigitalOcean</strong> (with community sponsors).
+              It encourages developers, designers, writers, and everyone in tech to contribute to <strong>open-source projects</strong>.
+            </p>
+
+            <div class="goals-grid">
+              <div class="goal-card">
+                <i class="fas fa-code-branch"></i>
+                <h3>Meaningful Contributions</h3>
+                <p>Encourage quality contributions to open source projects worldwide</p>
+              </div>
+              <div class="goal-card">
+                <i class="fas fa-user-plus"></i>
+                <h3>New Contributors</h3>
+                <p>Introduce new contributors to the open source software community</p>
+              </div>
+              <div class="goal-card">
+                <i class="fas fa-trophy"></i>
+                <h3>Rewards & Recognition</h3>
+                <p>Reward contributors with swag, badges, and global recognition</p>
+              </div>
+              <div class="goal-card">
+                <i class="fas fa-globe"></i>
+                <h3>Developer Communities</h3>
+                <p>Grow global developer communities and foster collaboration</p>
+              </div>
+            </div>
+
+            <div class="timeline-section">
+              <h3><i class="fas fa-calendar-alt"></i> Hacktoberfest 2025 Timeline</h3>
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="timeline-marker">
+                    <i class="fas fa-book-reader"></i>
+                  </div>
+                  <div class="timeline-content">
+                    <h4>Pre-September (Preptember)</h4>
+                    <p>Find projects, add hacktoberfest topic, prep Git basics</p>
+                    <span class="timeline-note">Start early 📚</span>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-marker">
+                    <i class="fas fa-rocket"></i>
+                  </div>
+                  <div class="timeline-content">
+                    <h4>Oct 1 – Oct 31</h4>
+                    <p>Submit PRs, attend community events</p>
+                    <span class="timeline-note">PRs must be merged/accepted</span>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-marker">
+                    <i class="fas fa-check-circle"></i>
+                  </div>
+                  <div class="timeline-content">
+                    <h4>Review Window</h4>
+                    <p>PRs reviewed & merged by maintainers</p>
+                    <span class="timeline-note">A few days grace after Oct</span>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-marker">
+                    <i class="fas fa-gift"></i>
+                  </div>
+                  <div class="timeline-content">
+                    <h4>Afterwards</h4>
+                    <p>Swag & badge distribution 🎁</p>
+                    <span class="timeline-note">Stories, blogs & celebration</span>
+                  </div>
+                </div>
+              </div>
+              <div class="kickoff-banner">
+                <i class="fas fa-bullhorn"></i>
+                <strong>Kickoff:</strong> October 1st, 2025 – Global virtual event <em>"From Code to Community"</em> 🎙
+              </div>
+            </div>
+
+            <div class="rewards-section">
+              <h3><i class="fas fa-award"></i> Rewards in 2025</h3>
+              <div class="rewards-grid">
+                <div class="reward-card">
+                  <i class="fas fa-id-badge reward-icon"></i>
+                  <h4>Holopin Badge</h4>
+                  <p>Digital collectible for your profile</p>
+                </div>
+                <div class="reward-card">
+                  <i class="fas fa-tshirt reward-icon"></i>
+                  <h4>Hacktoberfest T-Shirt</h4>
+                  <p>For Super Contributors (first 10k who complete)</p>
+                </div>
+                <div class="reward-card">
+                  <i class="fas fa-tree reward-icon"></i>
+                  <h4>Tree Plantation</h4>
+                  <p>A tree planted in your name via TreeNation</p>
+                </div>
+                <div class="reward-card">
+                  <i class="fas fa-certificate reward-icon"></i>
+                  <h4>Global Recognition</h4>
+                  <p>Showcase in OSS community</p>
+                </div>
+              </div>
+              <p class="rewards-note">
+                <i class="fas fa-info-circle"></i> Even if you don't hit the T-shirt tier, every contributor gets digital recognition and a chance to showcase their journey!
+              </p>
+            </div>
+
+            <div class="why-join-section">
+              <h3><i class="fas fa-heart"></i> Why You Should Join Hacktoberfest</h3>
+              <div class="benefits-list">
+                <div class="benefit-item">
+                  <i class="fas fa-chart-line"></i>
+                  <div>
+                    <h4>Skill Growth & Learning</h4>
+                    <p>Working on real projects improves your coding, collaboration, and review skills</p>
+                  </div>
+                </div>
+                <div class="benefit-item">
+                  <i class="fas fa-briefcase"></i>
+                  <div>
+                    <h4>Portfolio & Visibility</h4>
+                    <p>Your GitHub contributions are public and can be shown to employers</p>
+                  </div>
+                </div>
+                <div class="benefit-item">
+                  <i class="fas fa-users"></i>
+                  <div>
+                    <h4>Community & Networking</h4>
+                    <p>Meet contributors, maintainers, and mentors worldwide</p>
+                  </div>
+                </div>
+                <div class="benefit-item">
+                  <i class="fas fa-hand-holding-heart"></i>
+                  <div>
+                    <h4>Giving Back</h4>
+                    <p>Open-source projects power much of the tech stack we rely on</p>
+                  </div>
+                </div>
+                <div class="benefit-item">
+                  <i class="fas fa-smile"></i>
+                  <div>
+                    <h4>Fun & Motivation</h4>
+                    <p>Friendly challenge, rewards, and shared energy through October</p>
+                  </div>
+                </div>
+                <div class="benefit-item">
+                  <i class="fas fa-palette"></i>
+                  <div>
+                    <h4>Non-Code Opportunities</h4>
+                    <p>Docs, design, translation, writing, testing are also valid ways to contribute</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- How to Participate Section -->
+        <section id="how-to-participate-step-by-step" class="how-to-section">
+          <h2><i class="fas fa-list-check"></i> How to Participate - Step by Step</h2>
+
+          <div class="how-to-intro">
+            <p>Follow these simple steps to participate in Hacktoberfest 2025 and make your first open source contribution!</p>
+          </div>
+
+          <div class="steps-container">
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h3><i class="fas fa-user-plus"></i> Register / Sign Up</h3>
+                <ul class="step-list">
+                  <li>Visit <a href="https://hacktoberfest.com" target="_blank" rel="noopener">Hacktoberfest.com</a></li>
+                  <li>Sign in with your GitHub or GitLab account</li>
+                  <li>Start earning your digital badge</li>
+                </ul>
+                <div class="step-note">
+                  <i class="fas fa-lightbulb"></i>
+                  <span>Registration opens on October 1st, 2025</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h3><i class="fas fa-search"></i> Find Suitable Projects</h3>
+                <ul class="step-list">
+                  <li>Only repositories with the <code>hacktoberfest</code> topic are eligible</li>
+                  <li>Look for issues labeled <code>good first issue</code> or <code>help wanted</code></li>
+                  <li>You can contribute to non-code areas: docs, translation, design, tutorials</li>
+                  <li>Check Hacktoberfest's official event listings and community project lists</li>
+                </ul>
+                <div class="step-resources">
+                  <a href="https://github.com/topics/hacktoberfest" target="_blank" rel="noopener" class="resource-link">
+                    <i class="fab fa-github"></i> Browse Projects
+                  </a>
+                  <a href="https://goodfirstissue.dev/" target="_blank" rel="noopener" class="resource-link">
+                    <i class="fas fa-code"></i> Good First Issues
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h3><i class="fas fa-code-branch"></i> Make Pull Requests</h3>
+                <ul class="step-list">
+                  <li><strong>Fork</strong> the repository you want to contribute to</li>
+                  <li><strong>Branch</strong> - Create a new branch for your changes</li>
+                  <li><strong>Commit</strong> - Make your changes with clear commit messages</li>
+                  <li><strong>PR</strong> - Submit a pull request to the original repository</li>
+                  <li>Follow the repo's <code>CONTRIBUTING.md</code> guidelines</li>
+                  <li>Use clear PR titles and descriptions</li>
+                </ul>
+                <div class="code-example">
+                  <pre><code># Quick workflow
+git clone https://github.com/YOUR_USERNAME/REPO.git
+git checkout -b feature/your-feature
+git add .
+git commit -m "Add: your changes"
+git push origin feature/your-feature</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <h3><i class="fas fa-check-circle"></i> Get PRs Accepted</h3>
+                <div class="requirements-grid">
+                  <div class="requirement-box">
+                    <i class="fas fa-tag"></i>
+                    <p>Repository must have <code>hacktoberfest</code> topic</p>
+                  </div>
+                  <div class="requirement-box">
+                    <i class="fas fa-code-merge"></i>
+                    <p>PR should be merged or labeled <code>hacktoberfest-accepted</code></p>
+                  </div>
+                  <div class="requirement-box">
+                    <i class="fas fa-trophy"></i>
+                    <p>Aim for <strong>6 accepted PRs</strong> in 2025</p>
+                  </div>
+                </div>
+                <div class="step-note success">
+                  <i class="fas fa-star"></i>
+                  <span>Engage with maintainers - respond to feedback and revise if needed!</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="quick-start-section">
+            <h3><i class="fas fa-rocket"></i> Quick Start - First Contribution</h3>
+            <div class="quick-start-grid">
+              <div class="quick-start-card">
+                <div class="qs-icon">1</div>
+                <h4>Fork Repository</h4>
+                <p>Click the "Fork" button on the repository page</p>
+              </div>
+              <div class="quick-start-card">
+                <div class="qs-icon">2</div>
+                <h4>Add Changes</h4>
+                <p>Make your contribution following the guidelines</p>
+              </div>
+              <div class="quick-start-card">
+                <div class="qs-icon">3</div>
+                <h4>Submit PR</h4>
+                <p>Create a pull request with clear description</p>
+              </div>
+              <div class="quick-start-card">
+                <div class="qs-icon">4</div>
+                <h4>Celebrate!</h4>
+                <p>Your first contribution is complete 🎉</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="best-practices-preview">
+            <h3><i class="fas fa-star"></i> Important Tips</h3>
+            <div class="tips-grid">
+              <div class="tip-item do">
+                <i class="fas fa-check-circle"></i>
+                <div>
+                  <h4>DO</h4>
+                  <ul>
+                    <li>Focus on quality, not quantity</li>
+                    <li>Read repository guidelines</li>
+                    <li>Open issues before making PRs</li>
+                    <li>Write clear commit messages</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="tip-item dont">
+                <i class="fas fa-times-circle"></i>
+                <div>
+                  <h4>DON'T</h4>
+                  <ul>
+                    <li>Submit meaningless PRs (typos only)</li>
+                    <li>Contribute to ineligible repos</li>
+                    <li>Ignore maintainer feedback</li>
+                    <li>Spam with low-quality PRs</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="my-beginners-friendly-repos-to-contribute" class="projects-section">
+          <h2><i class="fas fa-code-branch"></i> Beginner-Friendly Repositories</h2>
+
+          <div class="projects-intro">
+            <p>Here's a curated list of projects where you can start contributing. Perfect for first-time contributors!</p>
+          </div>
+
+          <div class="projects-grid">
+            <div class="project-card">
+              <div class="project-header">
+                <i class="fas fa-user-circle"></i>
+                <h3>Profile README Templates</h3>
+              </div>
+              <p class="project-desc">Collection of beautiful and creative GitHub profile README templates</p>
+              <div class="project-tech">
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">CSS</span>
+                <span class="tech-tag">Markdown</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/avinash201199/profile-readme-templates" target="_blank" rel="noopener" class="project-link">
+                  <i class="fab fa-github"></i> View Repository
+                </a>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-header">
+                <i class="fas fa-stopwatch"></i>
+                <h3>Stopwatch</h3>
+              </div>
+              <p class="project-desc">Simple and elegant stopwatch application with modern UI</p>
+              <div class="project-tech">
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">CSS</span>
+                <span class="tech-tag">JavaScript</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/avinash201199/stopwatch" target="_blank" rel="noopener" class="project-link">
+                  <i class="fab fa-github"></i> View Repository
+                </a>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-header">
+                <i class="fas fa-sign-in-alt"></i>
+                <h3>Login-Signup Templates</h3>
+              </div>
+              <p class="project-desc">Beautiful login and signup page templates for your web projects</p>
+              <div class="project-tech">
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">CSS</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/avinash201199/Login-Signup-templates" target="_blank" rel="noopener" class="project-link">
+                  <i class="fab fa-github"></i> View Repository
+                </a>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-header">
+                <i class="fas fa-face-laugh"></i>
+                <h3>Meme Generator</h3>
+              </div>
+              <p class="project-desc">Create hilarious memes with this fun and interactive generator</p>
+              <div class="project-tech">
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">CSS</span>
+                <span class="tech-tag">JavaScript</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/avinash201199/MemeGenerator" target="_blank" rel="noopener" class="project-link">
+                  <i class="fab fa-github"></i> View Repository
+                </a>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-header">
+                <i class="fas fa-cloud-sun"></i>
+                <h3>Weather App</h3>
+              </div>
+              <p class="project-desc">Real-time weather application using weather API integration</p>
+              <div class="project-tech">
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">CSS</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">API</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/avinash201199/weather-app" target="_blank" rel="noopener" class="project-link">
+                  <i class="fab fa-github"></i> View Repository
+                </a>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-header">
+                <i class="fas fa-images"></i>
+                <h3>My Gallery 4u</h3>
+              </div>
+              <p class="project-desc">Interactive image gallery with filtering and lightbox features</p>
+              <div class="project-tech">
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">CSS</span>
+                <span class="tech-tag">JavaScript</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/avinash201199/My-Gallery-4u" target="_blank" rel="noopener" class="project-link">
+                  <i class="fab fa-github"></i> View Repository
+                </a>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-header">
+                <i class="fas fa-gamepad"></i>
+                <h3>Memory Game</h3>
+              </div>
+              <p class="project-desc">Fun memory matching game to test your cognitive skills</p>
+              <div class="project-tech">
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">CSS</span>
+                <span class="tech-tag">JavaScript</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/avinash201199/Memory-Game" target="_blank" rel="noopener" class="project-link">
+                  <i class="fab fa-github"></i> View Repository
+                </a>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-header">
+                <i class="fas fa-book-open-reader"></i>
+                <h3>Free Programming Books</h3>
+              </div>
+              <p class="project-desc">Curated collection of free programming books and resources</p>
+              <div class="project-tech">
+                <span class="tech-tag">Various</span>
+              </div>
+              <div class="project-footer">
+                <a href="https://github.com/avinash201199/Free-programming-books" target="_blank" rel="noopener" class="project-link">
+                  <i class="fab fa-github"></i> View Repository
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="add-repo-cta">
+            <i class="fas fa-plus-circle"></i>
+            <h3>Want to Add Your Repository?</h3>
+            <p>Have a beginner-friendly repository? Add it to our list and help others get started!</p>
+            <a href="https://github.com/avinash201199/Hacktoberfest2025/blob/main/BeginnersFriendlyRepositories.md" target="_blank" rel="noopener" class="cta-button">
+              <i class="fas fa-code-branch"></i> Add Your Repo
+            </a>
+          </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="resources-section">
+          <h2><i class="fas fa-book-open"></i> Open Source Learning Resources</h2>
+
+          <div class="resources-intro">
+            <p>Comprehensive learning materials and guides to master open source contribution and Hacktoberfest 2025</p>
+          </div>
+
+          <div class="resources-grid">
+            <!-- Getting Started -->
+            <div class="resource-category">
+              <h3><i class="fas fa-rocket"></i> Getting Started</h3>
+              <ul class="resource-list">
+                <li class="resource-item">
+                  <a href="https://hacktoberfest.com/" target="_blank" rel="noopener">
+                    <div class="resource-title">
+                      <i class="fas fa-external-link-alt"></i>
+                      Official Hacktoberfest Website
+                    </div>
+                    <div class="resource-desc">Official rules, guidelines, and registration for Hacktoberfest 2025</div>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Official</span>
+                      <span class="resource-tag">Registration</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="https://opensource.guide/" target="_blank" rel="noopener">
+                    <div class="resource-title">
+                      <i class="fas fa-external-link-alt"></i>
+                      Open Source Guides
+                    </div>
+                    <div class="resource-desc">Learn how to launch and grow your open source project from GitHub</div>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Guide</span>
+                      <span class="resource-tag">Beginner</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="https://www.firsttimersonly.com/" target="_blank" rel="noopener">
+                    <div class="resource-title">
+                      <i class="fas fa-external-link-alt"></i>
+                      First Timers Only
+                    </div>
+                    <div class="resource-desc">Friendly open source projects with specific issues for new contributors</div>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Beginner-Friendly</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Git & GitHub -->
+            <div class="resource-category">
+              <h3><i class="fab fa-git-alt"></i> Git & GitHub</h3>
+              <ul class="resource-list">
+                <li class="resource-item">
+                  <a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">
+                    <div class="resource-title">
+                      <i class="fas fa-external-link-alt"></i>
+                      Learn Git Branching
+                    </div>
+                    <div class="resource-desc">Interactive visual tutorial for learning Git commands and workflows</div>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Interactive</span>
+                      <span class="resource-tag">Tutorial</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="https://github.com/skills/introduction-to-github" target="_blank" rel="noopener">
+                    <div class="resource-title">
+                      <i class="fas fa-external-link-alt"></i>
+                      GitHub Skills
+                    </div>
+                    <div class="resource-desc">Official GitHub learning paths and interactive courses</div>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Official</span>
+                      <span class="resource-tag">Courses</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="https://www.atlassian.com/git/tutorials" target="_blank" rel="noopener">
+                    <div class="resource-title">
+                      <i class="fas fa-external-link-alt"></i>
+                      Atlassian Git Tutorials
+                    </div>
+                    <div class="resource-desc">Comprehensive Git tutorials from basic to advanced concepts</div>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Tutorial</span>
+                      <span class="resource-tag">Advanced</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Documentation & Best Practices -->
+            <div class="resource-category">
+              <h3><i class="fas fa-book"></i> Best Practices</h3>
+              <ul class="resource-list">
+                <li class="resource-item">
+                  <a href="https://www.conventionalcommits.org/" target="_blank" rel="noopener">
+                    <div class="resource-title">
+                      <i class="fas fa-external-link-alt"></i>
+                      Conventional Commits
+                    </div>
+                    <div class="resource-desc">Specification for adding human and machine readable meaning to commit messages</div>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Standards</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="https://github.com/firstcontributions/first-contributions" target="_blank" rel="noopener">
+                    <div class="resource-title">
+                      <i class="fas fa-external-link-alt"></i>
+                      First Contributions
+                    </div>
+                    <div class="resource-desc">Hands-on tutorial for making your first contribution with step-by-step guide</div>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Tutorial</span>
+                      <span class="resource-tag">Hands-on</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests" target="_blank" rel="noopener">
+                    <div class="resource-title">
+                      <i class="fas fa-external-link-alt"></i>
+                      Pull Request Guide
+                    </div>
+                    <div class="resource-desc">Official GitHub documentation on creating and managing pull requests</div>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Official</span>
+                      <span class="resource-tag">Documentation</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Finding Projects -->
+            <div class="resource-category">
+              <h3><i class="fas fa-search"></i> Find Projects</h3>
+              <ul class="resource-list">
+                <li class="resource-item">
+                  <a href="https://github.com/topics/hacktoberfest" target="_blank" rel="noopener">
+                    <div class="resource-title">
+                      <i class="fas fa-external-link-alt"></i>
+                      GitHub Hacktoberfest Topic
+                    </div>
+                    <div class="resource-desc">Browse repositories participating in Hacktoberfest on GitHub</div>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Projects</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="https://goodfirstissue.dev/" target="_blank" rel="noopener">
+                    <div class="resource-title">
+                      <i class="fas fa-external-link-alt"></i>
+                      Good First Issue
+                    </div>
+                    <div class="resource-desc">Find beginner-friendly issues across popular open source projects</div>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Issues</span>
+                      <span class="resource-tag">Beginner</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="https://up-for-grabs.net/" target="_blank" rel="noopener">
+                    <div class="resource-title">
+                      <i class="fas fa-external-link-alt"></i>
+                      Up For Grabs
+                    </div>
+                    <div class="resource-desc">Curated list of projects with tasks specifically for new contributors</div>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Curated</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Video Tutorials -->
+            <div class="resource-category">
+              <h3><i class="fas fa-video"></i> Video Learning</h3>
+              <ul class="resource-list">
+                <li class="resource-item">
+                  <a href="https://www.youtube.com/results?search_query=hacktoberfest+tutorial" target="_blank" rel="noopener">
+                    <div class="resource-title">
+                      <i class="fas fa-external-link-alt"></i>
+                      YouTube Tutorials
+                    </div>
+                    <div class="resource-desc">Video tutorials on participating in Hacktoberfest and making contributions</div>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Video</span>
+                      <span class="resource-tag">Tutorial</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="https://www.freecodecamp.org/news/the-beginners-guide-to-git-github/" target="_blank" rel="noopener">
+                    <div class="resource-title">
+                      <i class="fas fa-external-link-alt"></i>
+                      freeCodeCamp Git Guide
+                    </div>
+                    <div class="resource-desc">Comprehensive beginner's guide to Git and GitHub with video tutorials</div>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Guide</span>
+                      <span class="resource-tag">freeCodeCamp</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="https://www.youtube.com/githubguides" target="_blank" rel="noopener">
+                    <div class="resource-title">
+                      <i class="fas fa-external-link-alt"></i>
+                      GitHub Guides YouTube
+                    </div>
+                    <div class="resource-desc">Official GitHub video guides and tutorials channel</div>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Official</span>
+                      <span class="resource-tag">Video</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Community & Forums -->
+            <div class="resource-category">
+              <h3><i class="fas fa-users"></i> Community</h3>
+              <ul class="resource-list">
+                <li class="resource-item">
+                  <a href="https://discord.com/invite/hacktoberfest" target="_blank" rel="noopener">
+                    <div class="resource-title">
+                      <i class="fas fa-external-link-alt"></i>
+                      Hacktoberfest Discord
+                    </div>
+                    <div class="resource-desc">Join the official Hacktoberfest Discord community for support and networking</div>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Discord</span>
+                      <span class="resource-tag">Community</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="https://dev.to/t/hacktoberfest" target="_blank" rel="noopener">
+                    <div class="resource-title">
+                      <i class="fas fa-external-link-alt"></i>
+                      DEV Community
+                    </div>
+                    <div class="resource-desc">Read articles, tips, and experiences from Hacktoberfest participants</div>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Articles</span>
+                      <span class="resource-tag">Community</span>
+                    </div>
+                  </a>
+                </li>
+                <li class="resource-item">
+                  <a href="https://github.com/topics/good-first-issue" target="_blank" rel="noopener">
+                    <div class="resource-title">
+                      <i class="fas fa-external-link-alt"></i>
+                      Good First Issue Label
+                    </div>
+                    <div class="resource-desc">Explore repositories tagged with good-first-issue for easy entry points</div>
+                    <div class="resource-tags">
+                      <span class="resource-tag">Labels</span>
+                      <span class="resource-tag">Beginner</span>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
   </div>
 
   <noscript>
-    <div style="padding:18px; max-width:720px; margin:18px auto; background:#081226; border-radius:10px; color:#9fb1c7">JavaScript is required to render this site preview. Open <a href="README.md">README.md</a> directly to view the content.</div>
+    <div style="padding: 18px; max-width: 720px; margin: 18px auto; background: #081226; border-radius: 10px; color: #9fb1c7;">
+      JavaScript is recommended for the best experience. The site will work with limited functionality without JavaScript.
+    </div>
   </noscript>
 
   <script>
     // Utility: smooth-scrolling behavior
-    document.documentElement.style.scrollBehavior = 'smooth';
+    document.documentElement.style.scrollBehavior = "smooth";
 
-    // Fetch and render README.md
-    async function renderReadme() {
-      try {
-        const res = await fetch('README.md');
-        if (!res.ok) throw new Error('README.md not found');
-        const md = await res.text();
+    // This function is disabled - we're using inline content
+    // The README.md file is not needed as all content is embedded in HTML
 
-        // Configure marked and highlight
-        marked.setOptions({
-          headerIds: true,
-          mangle: false,
-          highlight: function(code, lang) {
-            try { return hljs.highlightAuto(code, lang ? [lang] : undefined).value; }
-            catch (e) { return hljs.highlightAuto(code).value; }
+    // Build TOC from headings - Disabled, using static TOC in HTML
+    function buildTOC() {
+      // Static TOC is already in the HTML, just add click handlers
+      const tocLinks = document.querySelectorAll('.toc-item a');
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href').substring(1);
+          const target = document.getElementById(targetId);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', '#' + targetId);
           }
         });
+      });
+    }
 
-        const html = marked.parse(md);
-        const article = document.getElementById('article');
-        article.innerHTML = html;
+    // Search functionality
+    function initSearch() {
+      const input = document.getElementById("search");
+      if (!input) return;
 
-        // Add anchors to headings and small animated anchor links
-        document.querySelectorAll('#article h1, #article h2, #article h3, #article h4, #article h5, #article h6')
-          .forEach(h => {
-            const id = h.id || h.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g,'-');
-            h.id = id;
-            const a = document.createElement('a');
-            a.className = 'heading-anchor';
-            a.href = '#' + id;
-            a.title = 'Link to ' + h.textContent.trim();
-            a.innerHTML = '';
-            h.appendChild(a);
+      let searchTimeout;
+
+      input.addEventListener("input", () => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+          const q = input.value.trim().toLowerCase();
+          const items = Array.from(document.querySelectorAll(".toc-item"));
+
+          // Clear previous highlights
+          document.querySelectorAll("main mark").forEach((m) => {
+            m.outerHTML = m.innerHTML;
           });
-    </header>
 
-    <div class="site">
-      <aside class="sidebar" id="sidebar" aria-label="Table of contents">
-        <div class="brand">
-          <a href="./" title="Home"
-            ><span class="logo-blob" aria-hidden="true"></span>Hacktoberfest
-            2025</a
-          >
-        </div>
+          if (!q) {
+            items.forEach((i) => i.classList.remove("dim"));
+            return;
+          }
 
-        <div class="search-wrapper">
-          <input
-            id="search"
-            placeholder="Search headings & content..."
-            aria-label="Search README contents"
-          />
-          <svg class="search-ico" viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79L20 21.5 21.5 20l-6-6z"
-            ></path>
-          </svg>
-        </div>
+          // Highlight matches in content
+          const regex = new RegExp("(" + q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "ig");
+          const contentSections = document.querySelectorAll("section");
 
-        <nav id="toc" class="toc">
-          <div class="toc-empty">Loading contents…</div>
-        </nav>
-
-        <button
-          id="toc-toggle"
-          class="toc-toggle"
-          aria-expanded="true"
-          aria-controls="toc"
-        >
-          Hide
-        </button>
-
-        <footer class="sidebar-footer">
-          <a class="btn" href="README.md">View raw README</a>
-        </footer>
-      </aside>
-
-      <main class="content" id="content" role="main">
-        <div class="bg-decor" aria-hidden="true">
-          <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop
-                  offset="0%"
-                  style="stop-color: var(--hf-purple); stop-opacity: 0.1"
-                />
-                <stop
-                  offset="100%"
-                  style="stop-color: var(--hf-orange); stop-opacity: 0.1"
-                />
-              </linearGradient>
-            </defs>
-            <path d="M0,0 L100,0 L100,100 L0,100 Z" fill="url(#grad)" />
-          </svg>
-        </div>
-        <div class="content-inner fade-in">
-          <article id="article">
-            <h1 class="loading-title">Loading README.md…</h1>
-          </article>
-        </div>
-      </main>
-    </div>
-
-    <noscript>
-      <div
-        style="
-          padding: 18px;
-          max-width: 720px;
-          margin: 18px auto;
-          background: #081226;
-          border-radius: 10px;
-          color: #9fb1c7;
-        "
-      >
-        JavaScript is required to render this site preview. Open
-        <a href="README.md">README.md</a> directly to view the content.
-      </div>
-    </noscript>
-
-    <script>
-      // Utility: smooth-scrolling behavior
-      document.documentElement.style.scrollBehavior = "smooth";
-
-      // Fetch and render README.md
-      async function renderReadme() {
-        try {
-          const res = await fetch("README.md");
-          if (!res.ok) throw new Error("README.md not found");
-          const md = await res.text();
-
-          // Configure marked and highlight
-          marked.setOptions({
-            headerIds: true,
-            mangle: false,
-            highlight: function (code, lang) {
-              try {
-                return hljs.highlightAuto(code, lang ? [lang] : undefined)
-                  .value;
-              } catch (e) {
-                return hljs.highlightAuto(code).value;
+          contentSections.forEach(section => {
+            const walker = document.createTreeWalker(section, NodeFilter.SHOW_TEXT);
+            const textNodes = [];
+            while (walker.nextNode()) {
+              if (!walker.currentNode.parentElement.matches("code, pre, a, script, style")) {
+                textNodes.push(walker.currentNode);
               }
-            },
-          });
-
-          const html = marked.parse(md);
-          const article = document.getElementById("article");
-          article.innerHTML = html;
-
-          // Add anchors to headings and small animated anchor links
-          document
-            .querySelectorAll(
-              "#article h1, #article h2, #article h3, #article h4, #article h5, #article h6"
-            )
-            .forEach((h) => {
-              const id =
-                h.id ||
-                h.textContent
-                  .trim()
-                  .toLowerCase()
-                  .replace(/[^a-z0-9]+/g, "-");
-              h.id = id;
-              const a = document.createElement("a");
-              a.className = "heading-anchor";
-              a.href = "#" + id;
-              a.title = "Link to " + h.textContent.trim();
-              a.innerHTML = "¶";
-              h.appendChild(a);
-            });
-
-          buildTOC();
-          initSearch(md);
-          initActiveObserver();
-          hljs.highlightAll();
-        } catch (err) {
-          document.getElementById("article").innerHTML =
-            '<div class="error-panel"><h2>Unable to load README</h2><p>' +
-            err.message +
-            '</p><p><a href="README.md">Open raw README.md</a></p></div>';
-        }
-      }
-
-      // Build TOC from headings
-      function buildTOC() {
-        const toc = document.getElementById("toc");
-        toc.innerHTML = "";
-        const headings = Array.from(
-          document.querySelectorAll("#article h1, #article h2, #article h3")
-        );
-        if (headings.length === 0) {
-          toc.innerHTML = '<div class="toc-empty">No headings found</div>';
-          return;
-        }
-
-        const list = document.createElement("ul");
-        list.className = "toc-list";
-
-        headings.forEach((h) => {
-          const li = document.createElement("li");
-          li.className = "toc-item toc-" + h.tagName.toLowerCase();
-          const a = document.createElement("a");
-          a.href = "#" + h.id;
-          a.textContent = h.textContent.trim();
-          a.addEventListener("click", (e) => {
-            e.preventDefault();
-            const target = document.getElementById(h.id);
-            if (target)
-              target.scrollIntoView({ behavior: "smooth", block: "start" });
-            history.replaceState(null, "", "#" + h.id);
-          });
-          li.appendChild(a);
-          list.appendChild(li);
-        });
-
-        toc.appendChild(list);
-
-        // Add small animated reveal for TOC items
-        const tocLinks = Array.from(document.querySelectorAll(".toc-item"));
-        tocLinks.forEach((li, i) => {
-          li.style.opacity = 0;
-          li.style.transform = "translateX(-6px)";
-          setTimeout(() => {
-            li.style.transition =
-              "opacity .36s ease, transform .36s cubic-bezier(.2,.9,.2,1)";
-            li.style.opacity = 1;
-            li.style.transform = "none";
-          }, 120 + i * 40);
-        });
-      }
-
-      // Search: client-side simple search across headings and content
-      function initSearch(mdText) {
-        const input = document.getElementById("search");
-        const toc = document.getElementById("toc");
-        const content = document.getElementById("article");
-        let searchTimeout;
-
-        input.addEventListener("input", () => {
-          clearTimeout(searchTimeout);
-          searchTimeout = setTimeout(() => {
-            const q = input.value.trim().toLowerCase();
-            const items = Array.from(document.querySelectorAll(".toc-item"));
-
-            // Clear previous highlights
-            document.querySelectorAll("#article mark").forEach((m) => {
-              m.outerHTML = m.innerHTML;
-            });
-
-            if (!q) {
-              items.forEach((i) => i.classList.remove("dim"));
-              document
-                .querySelectorAll("#article mark")
-                .forEach((m) => (m.outerHTML = m.innerHTML));
-              return;
             }
 
-            // Highlight matches in article text
-            const regex = new RegExp(
-              "(" + q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")",
-              "ig"
-            );
-            const walker = document.createTreeWalker(
-              document.getElementById("article"),
-              NodeFilter.SHOW_TEXT
-            );
-            const textNodes = [];
-            while (walker.nextNode()) textNodes.push(walker.currentNode);
-
             textNodes.forEach((node) => {
-              if (
-                !node.parentElement.matches("code, pre, a, .heading-anchor")
-              ) {
-                const v = node.nodeValue;
-                if (v.match(regex)) {
-                  const span = document.createElement("span");
-                  span.innerHTML = v.replace(regex, "<mark>$1</mark>");
+              const v = node.nodeValue;
+              if (v && v.match(regex)) {
+                const span = document.createElement("span");
+                span.innerHTML = v.replace(regex, "<mark>$1</mark>");
+                if (node.parentNode) {
                   node.parentNode.replaceChild(span, node);
                 }
               }
             });
+          });
 
-            // Dim non-matching TOC items
-            items.forEach((i) => {
-              const text = i.textContent.toLowerCase();
-              if (text.includes(q)) i.classList.remove("dim");
-              else i.classList.add("dim");
-            });
-          }, 300); // Debounce search for better performance
-        });
+          // Dim non-matching TOC items
+          items.forEach((i) => {
+            const text = i.textContent.toLowerCase();
+            if (text.includes(q)) i.classList.remove("dim");
+            else i.classList.add("dim");
+          });
+        }, 300);
+      });
 
-        // Allow pressing Enter to focus first match
-        input.addEventListener("keydown", (e) => {
-          if (e.key === "Enter") {
-            const first = document.querySelector(".toc-item:not(.dim) a");
-            if (first) first.click();
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          const first = document.querySelector(".toc-item:not(.dim) a");
+          if (first) first.click();
+        }
+      });
+    }
+
+    // Active section observer
+    function initActiveObserver() {
+      const options = {
+        root: null,
+        rootMargin: "-80px 0px -80% 0px",
+        threshold: 0
+      };
+
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            document.querySelectorAll(".toc-item a").forEach((a) => a.classList.remove("active"));
+            const activeLink = document.querySelector(`.toc-item a[href="#${entry.target.id}"]`);
+            if (activeLink) activeLink.classList.add("active");
           }
         });
       }, options);
 
-      document.querySelectorAll('#article h1, #article h2, #article h3').forEach(h => obs.observe(h));
+      // Observe our main sections
+      document.querySelectorAll("section[id]").forEach((section) => obs.observe(section));
     }
 
-    // TOC toggle for small screens
-    document.getElementById('toc-toggle').addEventListener('click', (e) => {
-      e.preventDefault();
-      const sidebar = document.getElementById('sidebar');
-      const isCollapsed = sidebar.classList.contains('collapsed');
-      
-      if (isCollapsed) {
-        sidebar.classList.remove('collapsed');
-        e.target.textContent = 'Hide';
-        e.target.setAttribute('aria-expanded', 'true');
-      } else {
-        sidebar.classList.add('collapsed');
-        e.target.textContent = 'Show';
-        e.target.setAttribute('aria-expanded', 'false');
-      }
-    });
+    // TOC toggle
+    const tocToggle = document.getElementById("toc-toggle");
+    if (tocToggle) {
+      tocToggle.addEventListener("click", (e) => {
+        const sidebar = document.getElementById("sidebar");
+        if (sidebar) {
+          const isCollapsed = sidebar.classList.toggle("collapsed");
+          e.target.textContent = isCollapsed ? "Show" : "Hide";
+          e.target.setAttribute("aria-expanded", String(!isCollapsed));
+        }
+      });
+    }
 
-    // Show sidebar button
-    document.getElementById('show-sidebar').addEventListener('click', () => {
-      const sidebar = document.getElementById('sidebar');
-      sidebar.classList.remove('collapsed');
-    });
+    // Navbar interactions
+    const navSearchBtn = document.getElementById("nav-search-btn");
+    if (navSearchBtn) {
+      navSearchBtn.addEventListener("click", () => {
+        const s = document.getElementById("search");
+        if (s) {
+          s.focus();
+          s.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      });
+    }
 
-    // Navbar interactions: focus search and toggle sidebar
-    document.getElementById('nav-search-btn').addEventListener('click', () => {
-      const s = document.getElementById('search'); if (s) { s.focus(); s.scrollIntoView({behavior:'smooth', block:'center'}); }
-    });
-    document.getElementById('hamburger').addEventListener('click', () => {
-      const sidebar = document.getElementById('sidebar');
-      const isCollapsed = sidebar.classList.contains('collapsed');
-      
-      if (isCollapsed) {
-        sidebar.classList.remove('collapsed');
-      } else {
-        sidebar.classList.add('collapsed');
-      }
-    });
+    const hamburger = document.getElementById("hamburger");
+    if (hamburger) {
+      hamburger.addEventListener("click", () => {
+        const sidebar = document.getElementById("sidebar");
+        if (sidebar) {
+          sidebar.classList.toggle("collapsed");
+        }
+      });
+    }
 
-    // keyboard shortcut: press '/' to focus search
-    document.addEventListener('keydown', (e) => {
-      if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-        e.preventDefault(); document.getElementById('search').focus();
+    // Keyboard shortcut: press '/' to focus search
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "/" && document.activeElement.tagName !== "INPUT" && document.activeElement.tagName !== "TEXTAREA") {
+        e.preventDefault();
+        const searchInput = document.getElementById("search");
+        if (searchInput) {
+          searchInput.focus();
+        }
       }
     });
 
     // Smooth scroll for nav links
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', (e) => {
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", (e) => {
         e.preventDefault();
-        const id = link.getAttribute('href').slice(1);
+        const id = link.getAttribute("href").slice(1);
         let element = document.getElementById(id);
-        
-        // If element not found, try to find it by searching through headings
+
         if (!element) {
-          const headings = document.querySelectorAll('#article h1, #article h2, #article h3, #article h4, #article h5, #article h6');
+          const headings = document.querySelectorAll("#article h1, #article h2, #article h3, #article h4, #article h5, #article h6");
           for (const heading of headings) {
-            const headingText = heading.textContent.trim().toLowerCase();
-            const cleanId = headingText.replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g, '');
+            const cleanId = heading.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-");
             if (cleanId === id || heading.id === id) {
               element = heading;
-              heading.id = id; // Ensure the ID is set correctly
+              heading.id = id;
               break;
             }
-          });
-        }, options);
+          }
+        }
 
-        document
-          .querySelectorAll("#article h1, #article h2, #article h3")
-          .forEach((h) => obs.observe(h));
-      }
-
-      // TOC toggle for small screens
-      document.getElementById("toc-toggle").addEventListener("click", (e) => {
-        const sidebar = document.getElementById("sidebar");
-        const expanded = sidebar.classList.toggle("collapsed");
-        e.target.textContent = expanded ? "Show" : "Hide";
-        e.target.setAttribute("aria-expanded", String(!expanded));
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+          history.pushState(null, "", "#" + id);
+        }
       });
+    });
 
-      // Navbar interactions: focus search and toggle sidebar
-      document
-        .getElementById("nav-search-btn")
-        .addEventListener("click", () => {
-          const s = document.getElementById("search");
-          if (s) {
-            s.focus();
-            s.scrollIntoView({ behavior: "smooth", block: "center" });
+    // Responsive sidebar
+    function handleSidebarResponsiveness() {
+      const sidebar = document.getElementById("sidebar");
+      const isMobile = window.innerWidth <= 900;
+      if (isMobile && !sidebar.classList.contains("collapsed")) {
+        sidebar.classList.add("collapsed");
+      }
+    }
+
+    window.addEventListener("resize", handleSidebarResponsiveness);
+    handleSidebarResponsiveness();
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener("click", (e) => {
+      const sidebar = document.getElementById("sidebar");
+      const hamburger = document.getElementById("hamburger");
+      const isMobile = window.innerWidth <= 900;
+
+      if (isMobile && !sidebar.contains(e.target) && !hamburger.contains(e.target) && !sidebar.classList.contains("collapsed")) {
+        sidebar.classList.add("collapsed");
+      }
+    });
+
+    // Lazy load sections for better performance
+    function initLazyLoad() {
+      const sections = document.querySelectorAll('.overview-section, .how-to-section, .projects-section, .resources-section');
+
+      const observerOptions = {
+        root: null,
+        rootMargin: '50px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // Stop observing once visible
           }
         });
-      document.getElementById("hamburger").addEventListener("click", () => {
-        const sidebar = document.getElementById("sidebar");
-        sidebar.classList.toggle("collapsed");
-      });
+      }, observerOptions);
 
-      // Auto-collapse sidebar on mobile and handle window resize
-      function handleSidebarResponsiveness() {
-        const sidebar = document.getElementById("sidebar");
-        const isMobile = window.innerWidth <= 900;
+      sections.forEach(section => observer.observe(section));
+    }
 
-        if (isMobile) {
-          sidebar.classList.add("collapsed");
-        } else {
-          sidebar.classList.remove("collapsed");
-        }
+    // Optimize scroll performance
+    let ticking = false;
+    function optimizeScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          ticking = false;
+        });
+        ticking = true;
       }
+    }
 
-      // Initial check and window resize listener
-      handleSidebarResponsiveness();
-      window.addEventListener("resize", handleSidebarResponsiveness);
+    window.addEventListener('scroll', optimizeScroll, { passive: true });
 
-      // Close sidebar when clicking outside on mobile
-      document.addEventListener("click", (e) => {
-        const sidebar = document.getElementById("sidebar");
-        const hamburger = document.getElementById("hamburger");
-        const isMobile = window.innerWidth <= 900;
+    // Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+      try {
+        buildTOC(); // Add smooth scroll to TOC links
+        initSearch(); // Enable search functionality
+        initActiveObserver(); // Track active section
+        initLazyLoad(); // Lazy load sections
 
-        if (
-          isMobile &&
-          !sidebar.contains(e.target) &&
-          !hamburger.contains(e.target) &&
-          !sidebar.classList.contains("collapsed")
-        ) {
-          sidebar.classList.add("collapsed");
+        // Show first section immediately
+        const firstSection = document.querySelector('.overview-section');
+        if (firstSection) {
+          firstSection.classList.add('visible');
         }
-      });
 
-      // keyboard shortcut: press '/' to focus search
-      document.addEventListener("keydown", (e) => {
-        if (
-          e.key === "/" &&
-          document.activeElement.tagName !== "INPUT" &&
-          document.activeElement.tagName !== "TEXTAREA"
-        ) {
-          e.preventDefault();
-          document.getElementById("search").focus();
-        }
-      });
+        console.log('Hacktoberfest 2025 Guide - All features initialized successfully!');
+      } catch (error) {
+        console.error('Initialization error:', error);
+      }
+    });
+  </script>
 
-  <!-- Footer Section  -->
+  <!-- Footer Section -->
   <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-col footer-brand">
-        <a href="./" class="footer-brand-link"><span class="logo-blob" aria-hidden="true"></span><span class="footer-title">Hacktoberfest 2025</span></a>
-        <p class="footer-desc">A small guide to help you get started contributing to open source during Hacktoberfest 2025.</p>
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+          <span class="logo-blob" aria-hidden="true">
+            <img src="hackto.png" alt="Hacktoberfest Logo" />
+          </span>
+          <span class="footer-title">Hacktoberfest 2025</span>
+        </div>
+        <p class="footer-desc">A guide to help you get started contributing to open source during Hacktoberfest 2025.</p>
       </div>
 
       <div class="footer-col">
-        <h4>Quick Links</h4>
+        <h4><i class="fas fa-link"></i> Quick Links</h4>
         <nav class="footer-links" aria-label="Footer navigation">
-          <a href="#what-is-hacktoberfest">Overview</a>
-          <a href="#my-beginners-friendly-repos-to-contribute">Projects</a>
-          <a href="#how-to-participate-step-by-step">How To</a>
-          <a href="#useful-resources--repositories">Resources</a>
+          <a href="#what-is-hacktoberfest"><i class="fas fa-circle-info"></i> Overview</a>
+          <a href="#my-beginners-friendly-repos-to-contribute"><i class="fas fa-code-branch"></i> Projects</a>
+          <a href="#how-to-participate-step-by-step"><i class="fas fa-list-check"></i> How To</a>
+          <a href="#resources"><i class="fas fa-book"></i> Resources</a>
         </nav>
       </div>
 
       <div class="footer-col">
-        <h4>Stay Connected</h4>
-        <ul class="footer-socials" aria-label="Social links">
-          <li><a href="https://github.com/avinash201199/Hacktoberfest2025" target="_blank" rel="noopener" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.754-1.333-1.754-1.09-.744.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.807 1.305 3.492.998.108-.776.418-1.305.76-1.605-2.665-.3-5.466-1.334-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.5 11.5 0 0 1 3-.405c1.02.005 2.045.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.435.375.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg> GitHub</a></li>
-        </ul>
-      // Smooth scroll for nav links
-      document.querySelectorAll(".nav-links a").forEach((link) => {
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-          const id = link.getAttribute("href").slice(1);
-          let element = document.getElementById(id);
-
-          // If element not found, try to find it by searching through headings
-          if (!element) {
-            const headings = document.querySelectorAll(
-              "#article h1, #article h2, #article h3, #article h4, #article h5, #article h6"
-            );
-            for (const heading of headings) {
-              const headingText = heading.textContent.trim().toLowerCase();
-              const cleanId = headingText
-                .replace(/[^a-z0-9]+/g, "-")
-                .replace(/^-+|-+$/g, "");
-              if (cleanId === id || heading.id === id) {
-                element = heading;
-                heading.id = id; // Ensure the ID is set correctly
-                break;
-              }
-            }
-          }
-
-          if (element) {
-            element.scrollIntoView({ behavior: "smooth", block: "start" });
-            setTimeout(() => {
-              history.pushState(null, "", "#" + id);
-              element.classList.add("highlight-section");
-              setTimeout(
-                () => element.classList.remove("highlight-section"),
-                1000
-              );
-            }, 100);
-          } else {
-            console.warn("Element not found for ID:", id);
-            // Fallback: just update the URL
-            history.pushState(null, "", "#" + id);
-          }
-        });
-      });
-
-      // Enhanced renderReadme function
-      async function renderReadme() {
-        try {
-          const res = await fetch("README.md");
-          if (!res.ok) throw new Error("README.md not found");
-          const md = await res.text();
-
-          // Configure marked and highlight
-          marked.setOptions({
-            headerIds: true,
-            mangle: false,
-            highlight: function (code, lang) {
-              try {
-                return hljs.highlightAuto(code, lang ? [lang] : undefined)
-                  .value;
-              } catch (e) {
-                return hljs.highlightAuto(code).value;
-              }
-            },
-          });
-
-          const html = marked.parse(md);
-          const article = document.getElementById("article");
-          article.innerHTML = html;
-
-          // Add anchors to headings and small animated anchor links
-          document
-            .querySelectorAll(
-              "#article h1, #article h2, #article h3, #article h4, #article h5, #article h6"
-            )
-            .forEach((h) => {
-              const id =
-                h.id ||
-                h.textContent
-                  .trim()
-                  .toLowerCase()
-                  .replace(/[^a-z0-9]+/g, "-");
-              h.id = id;
-              const a = document.createElement("a");
-              a.className = "heading-anchor";
-              a.href = "#" + id;
-              a.title = "Link to " + h.textContent.trim();
-              a.innerHTML = "¶";
-              h.appendChild(a);
-            });
-
-          buildTOC();
-          initSearch(md);
-          initActiveObserver();
-          hljs.highlightAll();
-        } catch (err) {
-          document.getElementById("article").innerHTML =
-            '<div class="error-panel"><h2>Unable to load README</h2><p>' +
-            err.message +
-            '</p><p><a href="README.md">Open raw README.md</a></p></div>';
-        }
-      }
-
-      renderReadme();
-    </script>
-
-    <!-- Footer Section  -->
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div class="footer-col footer-brand">
-          <span class="logo-blob" aria-hidden="true"></span>
-          <span class="footer-title">Hacktoberfest 2025</span>
-        </div>
-
-        <div class="footer-col">
-          <h4>Quick Links</h4>
-          <nav class="footer-links" aria-label="Footer navigation">
-            <a href="#what-is-hacktoberfest">Overview</a>
-            <a
-              href="https://github.com/avinash201199/Hacktoberfest2025"
-              target="_blank"
-              rel="noopener"
-              >Projects</a
-            >
-            <a href="#resources">Resources</a>
-          </nav>
-        </div>
-
-        <div class="footer-col">
-          <h4>Stay Connected</h4>
-          <div class="footer-socials">
-            <a
-              href="https://github.com/avinash201199/Hacktoberfest2025"
-              target="_blank"
-              rel="noopener"
-              aria-label="GitHub"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                style="margin-right: 6px"
-              >
-                <path
-                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 
-              3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 
-              0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61 
-              -.546-1.385-1.333-1.754-1.333-1.754-1.09-.744.084-.729.084-.729 
-              1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.807 
-              1.305 3.492.998.108-.776.418-1.305.76-1.605-2.665-.3-5.466-1.334-5.466-5.93 
-              0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 
-              0 0 1.005-.322 3.3 1.23a11.5 11.5 0 0 1 3-.405c1.02.005 
-              2.045.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23 
-              .645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 
-              1.23 3.22 0 4.61-2.805 5.625-5.475 
-              5.92.435.375.81 1.096.81 2.22 
-              0 1.606-.015 2.896-.015 3.286 
-              0 .315.21.69.825.57C20.565 22.092 
-              24 17.592 24 12.297c0-6.627-5.373-12-12-12"
-                />
-              </svg>
-              GitHub
-            </a>
-          </div>
+        <h4><i class="fas fa-share-nodes"></i> Stay Connected</h4>
+        <div class="footer-socials">
+          <a href="https://github.com/avinash201199/Hacktoberfest2025" target="_blank" rel="noopener" aria-label="GitHub">
+            <i class="fab fa-github"></i> GitHub
+          </a>
         </div>
       </div>
+    </div>
 
     <div class="footer-bottom">
       <p><small>&copy; <span id="year">2025</span> <strong>Hacktoberfest 2025</strong> — Open-source & community-driven.</small></p>
     </div>
   </footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
-      <div class="footer-bottom">
-        <p>
-          <strong>Hacktoberfest 2025</strong>. Open-source & community-driven.
-        </p>
-      </div>
-    </footer>
-  </body>
 </html>
