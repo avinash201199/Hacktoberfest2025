@@ -7,47 +7,48 @@
   <meta name="description" content="Complete beginner’s guide to Hacktoberfest 2025. Learn how to participate, find repositories, and claim rewards.">
 
   <style>
+    /* Colors & Fonts */
     :root {
-      --hf-purple: #6c63ff;
-      --hf-orange: #ff7043;
-      --hf-light: #f9f9f9;
-      --hf-dark: #222;
-      --hf-radius: 14px;
+      --bg-dark: #0d1117;
+      --bg-card: rgba(255, 255, 255, 0.05);
+      --neon-blue: #00e5ff;
+      --neon-pink: #ff4081;
+      --neon-green: #00ff95;
+      --text-light: #e6edf3;
+      --radius: 14px;
     }
 
     body {
       margin: 0;
-      font-family: "Segoe UI", system-ui, sans-serif;
-      background: var(--hf-light);
-      color: var(--hf-dark);
+      font-family: "Inter", system-ui, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-light);
       line-height: 1.6;
       scroll-behavior: smooth;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    /* Dark Mode Overrides */
-    body.dark {
-      --hf-light: #1c1c1c;
-      --hf-dark: #ffffff;
-      background: #111;
-      color: #eee;
+      transition: background 0.4s, color 0.4s;
     }
 
     header {
-      background: var(--hf-purple);
+      background: linear-gradient(135deg, var(--neon-blue), var(--neon-pink));
       color: #fff;
-      padding: 2rem 1rem;
+      padding: 2.5rem 1rem;
       text-align: center;
       position: relative;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.5);
+      transition: background 0.4s;
     }
     header h1 {
       margin: 0;
-      font-size: 2.5rem;
-      animation: fadeIn 2s ease;
+      font-size: 2.8rem;
+      font-family: "Cascadia Code", monospace;
+      background: linear-gradient(90deg, var(--neon-green), var(--neon-pink));
+      -webkit-background-clip: text;
+      animation: glow 2s infinite alternate;
     }
     header p {
-      margin-top: .5rem;
+      margin-top: .7rem;
       font-size: 1.2rem;
+      opacity: 0.9;
     }
 
     nav {
@@ -55,113 +56,184 @@
       justify-content: center;
       gap: 1rem;
       flex-wrap: wrap;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
     }
     nav a, .nav-btn {
-      background: var(--hf-orange);
-      color: #fff;
-      padding: .6rem 1rem;
-      border-radius: var(--hf-radius);
+      background: var(--bg-card);
+      color: var(--text-light);
+      padding: .6rem 1.1rem;
+      border-radius: var(--radius);
       text-decoration: none;
       font-weight: 500;
-      transition: background .3s;
-      border: none;
+      font-family: "Fira Code", monospace;
+      transition: all .3s ease;
+      border: 1px solid var(--neon-blue);
       cursor: pointer;
     }
     nav a:hover, .nav-btn:hover {
-      background: #ff5722;
+      background: var(--neon-blue);
+      color: #000;
+      box-shadow: 0 0 12px var(--neon-blue);
     }
 
     section {
-      padding: 2rem 1rem;
-      max-width: 900px;
+      padding: 2.5rem 1rem;
+      max-width: 950px;
       margin: auto;
+      transition: color 0.4s;
     }
     section h2 {
-      color: var(--hf-purple);
-      border-bottom: 3px solid var(--hf-orange);
-      display: inline-block;
+      font-size: 1.8rem;
+      font-family: "Fira Code", monospace;
       margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--neon-pink), var(--neon-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
+
     .card {
-      background: #fff;
+      background: var(--bg-card);
       padding: 1.5rem;
-      border-radius: var(--hf-radius);
-      margin: 1rem 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform .3s;
-    }
-    body.dark .card {
-      background: #1e1e1e;
+      border-radius: var(--radius);
+      margin: 1.2rem 0;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      transition: transform .3s, box-shadow .3s, background 0.4s, color 0.4s;
     }
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
+      box-shadow: 0 0 20px var(--neon-green);
     }
+
     .highlight {
-      background: var(--hf-purple);
+      background: var(--neon-pink);
       color: #fff;
-      padding: .2rem .5rem;
-      border-radius: var(--hf-radius);
+      padding: .2rem .6rem;
+      border-radius: var(--radius);
+      font-family: "Fira Code", monospace;
+      transition: background 0.4s;
     }
 
     footer {
       text-align: center;
       padding: 2rem 1rem;
-      background: var(--hf-dark);
-      color: #fff;
+      background: #0b0f13;
+      color: var(--text-light);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: .95rem;
+      transition: background 0.4s, color 0.4s;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* Animations */
+    @keyframes glow {
+      from { text-shadow: 0 0 8px var(--neon-green); }
+      to { text-shadow: 0 0 18px var(--neon-pink); }
     }
 
-    /* Shine Animation Fix */
-    .site {
-      position: relative;
-      display: inline-block;
-      color: var(--hf-orange);
-      font-weight: bold;
-      overflow: hidden;
-    }
-    .site::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,.6), transparent);
-      animation: shine 2s infinite;
-      background-size: 200% 100%;
-      background-position: -200% 0;
-    }
-    @keyframes shine {
-      100% { left: 100%; background-position: 200% 0; }
-    }
-
-    /* Back-to-top Button */
+    /* Back-to-top */
     #back-to-top {
       position: fixed;
       bottom: 20px;
       right: 20px;
       display: none;
-      padding: 10px 14px;
+      padding: 12px 15px;
       border-radius: 50%;
-      background: var(--hf-purple);
+      background: var(--neon-pink);
       color: #fff;
       border: none;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 0 12px var(--neon-pink);
       transition: all 0.3s ease;
       z-index: 999;
     }
-    #back-to-top:hover { background: var(--hf-orange); }
+    #back-to-top:hover {
+      background: var(--neon-green);
+      box-shadow: 0 0 15px var(--neon-green);
+    }
+
+    /* 🌞 Light Theme (Improved Colors) */
+    body.light {
+      --bg-light: #f9fafb;
+      --card-light: #ffffff;
+      --text-dark: #111827;
+      --accent-teal: #14b8a6;
+      --accent-pink: #ec4899;
+      --accent-blue: #0ea5e9;
+      
+      background: var(--bg-light);
+      color: var(--text-dark);
+    }
+    body.light header {
+      background: linear-gradient(135deg, var(--accent-teal), var(--accent-blue));
+      color: #fff;
+    }
+    body.light header h1 {
+      background: linear-gradient(90deg, var(--accent-pink), var(--accent-teal));
+      -webkit-background-clip: text;
+    }
+    body.light nav a {
+      background: var(--card-light);
+      color: var(--text-dark);
+      border: 1px solid var(--accent-blue);
+    }
+    body.light nav a:hover {
+      background: var(--accent-blue);
+      color: #fff;
+      box-shadow: 0 0 12px var(--accent-blue);
+    }
+    body.light .card {
+      background: var(--card-light);
+      color: var(--text-dark);
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    body.light .card:hover {
+      box-shadow: 0 0 15px var(--accent-teal);
+    }
+    body.light .highlight {
+      background: var(--accent-pink);
+      color: #fff;
+    }
+    body.light section h2 {
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    body.light footer {
+      background: #f3f4f6;
+      color: var(--text-dark);
+      border-top: 1px solid #e5e7eb;
+    }
+    body.light #back-to-top {
+      background: var(--accent-pink);
+      box-shadow: 0 0 12px var(--accent-pink);
+    }
+    body.light #back-to-top:hover {
+      background: var(--accent-teal);
+      box-shadow: 0 0 15px var(--accent-teal);
+    }
+
+    /* Toggle Button */
+    #theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: .6rem 1rem;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      background: var(--neon-green);
+      color: #000;
+      font-weight: bold;
+      box-shadow: 0 0 10px var(--neon-green);
+      z-index: 1000;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>🌟 Hacktoberfest 2025</h1>
+    <h1>⚡ Hacktoberfest 2025 ⚡</h1>
     <p>Your Beginner’s Guide to Rewards, Repositories & Contributions</p>
     <nav aria-label="Main Navigation">
       <a href="#about">About</a>
@@ -169,12 +241,11 @@
       <a href="#repos">Repositories</a>
       <a href="#steps">How to Participate</a>
       <a href="#tips">Tips</a>
-      <button id="dark-toggle" class="nav-btn" aria-label="Toggle Dark Mode">🌙</button>
     </nav>
   </header>
 
   <section id="about">
-    <h2>What is Hacktoberfest?</h2>
+    <h2>💻 What is Hacktoberfest?</h2>
     <div class="card">
       Hacktoberfest is a month-long open-source festival in October where developers worldwide contribute to projects on GitHub and GitLab. It's beginner-friendly and full of rewards.
     </div>
@@ -190,7 +261,7 @@
   <section id="repos">
     <h2>📂 Finding Beginner-Friendly Repositories</h2>
     <div class="card">Look for <span class="highlight">good first issue</span> or <span class="highlight">Hacktoberfest</span> tags.</div>
-    <div class="card">Examples: <span class="site">awesome-for-beginners</span>, <span class="site">first-contributions</span>, <span class="site">public-apis</span></div>
+    <div class="card">Examples: <code>awesome-for-beginners</code>, <code>first-contributions</code>, <code>public-apis</code></div>
   </section>
 
   <section id="steps">
@@ -214,21 +285,27 @@
   </footer>
 
   <button id="back-to-top" title="Back to top">⬆️</button>
+  <button id="theme-toggle">🌙 Dark</button>
 
   <script>
-    // Dark Mode Toggle
-    const toggle = document.getElementById('dark-toggle');
-    toggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-    });
-
-    // Back to Top Button
+    // Back to Top
     const backBtn = document.getElementById('back-to-top');
     window.addEventListener('scroll', () => {
       backBtn.style.display = window.scrollY > 400 ? 'block' : 'none';
     });
     backBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Theme Toggle
+    const toggleBtn = document.getElementById('theme-toggle');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      if(document.body.classList.contains('light')) {
+        toggleBtn.textContent = "🌙 Dark";
+      } else {
+        toggleBtn.textContent = "☀️ Light";
+      }
     });
   </script>
 </body>
