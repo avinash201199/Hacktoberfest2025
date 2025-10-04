@@ -26,6 +26,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/5.1.1/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
 
+    <script>
+      (function () {
+        const palettes = [
+          { name: 'violet-orange', a: '#9b59b6', b: '#f97316', rgb: '155,89,182', hf_orange: '#ff8a65', hf_purple: '#9b59b6' },
+          { name: 'teal-cyan', a: '#06b6d4', b: '#06b6d4', rgb: '6,182,212', hf_orange: '#06b6d4', hf_purple: '#4ade80' },
+          { name: 'indigo-pink', a: '#6366f1', b: '#ec4899', rgb: '99,102,241', hf_orange: '#ec4899', hf_purple: '#6366f1' },
+          { name: 'sunset', a: '#ff8a65', b: '#f97316', rgb: '255,138,101', hf_orange: '#f97316', hf_purple: '#ff8a65' },
+          { name: 'mint', a: '#22c55e', b: '#16a34a', rgb: '34,197,94', hf_orange: '#16a34a', hf_purple: '#22c55e' }
+        ];
+        const p = palettes[Math.floor(Math.random() * palettes.length)];
+        const r = document.documentElement;
+        
+        // Setting CSS variables for dynamic theming
+        r.style.setProperty('--hf-orange', p.hf_orange);
+        r.style.setProperty('--hf-purple', p.hf_purple);
+        r.style.setProperty('--accent-rgb', p.rgb);
+        r.style.setProperty('--hf-gradient', `linear-gradient(135deg, ${p.hf_purple}, ${p.hf_orange})`);
+      })();
+    </script>
+    
     <style>
       /* Global Reset & Base */
       *,
@@ -35,6 +55,7 @@
       }
 
       :root {
+        /* Default fallback values, overwritten by inline script above */
         --hf-orange: #ff8a65;
         --hf-purple: #9b59b6;
         --hf-dark: #183153;
@@ -42,6 +63,7 @@
         --spacing-sm: 0.5rem;
         --spacing-md: 1rem;
         --spacing-lg: 2rem;
+        --hf-gradient: linear-gradient(135deg, var(--hf-purple), var(--hf-orange));
       }
 
       /* Focus Ring Improvement */
@@ -58,7 +80,7 @@
         width: 2em;
         height: 2em;
         margin-right: 0.5em;
-        background: linear-gradient(135deg, var(--hf-orange), var(--hf-purple));
+        background: var(--hf-gradient);
         border-radius: 50%;
         animation: blob 2.5s infinite ease-in-out;
         box-shadow: 0 0 15px rgba(255, 138, 101, 0.3);
@@ -204,7 +226,7 @@
       }
 
       .nav-cta {
-        background: linear-gradient(135deg, var(--hf-orange), var(--hf-purple));
+        background: var(--hf-gradient);
         padding: 0.8rem 1.5rem;
         border-radius: 50px;
         color: var(--hf-light);
@@ -287,7 +309,7 @@
         font-size: 2.5rem;
         margin: 2rem 0 1.5rem;
         color: var(--hf-orange);
-        background: linear-gradient(90deg, var(--hf-orange), var(--hf-purple));
+        background: var(--hf-gradient);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         position: relative;
@@ -497,7 +519,7 @@
 
       /* Search results highlight */
       mark {
-        background: linear-gradient(120deg, var(--hf-orange), var(--hf-purple));
+        background: var(--hf-gradient);
         padding: 0.1em 0.3em;
         border-radius: 3px;
         color: var(--hf-light);
@@ -745,6 +767,10 @@
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+      }
+      
+      .footer-socials li {
+        list-style: none; /* Remove list style from footer social links */
       }
 
       .footer-socials a {
