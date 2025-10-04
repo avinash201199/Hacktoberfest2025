@@ -51,7 +51,7 @@
       *,
       *::before,
       *::after {
-        box-sizing: border-box; /* Added for predictable layout */
+        box-sizing: border-box;
       }
 
       :root {
@@ -105,7 +105,7 @@
       }
 
       .brand:hover {
-        transform: scale(1.02); /* Subtle hover for brand */
+        transform: scale(1.02);
       }
 
       /* Subtle shadow animation for header */
@@ -113,7 +113,7 @@
         position: relative;
         display: flex; /* Added for sidebar/content layout */
       }
-      
+
       .site::after {
         content: "";
         position: absolute;
@@ -129,7 +129,7 @@
         );
         z-index: 1;
         animation: shine 1.5s infinite;
-        background-size: 200% 100%; /* Needed for the shine effect */
+        background-size: 200% 100%;
       }
 
       @keyframes shine {
@@ -437,7 +437,7 @@
       }
 
       /* Mobile optimizations */
-      @media (max-width: 900px) { /* Changed breakpoint to align with JS */
+      @media (max-width: 900px) {
         #article {
           font-size: 15px;
           padding: 0 1rem;
@@ -1262,7 +1262,10 @@
           <h4>Quick Links</h4>
           <nav class="footer-links" aria-label="Footer navigation">
             <a href="#what-is-hacktoberfest">Overview</a>
-            <a href="#my-beginners-friendly-repos-to-contribute">Projects</a>
+            <a
+              href="#my-beginners-friendly-repos-to-contribute"
+              >Projects</a
+            >
             <a href="#how-to-participate-step-by-step">How To</a>
             <a href="#resources">Resources</a>
           </nav>
