@@ -262,3 +262,5 @@ Thanks to all the amazing contributors 💜
 
 Contribute with _curiosity & respect_ ❤  
 Every meaningful PR = _a step forward in your journey as an open-source contributor_ 🚀
+
+> 💡 **Note:** All code blocks in this guide use proper language specification (e.g., `bash`, `markdown`) for optimal syntax highlighting and readability.
