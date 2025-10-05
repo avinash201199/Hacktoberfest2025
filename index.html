@@ -759,7 +759,7 @@
 
         <nav class="nav-links" aria-label="Main navigation">
           <a href="#what-is-hacktoberfest">Overview</a>
-          <a href="#my-beginners-friendly-repos-to-contribute">Projects</a>
+          <a href="https://finder.usmans.me/" target="_blank" rel="noopener noreferrer">Projects</a>
           <a href="#how-to-participate">How To</a>
           <a href="#resources">Resources</a>
         </nav>
@@ -1200,8 +1200,15 @@
       // Smooth scroll for nav links
       document.querySelectorAll(".nav-links a").forEach((link) => {
         link.addEventListener("click", (e) => {
+          const href = link.getAttribute("href");
+          
+          // Allow external links to work normally
+          if (href.startsWith("http://") || href.startsWith("https://")) {
+            return; // Let the browser handle external links
+          }
+          
           e.preventDefault();
-          const id = link.getAttribute("href").slice(1);
+          const id = href.slice(1);
           let element = document.getElementById(id);
 
           // If element not found, try to find it by searching through headings
