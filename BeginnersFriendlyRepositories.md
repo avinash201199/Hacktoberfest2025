@@ -24,6 +24,7 @@ If you know any good repository for beginners, feel free to add it to this table
 | Axios | [Link](https://github.com/axios/axios) | JavaScript, TypeScript |
 | DEV / Forem | [Link](https://github.com/forem/forem) | Ruby on Rails, PostgreSQL, Redis, React |
 | ZenithFocus / Pomodoro timer | [Link](https://github.com/Dishant1286/zenithfocus) | HTML, CSS, JavaScript |
+|DSA Roadmap | [Link](https://github.com/dhruvkjain/knowledge_base/blob/main/DSA/README.md) | C++ |
 
 
 ---
