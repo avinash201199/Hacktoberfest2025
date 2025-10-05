@@ -15,10 +15,47 @@
       content="Step-by-step guide, beginner repos, best practices and resources for Hacktoberfest 2025."
     />
     <meta property="og:image" content="assets/og-image.svg" />
+    <meta property="og:image" content="https://img.shields.io/badge/Hacktoberfest-2025-blueviolet?style=for-the-badge&logo=hacktoberfest&logoColor=white&labelColor=183153&color=9b59b6" />
+    <meta property="og:image:alt" content="Hacktoberfest 2025 Guide - Open Source Contribution Event" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="assets/og-image.svg" />
+    <meta name="twitter:image:alt" content="Hacktoberfest 2025 Guide - Open Source Contribution Event" />
 
     <link rel="stylesheet" href="assets/style.css" />
+
+    <!-- Asset Error Handling for Social Media Images -->
+    <script>
+      // Verify og-image asset loads correctly and provide fallback
+      document.addEventListener('DOMContentLoaded', function() {
+        const ogImage = new Image();
+        const fallbackImageUrl = 'https://img.shields.io/badge/Hacktoberfest-2025-blueviolet?style=for-the-badge&logo=hacktoberfest&logoColor=white&labelColor=183153&color=9b59b6';
+        
+        ogImage.onerror = function() {
+          // Update meta tags if primary image fails to load
+          const ogImageMeta = document.querySelector('meta[property="og:image"]');
+          const twitterImageMeta = document.querySelector('meta[name="twitter:image"]');
+          
+          if (ogImageMeta) {
+            ogImageMeta.setAttribute('content', fallbackImageUrl);
+          }
+          if (twitterImageMeta) {
+            twitterImageMeta.setAttribute('content', fallbackImageUrl);
+          }
+          
+          console.info('Hacktoberfest 2025: Using fallback image for social media preview');
+        };
+        
+        ogImage.onload = function() {
+          console.info('Hacktoberfest 2025: Primary social media image loaded successfully');
+        };
+        
+        // Test if the primary image loads
+        ogImage.src = 'assets/og-image.svg';
+      });
+    </script>
 
     <!-- Highlight.js and Marked (CDN) -->
     <link
