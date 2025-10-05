@@ -1,4 +1,10 @@
-# 🌍 Hacktoberfest 2025 – Beginner’s Guide, Rewards & Repositories
+# 🌍 Hacktoberfest 20## 📂 My Beginner-Friendly Repositories
+
+Here's a curated list of projects where you can start contributing:
+
+> 📱 **Mobile users:** Scroll horizontally to view the full table content
+
+| ⭐ Repo Name             | 🔗 URL                                                            | ⚡ Tech Stack              |Beginner’s Guide, Rewards & Repositories
 
 [Join WhatsApp channel for any doubts](https://chat.whatsapp.com/BfBWJhy4xj3CJFSGE2qBrL)
 
