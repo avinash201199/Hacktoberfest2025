@@ -7,7 +7,6 @@
   <title>Hacktoberfest 2025 — Guide</title>
   <link rel="icon" type="image/png" href="assets/Favicon.png">
 
-  <!-- OpenGraph / Social preview -->
   <meta property="og:title" content="How to Participate in Hacktoberfest 2025 — Guide" />
   <meta property="og:description"
     content="Step-by-step guide, beginner repos, best practices and resources for Hacktoberfest 2025." />
@@ -17,7 +16,6 @@
 
   <link rel="stylesheet" href="assets/style.css" />
 
-  <!-- Highlight.js and Marked (CDN) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/5.1.1/marked.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
@@ -442,118 +440,117 @@
 
     /* ---------- Footer ---------- */
     .site-footer {
-  background: linear-gradient(135deg, var(--footer-start), var(--footer-end));
-  color: var(--text);
-  padding: var(--spacing-lg) 0;
-  margin-top: var(--spacing-lg);
-  box-shadow: 0 -10px 30px var(--shadow);
-  border-top: 1px solid var(--border);
-  position: relative;
-  overflow: hidden;
-}
+      background: linear-gradient(135deg, var(--footer-start), var(--footer-end));
+      color: var(--text);
+      padding: var(--spacing-lg) 0;
+      margin-top: var(--spacing-lg);
+      box-shadow: 0 -10px 30px var(--shadow);
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
 
-.site-footer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at top left, var(--accent-purple) 0%, transparent 60%),
-              radial-gradient(circle at bottom right, var(--accent-orange) 0%, transparent 60%);
-  opacity: 0.1;
-}
+    .site-footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at top left, var(--accent-purple) 0%, transparent 60%), radial-gradient(circle at bottom right, var(--accent-orange) 0%, transparent 60%);
+      opacity: 0.1;
+    }
 
-.footer-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--spacing-lg);
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--spacing-lg);
-  position: relative;
-  z-index: 2;
-}
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-lg);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--spacing-lg);
+      position: relative;
+      z-index: 2;
+    }
 
-.footer-col h4 {
-  color: var(--accent-orange);
-  font-weight: 700;
-  margin-bottom: var(--spacing-sm);
-}
+    .footer-col h4 {
+      color: var(--accent-orange);
+      font-weight: 700;
+      margin-bottom: var(--spacing-sm);
+    }
 
-.footer-links a {
-  display: block;
-  color: color-mix(in srgb, var(--text) 80%, transparent);
-  text-decoration: none;
-  margin-bottom: 0.4rem;
-  transition: all 0.25s ease;
-}
+    .footer-links a {
+      display: block;
+      color: color-mix(in srgb, var(--text) 80%, transparent);
+      text-decoration: none;
+      margin-bottom: 0.4rem;
+      transition: all 0.25s ease;
+    }
 
-.footer-links a:hover {
-  color: var(--accent-purple);
-  transform: translateX(5px);
-}
+    .footer-links a:hover {
+      color: var(--accent-purple);
+      transform: translateX(5px);
+    }
 
-.footer-socials a {
-  display: inline-flex;
-  align-items: center;
-  color: var(--text);
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
+    .footer-socials a {
+      display: inline-flex;
+      align-items: center;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
 
-.footer-socials a:hover {
-  color: var(--accent-orange);
-  transform: translateY(-2px);
-}
+    .footer-socials a:hover {
+      color: var(--accent-orange);
+      transform: translateY(-2px);
+    }
 
-.footer-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
 
-.footer-brand .logo-blob {
-  width: 2.2em;
-  height: 2.2em;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent-orange), var(--accent-purple));
-  box-shadow: 0 0 20px color-mix(in srgb, var(--accent-purple) 40%, transparent);
-}
+    .footer-brand .logo-blob {
+      width: 2.2em;
+      height: 2.2em;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-orange), var(--accent-purple));
+      box-shadow: 0 0 20px color-mix(in srgb, var(--accent-purple) 40%, transparent);
+    }
 
-.footer-title {
-  font-weight: 700;
-  font-size: 1.15rem;
-}
+    .footer-title {
+      font-weight: 700;
+      font-size: 1.15rem;
+    }
 
-.footer-bottom {
-  text-align: center;
-  border-top: 1px solid var(--border);
-  padding-top: var(--spacing-sm);
-  color: color-mix(in srgb, var(--text) 80%, transparent);
-  font-size: 0.95rem;
-  position: relative;
-  z-index: 2;
-}
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid var(--border);
+      padding-top: var(--spacing-sm);
+      color: color-mix(in srgb, var(--text) 80%, transparent);
+      font-size: 0.95rem;
+      position: relative;
+      z-index: 2;
+    }
 
-/* Light mode adjustment for a subtle purple theme */
-body.light-mode .site-footer {
-  background: linear-gradient(135deg, #f9f7ff, #ece9ff);
-  color: #1e1b4b;
-}
+    /* Light mode adjustment for a subtle purple theme */
+    body.light-mode .site-footer {
+      background: linear-gradient(135deg, #f9f7ff, #ece9ff);
+      color: #1e1b4b;
+    }
 
-body.light-mode .footer-col h4 {
-  color: #7c3aed;
-}
+    body.light-mode .footer-col h4 {
+      color: #7c3aed;
+    }
 
-body.light-mode .footer-links a:hover {
-  color: #a855f7;
-}
+    body.light-mode .footer-links a:hover {
+      color: #a855f7;
+    }
 
-body.light-mode .footer-socials a:hover {
-  color: #7c3aed;
-}
+    body.light-mode .footer-socials a:hover {
+      color: #7c3aed;
+    }
 
     /* ---------- UI micro-interactions ---------- */
     .logo-blob {
@@ -786,6 +783,26 @@ body.light-mode .footer-socials a:hover {
     }
 
     /* End of file */
+    .sidebar-hide-btn {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background-color: #121E36;
+      color: #ffffff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+    }
+
+    .sidebar-hide-btn:hover {
+      background-color: #1a2a47;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .sidebar-hide-btn:active {
+      transform: translateY(0);
+      opacity: 0.9;
+    }
   </style>
 </head>
 
@@ -1369,7 +1386,7 @@ body.light-mode .footer-socials a:hover {
         <div class="toc-empty">Loading contents…</div>
       </nav>
 
-      <button id="toc-toggle" class="toc-toggle" aria-expanded="true" aria-controls="toc">
+      <button id="toc-toggle" class="toc-toggle sidebar-hide-btn" aria-expanded="true" aria-controls="toc">
         Hide
       </button>
 
@@ -1378,7 +1395,6 @@ body.light-mode .footer-socials a:hover {
       </footer>
     </aside>
 
-    <!-- Show sidebar button (appears when sidebar is collapsed) -->
     <button id="show-sidebar-btn" class="show-sidebar-btn" aria-label="Show sidebar" title="Show sidebar"></button>
 
     <main class="content" id="content" role="main">
@@ -2045,56 +2061,56 @@ body.light-mode .footer-socials a:hover {
               h.appendChild(a);
             });
 
-          buildTOC();
-          initSearch(md);
-          initActiveObserver();
-          hljs.highlightAll();
-        } catch (err) {
-          document.getElementById("article").innerHTML =
-            '<div class="error-panel"><h2>Unable to load README</h2><p>' +
-            err.message +
-            '</p><p><a href="README.md">Open raw README.md</a></p></div>';
+        buildTOC();
+        initSearch(md);
+        initActiveObserver();
+        hljs.highlightAll();
+      } catch (err) {
+        document.getElementById("article").innerHTML =
+          '<div class="error-panel"><h2>Unable to load README</h2><p>' +
+          err.message +
+          '</p><p><a href="README.md">Open raw README.md</a></p></div>';
+      }
+    }
+
+    // If visiting index.html with a hash (e.g., index.html#resources), remember it
+    const initialHash = window.location.hash ? window.location.hash.slice(1) : null;
+
+    // Render README and, if there was an initial hash, scroll to that section after render
+    renderReadme().then(() => {
+      if (initialHash) {
+        // If the article is already rendered, try to find the element and scroll to it
+        const el = document.getElementById(initialHash);
+        if (el) {
+          setTimeout(() => {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', '#' + initialHash);
+            el.classList.add('highlight-section');
+            setTimeout(() => el.classList.remove('highlight-section'), 1000);
+          }, 120);
+        } else {
+          // If element not found, ensure loadMarkdownFile handles it by reloading README and passing id
+          loadMarkdownFile('README.md', initialHash);
         }
       }
+    });
 
-      // If visiting index.html with a hash (e.g., index.html#resources), remember it
-      const initialHash = window.location.hash ? window.location.hash.slice(1) : null;
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    
+    html.setAttribute('data-theme', savedTheme);
+    themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
 
-      // Render README and, if there was an initial hash, scroll to that section after render
-      renderReadme().then(() => {
-        if (initialHash) {
-          // If the article is already rendered, try to find the element and scroll to it
-          const el = document.getElementById(initialHash);
-          if (el) {
-            setTimeout(() => {
-              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              history.replaceState(null, '', '#' + initialHash);
-              el.classList.add('highlight-section');
-              setTimeout(() => el.classList.remove('highlight-section'), 1000);
-            }, 120);
-          } else {
-            // If element not found, ensure loadMarkdownFile handles it by reloading README and passing id
-            loadMarkdownFile('README.md', initialHash);
-          }
-        }
-      });
-
-      // Theme toggle
-      const themeToggle = document.getElementById('theme-toggle');
-      const html = document.documentElement;
-      const savedTheme = localStorage.getItem('theme') || 'dark';
-      
-      html.setAttribute('data-theme', savedTheme);
-      themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
-
-      themeToggle.addEventListener('click', () => {
-        const current = html.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
-        html.setAttribute('data-theme', next);
-        localStorage.setItem('theme', next);
-        themeToggle.textContent = next === 'dark' ? '🌙' : '☀️';
-      });
-    </script>
+    themeToggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      themeToggle.textContent = next === 'dark' ? '🌙' : '☀️';
+    });
+  </script>
 
         buildTOC();
         initSearch(md);
@@ -2111,7 +2127,6 @@ body.light-mode .footer-socials a:hover {
     renderReadme();
   </script>
 
-  <!-- Footer Section  -->
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-col footer-brand">
