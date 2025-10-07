@@ -260,3 +260,4 @@ Thanks to all the amazing contributors 💜
 
 Contribute with _curiosity & respect_ ❤  
 Every meaningful PR = _a step forward in your journey as an open-source contributor_ 🚀
+contributorshttps://github.com/CodeWithAdnaan/Quote-genetrator/tree/main
