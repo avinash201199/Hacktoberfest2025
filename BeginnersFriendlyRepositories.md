@@ -13,6 +13,7 @@ If you know any good repository for beginners, feel free to add it to this table
 | My Gallery 4u | [Link](https://github.com/avinash201199/My-Gallery-4u) | HTML, CSS, JavaScript |
 | Memory Game | [Link](https://github.com/avinash201199/Memory-Game) | HTML, CSS, JavaScript |
 | Free Programming Books | [Link](https://github.com/avinash201199/Free-programming-books) | Various |
+| Random Password Generator | [Link](https://github.com/stymrj/password-generator) | React, Tailwind CSS |
 | First Contributions | [Link](https://github.com/firstcontributions/first-contributions) | Git, Markdown |
 | EddieHub Community | [Link](https://github.com/EddieHubCommunity/LinkFree) | React, Next.js, MongoDB |
 | FreeCodeCamp | [Link](https://github.com/freeCodeCamp/freeCodeCamp) | JavaScript, Node.js, React |
