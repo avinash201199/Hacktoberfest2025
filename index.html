@@ -711,7 +711,7 @@ body.light-mode .footer-socials a:hover {
         width: 100%;
         height: auto;
         position: relative;
-        order: 2
+        order: 2;
         padding: 0.5rem 1rem;
         color: var(--hf-light);
         text-decoration: none;
@@ -786,42 +786,7 @@ body.light-mode .footer-socials a:hover {
     }
 
     /* End of file */
-  </style>
-</head>
-
-<body>
-  <header class="topnav" role="banner">
-    <div class="topnav-inner">
-      <a class="brand" href="./" title="Home"><span class="logo-blob" aria-hidden="true"></span><span
-          class="brand-text">Hacktoberfest 2025</span></a>
-
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="#what-is-hacktoberfest">Overview</a>
-        <a href="#my-beginners-friendly-repos-to-contribute">Projects</a>
-        <a href="#how-to-participate">How To</a>
-        <a href="#resources">Resources</a>
-      </nav>
-
-      <div class="nav-actions">
-        <button id="nav-search-btn" class="nav-btn" title="Search (/)" aria-label="Open search">
-          🔎
-        </button>
-        <a class="nav-cta" href="https://github.com/avinash201199/Hacktoberfest2025" target="_blank"
-          rel="noopener">GitHub</a>
-        <button id="hamburger" class="nav-btn" aria-label="Toggle sidebar">
-          ☰
-        </button>
-        <button id="theme-toggle-btn" class="nav-btn" title="Toggle theme" aria-label="Toggle theme">
-        </button>
-        font-size: 2.5rem;
-        margin: 2rem 0 1.5rem;
-        color: var(--hf-orange);
-        background: linear-gradient(90deg, var(--hf-orange), var(--hf-purple));
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
+      
       #article h2 {
         font-size: 1.8rem;
         margin: 2rem 0 1rem;
@@ -1300,7 +1265,65 @@ body.light-mode .footer-socials a:hover {
         color: rgba(255, 255, 255, 0.72);
         font-size: 0.95rem;
       }
+        /* Floating Action Buttons */
+      .fab-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 1001;
+      }
+
+      .fab {
+        background: linear-gradient(135deg, var(--accent-orange), var(--accent-purple));
+        color: var(--on-accent);
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.5rem;
+        box-shadow: var(--soft-shadow);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+      }
+      .fab:hover, #back-to-top:hover { 
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      }
     </style>
+</head>
+
+<body>
+  <header class="topnav" role="banner">
+    <div class="topnav-inner">
+      <a class="brand" href="./" title="Home"><span class="logo-blob" aria-hidden="true"></span><span
+          class="brand-text">Hacktoberfest 2025</span></a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#what-is-hacktoberfest">Overview</a>
+        <a href="#my-beginners-friendly-repos-to-contribute">Projects</a>
+        <a href="#how-to-participate">How To</a>
+        <a href="#resources">Resources</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="nav-search-btn" class="nav-btn" title="Search (/)" aria-label="Open search">
+          🔎
+        </button>
+        <a class="nav-cta" href="https://github.com/avinash201199/Hacktoberfest2025" target="_blank"
+          rel="noopener">GitHub</a>
+        <button id="hamburger" class="nav-btn" aria-label="Toggle sidebar">
+          ☰
+        </button>
+        <button id="theme-toggle-btn" class="nav-btn" title="Toggle theme" aria-label="Toggle theme">
+        </button>
+    
   </head>
   <body>
     <header class="topnav" role="banner">
@@ -1415,225 +1438,211 @@ body.light-mode .footer-socials a:hover {
     </div>
   </noscript>
 
+  <!-- Floating Action Buttons -->
+  <div class="fab-container">
+    <button id="back-to-top" title="Back to top" class="fab">⬆️</button>
+  </div>
+
   <script>
+  // --- START: Dark/Light Mode ---
+  const themeToggleBtn = document.getElementById("theme-toggle-btn");
+  const body = document.body;
+  const moonIcon = "🌙";
+  const sunIcon = "☀️";
 
-    // --- START: Dark/Light Mode JavaScript ---
-
-    const themeToggleBtn = document.getElementById('theme-toggle-btn');
-    const body = document.body;
-    const moonIcon = '🌙';
-    const sunIcon = '☀️';
-
-    function applyTheme(theme) {
-      if (theme === 'light') {
-        body.classList.add('light-mode');
-        themeToggleBtn.innerHTML = sunIcon;
-        localStorage.setItem('theme', 'light');
-      } else {
-        body.classList.remove('light-mode');
-        themeToggleBtn.innerHTML = moonIcon;
-        localStorage.setItem('theme', 'dark');
-      }
+  function applyTheme(theme) {
+    if (theme === "light") {
+      body.classList.add("light-mode");
+      themeToggleBtn.innerHTML = sunIcon;
+      localStorage.setItem("theme", "light");
+    } else {
+      body.classList.remove("light-mode");
+      themeToggleBtn.innerHTML = moonIcon;
+      localStorage.setItem("theme", "dark");
     }
+  }
 
-    themeToggleBtn.addEventListener('click', () => {
-      const currentTheme = localStorage.getItem('theme') || 'dark';
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      applyTheme(newTheme);
-    });
+  themeToggleBtn.addEventListener("click", () => {
+    const currentTheme = localStorage.getItem("theme") || "dark";
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    applyTheme(newTheme);
+  });
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const savedTheme = localStorage.getItem('theme') || 'dark'; // Default dark mode hai
-      applyTheme(savedTheme);
-    });
+  document.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    applyTheme(savedTheme);
+  });
+  // --- END: Dark/Light Mode ---
 
-    // --- END: Dark/Light Mode JavaScript ---
-    // Utility: smooth-scrolling behavior
-    document.documentElement.style.scrollBehavior = "smooth";
+  // Smooth scroll behavior globally
+  document.documentElement.style.scrollBehavior = "smooth";
 
-    // Fetch and render README.md
-    async function renderReadme() {
-      try {
-        const res = await fetch("README.md");
-        if (!res.ok) throw new Error("README.md not found");
-        const md = await res.text();
+  // --- START: Markdown Rendering System ---
+  let currentMarkdownFile = "README.md";
 
-        // Configure marked and highlight
-        marked.setOptions({
-          headerIds: true,
-          mangle: false,
-          highlight: function (code, lang) {
-            try {
-              return hljs.highlightAuto(code, lang ? [lang] : undefined)
-                .value;
-            } catch (e) {
-              return hljs.highlightAuto(code).value;
-            }
-          },
-        });
+  async function loadMarkdownFile(filename, scrollToId = null) {
+    try {
+      const res = await fetch(filename);
+      if (!res.ok) throw new Error(`${filename} not found`);
+      const md = await res.text();
 
-        const html = marked.parse(md);
-        const article = document.getElementById("article");
-        article.innerHTML = html;
-
-        // Add anchors to headings and small animated anchor links
-        document
-          .querySelectorAll(
-            "#article h1, #article h2, #article h3, #article h4, #article h5, #article h6"
-          )
-          .forEach((h) => {
-            const id =
-              h.id ||
-              h.textContent
-                .trim()
-                .toLowerCase()
-                .replace(/[^a-z0-9]+/g, "-");
-            h.id = id;
-            const a = document.createElement("a");
-            a.className = "heading-anchor";
-            a.href = "#" + id;
-            a.title = "Link to " + h.textContent.trim();
-            a.innerHTML = "¶";
-            h.appendChild(a);
-          });
-
-        buildTOC();
-        initSearch(md);
-        initActiveObserver();
-        hljs.highlightAll();
-      } catch (err) {
-        document.getElementById("article").innerHTML =
-          '<div class="error-panel"><h2>Unable to load README</h2><p>' +
-          err.message +
-          '</p><p><a href="README.md">Open raw README.md</a></p></div>';
-      }
-    }
-
-    // Build TOC from headings
-    function buildTOC() {
-      const toc = document.getElementById("toc");
-      toc.innerHTML = "";
-      const headings = Array.from(
-        document.querySelectorAll("#article h1, #article h2, #article h3")
-      );
-      if (headings.length === 0) {
-        toc.innerHTML = '<div class="toc-empty">No headings found</div>';
-        return;
-      }
-
-      const list = document.createElement("ul");
-      list.className = "toc-list";
-
-      headings.forEach((h) => {
-        const li = document.createElement("li");
-        li.className = "toc-item toc-" + h.tagName.toLowerCase();
-        const a = document.createElement("a");
-        a.href = "#" + h.id;
-        a.textContent = h.textContent.trim();
-        a.addEventListener("click", (e) => {
-          e.preventDefault();
-          const target = document.getElementById(h.id);
-          if (target)
-            target.scrollIntoView({ behavior: "smooth", block: "start" });
-          history.replaceState(null, "", "#" + h.id);
-        });
-        li.appendChild(a);
-        list.appendChild(li);
-      });
-
-      toc.appendChild(list);
-
-      // Add small animated reveal for TOC items
-      const tocLinks = Array.from(document.querySelectorAll(".toc-item"));
-      tocLinks.forEach((li, i) => {
-        li.style.opacity = 0;
-        li.style.transform = "translateX(-6px)";
-        setTimeout(() => {
-          li.style.transition =
-            "opacity .36s ease, transform .36s cubic-bezier(.2,.9,.2,1)";
-          li.style.opacity = 1;
-          li.style.transform = "none";
-        }, 120 + i * 40);
-      });
-    }
-
-    // Search: client-side simple search across headings and content
-    function initSearch(mdText) {
-      const input = document.getElementById("search");
-      const toc = document.getElementById("toc");
-      const content = document.getElementById("article");
-      let searchTimeout;
-
-      input.addEventListener("input", () => {
-        clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(() => {
-          const q = input.value.trim().toLowerCase();
-          const items = Array.from(document.querySelectorAll(".toc-item"));
-
-          // Clear previous highlights
-          document.querySelectorAll("#article mark").forEach((m) => {
-            m.outerHTML = m.innerHTML;
-          });
-
-          if (!q) {
-            items.forEach((i) => i.classList.remove("dim"));
-            document
-              .querySelectorAll("#article mark")
-              .forEach((m) => (m.outerHTML = m.innerHTML));
-            return;
+      marked.setOptions({
+        headerIds: true,
+        mangle: false,
+        highlight: function (code, lang) {
+          try {
+            return hljs.highlightAuto(code, lang ? [lang] : undefined).value;
+          } catch {
+            return hljs.highlightAuto(code).value;
           }
-
-          // Highlight matches in article text
-          const regex = new RegExp(
-            "(" + q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")",
-            "ig"
-          );
-          const walker = document.createTreeWalker(
-            document.getElementById("article"),
-            NodeFilter.SHOW_TEXT
-          );
-          const textNodes = [];
-          while (walker.nextNode()) textNodes.push(walker.currentNode);
-
-          textNodes.forEach((node) => {
-            if (
-              !node.parentElement.matches("code, pre, a, .heading-anchor")
-            ) {
-              const v = node.nodeValue;
-              if (v.match(regex)) {
-                const span = document.createElement("span");
-                span.innerHTML = v.replace(regex, "<mark>$1</mark>");
-                node.parentNode.replaceChild(span, node);
-              }
-            }
-          });
-
-          // Dim non-matching TOC items
-          items.forEach((i) => {
-            const text = i.textContent.toLowerCase();
-            if (text.includes(q)) i.classList.remove("dim");
-            else i.classList.add("dim");
-          });
-        }, 300); // Debounce search for better performance
+        },
       });
 
-      // Allow pressing Enter to focus first match
-      input.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-          const first = document.querySelector(".toc-item:not(.dim) a");
-          if (first) first.click();
-        }
-      });
+      const html = marked.parse(md);
+      const article = document.getElementById("article");
+      article.innerHTML = html;
+
+      // Add anchors to headings
+      document
+        .querySelectorAll(
+          "#article h1, #article h2, #article h3, #article h4, #article h5, #article h6"
+        )
+        .forEach((h) => {
+          const id =
+            h.id ||
+            h.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-");
+          h.id = id;
+          const a = document.createElement("a");
+          a.className = "heading-anchor";
+          a.href = "#" + id;
+          a.title = "Link to " + h.textContent.trim();
+          a.innerHTML = "¶";
+          h.appendChild(a);
+        });
+
+      currentMarkdownFile = filename;
+      buildTOC();
+      initSearch(md);
+      initActiveObserver();
+      hljs.highlightAll();
+
+      // Scroll to a specific section if provided
+      if (scrollToId) {
+        setTimeout(() => {
+          const el = document.getElementById(scrollToId);
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
+            el.classList.add("highlight-section");
+            setTimeout(() => el.classList.remove("highlight-section"), 1000);
+          }
+        }, 150);
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    } catch (err) {
+      document.getElementById("article").innerHTML = `
+        <div class="error-panel">
+          <h2>Unable to load ${filename}</h2>
+          <p>${err.message}</p>
+          <p><a href="${filename}">Open raw ${filename}</a></p>
+        </div>`;
+    }
+  }
+
+  async function renderReadme() {
+    await loadMarkdownFile("README.md");
+  }
+
+  // --- Table of Contents ---
+  function buildTOC() {
+    const toc = document.getElementById("toc");
+    toc.innerHTML = "";
+    const headings = Array.from(
+      document.querySelectorAll("#article h1, #article h2, #article h3")
+    );
+    if (headings.length === 0) {
+      toc.innerHTML = '<div class="toc-empty">No headings found</div>';
+      return;
     }
 
-    // Highlight active heading via IntersectionObserver
-    function initActiveObserver() {
-      const options = {
-        root: null,
-        rootMargin: "0px 0px -60% 0px",
-        threshold: 0,
-      };
-      const obs = new IntersectionObserver((entries) => {
+    const list = document.createElement("ul");
+    list.className = "toc-list";
+    headings.forEach((h) => {
+      const li = document.createElement("li");
+      li.className = "toc-item toc-" + h.tagName.toLowerCase();
+      const a = document.createElement("a");
+      a.href = "#" + h.id;
+      a.textContent = h.textContent.trim();
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        const target = document.getElementById(h.id);
+        if (target)
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.replaceState(null, "", "#" + h.id);
+      });
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+    toc.appendChild(list);
+  }
+
+  // --- Search ---
+  function initSearch(mdText) {
+    const input = document.getElementById("search");
+    let searchTimeout;
+
+    input.addEventListener("input", () => {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        const q = input.value.trim().toLowerCase();
+        const items = Array.from(document.querySelectorAll(".toc-item"));
+
+        document.querySelectorAll("#article mark").forEach((m) => {
+          m.outerHTML = m.innerHTML;
+        });
+
+        if (!q) {
+          items.forEach((i) => i.classList.remove("dim"));
+          return;
+        }
+
+        const regex = new RegExp(
+          "(" + q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")",
+          "ig"
+        );
+        const walker = document.createTreeWalker(
+          document.getElementById("article"),
+          NodeFilter.SHOW_TEXT
+        );
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+        textNodes.forEach((node) => {
+          if (
+            !node.parentElement.matches("code, pre, a, .heading-anchor")
+          ) {
+            const v = node.nodeValue;
+            if (v.match(regex)) {
+              const span = document.createElement("span");
+              span.innerHTML = v.replace(regex, "<mark>$1</mark>");
+              node.parentNode.replaceChild(span, node);
+            }
+          }
+        });
+
+        items.forEach((i) => {
+          const text = i.textContent.toLowerCase();
+          if (text.includes(q)) i.classList.remove("dim");
+          else i.classList.add("dim");
+        });
+      }, 300);
+    });
+  }
+
+  // --- Active Section Highlight ---
+  function initActiveObserver() {
+    const obs = new IntersectionObserver(
+      (entries) => {
         entries.forEach((entry) => {
           const id = entry.target.id;
           const tocLink = document.querySelector(
@@ -1646,470 +1655,68 @@ body.light-mode .footer-socials a:hover {
             if (tocLink) tocLink.classList.add("active");
           }
         });
-      }, options);
+      },
+      { root: null, rootMargin: "0px 0px -60% 0px", threshold: 0 }
+    );
 
-      document
-        .querySelectorAll("#article h1, #article h2, #article h3")
-        .forEach((h) => obs.observe(h));
-    }
+    document
+      .querySelectorAll("#article h1, #article h2, #article h3")
+      .forEach((h) => obs.observe(h));
+  }
 
-    // TOC toggle for small screens
-    document.getElementById("toc-toggle").addEventListener("click", (e) => {
-      const sidebar = document.getElementById("sidebar");
-      const showBtn = document.getElementById("show-sidebar-btn");
-      const expanded = sidebar.classList.toggle("collapsed");
-      e.target.textContent = expanded ? "Show" : "Hide";
-      e.target.setAttribute("aria-expanded", String(!expanded));
+  // --- Responsive Sidebar ---
+  function handleSidebarResponsiveness() {
+    const sidebar = document.getElementById("sidebar");
+    const showBtn = document.getElementById("show-sidebar-btn");
+    const tocToggle = document.getElementById("toc-toggle");
+    const isMobile = window.innerWidth <= 900;
 
-      // Show/hide the arrow button
-      if (expanded) {
-        showBtn.classList.add("visible");
-      } else {
-        showBtn.classList.remove("visible");
-      }
-    });
-
-    // Show sidebar button functionality
-    document.getElementById("show-sidebar-btn").addEventListener("click", () => {
-      const sidebar = document.getElementById("sidebar");
-      const showBtn = document.getElementById("show-sidebar-btn");
-      const tocToggle = document.getElementById("toc-toggle");
-
+    if (isMobile) {
+      sidebar.classList.add("collapsed");
+      showBtn.classList.add("visible");
+      tocToggle.textContent = "Show";
+      tocToggle.setAttribute("aria-expanded", "false");
+    } else {
       sidebar.classList.remove("collapsed");
       showBtn.classList.remove("visible");
       tocToggle.textContent = "Hide";
       tocToggle.setAttribute("aria-expanded", "true");
-    });
+    }
+  }
 
-    // Navbar interactions: focus search and toggle sidebar
-    document
-      .getElementById("nav-search-btn")
-      .addEventListener("click", () => {
-        const s = document.getElementById("search");
-        if (s) {
-          s.focus();
-          s.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
-      });
-    document.getElementById("hamburger").addEventListener("click", () => {
-      const sidebar = document.getElementById("sidebar");
-      const showBtn = document.getElementById("show-sidebar-btn");
-      const tocToggle = document.getElementById("toc-toggle");
-      const expanded = sidebar.classList.toggle("collapsed");
+  window.addEventListener("resize", handleSidebarResponsiveness);
+  handleSidebarResponsiveness();
 
-      // Update show button visibility
-      if (expanded) {
-        showBtn.classList.add("visible");
+  // --- Init ---
+  const initialHash = window.location.hash
+    ? window.location.hash.slice(1)
+    : null;
+
+  renderReadme().then(() => {
+    if (initialHash) {
+      const el = document.getElementById(initialHash);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        el.classList.add("highlight-section");
+        setTimeout(() => el.classList.remove("highlight-section"), 1000);
       } else {
-        showBtn.classList.remove("visible");
-      }
-
-      // Update TOC toggle text
-      tocToggle.textContent = expanded ? "Show" : "Hide";
-      tocToggle.setAttribute("aria-expanded", String(!expanded));
-    });
-
-    // Auto-collapse sidebar on mobile and handle window resize
-    function handleSidebarResponsiveness() {
-      const sidebar = document.getElementById("sidebar");
-      const showBtn = document.getElementById("show-sidebar-btn");
-      const tocToggle = document.getElementById("toc-toggle");
-      const isMobile = window.innerWidth <= 900;
-
-      if (isMobile) {
-        sidebar.classList.add("collapsed");
-        showBtn.classList.add("visible");
-        tocToggle.textContent = "Show";
-        tocToggle.setAttribute("aria-expanded", "false");
-      } else {
-        sidebar.classList.remove("collapsed");
-        showBtn.classList.remove("visible");
-        tocToggle.textContent = "Hide";
-        tocToggle.setAttribute("aria-expanded", "true");
+        loadMarkdownFile("README.md", initialHash);
       }
     }
+  });
+  // --- Back to Top Button ---
+  const backToTopButton = document.getElementById("back-to-top");
 
-    // Initial check and window resize listener
-    handleSidebarResponsiveness();
-    window.addEventListener("resize", handleSidebarResponsiveness);
+  window.addEventListener("scroll", () => {
+    if (backToTopButton) backToTopButton.style.display = window.scrollY > 400 ? "flex" : "none";
+  });
 
-    // Close sidebar when clicking outside on mobile
-    document.addEventListener("click", (e) => {
-      const sidebar = document.getElementById("sidebar");
-      const hamburger = document.getElementById("hamburger");
-      const showBtn = document.getElementById("show-sidebar-btn");
-      const tocToggle = document.getElementById("toc-toggle");
-      const isMobile = window.innerWidth <= 900;
+  backToTopButton.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
 
-      if (
-        isMobile &&
-        !sidebar.contains(e.target) &&
-        !hamburger.contains(e.target) &&
-        !showBtn.contains(e.target) &&
-        !sidebar.classList.contains("collapsed")
-      ) {
-        sidebar.classList.add("collapsed");
-        showBtn.classList.add("visible");
-        tocToggle.textContent = "Show";
-        tocToggle.setAttribute("aria-expanded", "false");
-      }
-    });
-
-    // keyboard shortcut: press '/' to focus search
-    document.addEventListener("keydown", (e) => {
-      if (
-        e.key === "/" &&
-        document.activeElement.tagName !== "INPUT" &&
-        document.activeElement.tagName !== "TEXTAREA"
-      ) {
-        e.preventDefault();
-        document.getElementById("search").focus();
-      }
-    });
-
-    // Smooth scroll for nav links
-    document.querySelectorAll(".nav-links a").forEach((link) => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const id = link.getAttribute("href").slice(1);
-        let element = document.getElementById(id);
-
-        // If element not found, try to find it by searching through headings
-        if (!element) {
-          const headings = document.querySelectorAll(
-            "#article h1, #article h2, #article h3, #article h4, #article h5, #article h6"
-          );
-          for (const heading of headings) {
-            const headingText = heading.textContent.trim().toLowerCase();
-            const cleanId = headingText
-              .replace(/[^a-z0-9]+/g, "-")
-              .replace(/^-+|-+$/g, "");
-            if (cleanId === id || heading.id === id) {
-              element = heading;
-              heading.id = id; // Ensure the ID is set correctly
-              break;
-            }
-          }
-        }
-
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
-          setTimeout(() => {
-            history.pushState(null, "", "#" + id);
-            element.classList.add("highlight-section");
-            setTimeout(
-              () => element.classList.remove("highlight-section"),
-              1000
-            );
-          }, 100);
-        } else {
-          console.warn("Element not found for ID:", id);
-          // Fallback: just update the URL
-          history.pushState(null, "", "#" + id);
-        }
-      });
-    });
-
-    // Enhanced renderReadme function
-    async function renderReadme() {
-      try {
-        const res = await fetch("README.md");
-        if (!res.ok) throw new Error("README.md not found");
-        const md = await res.text();
-
-        // Configure marked and highlight
-        marked.setOptions({
-          headerIds: true,
-          mangle: false,
-          highlight: function (code, lang) {
-            try {
-              return hljs.highlightAuto(code, lang ? [lang] : undefined)
-                .value;
-            } catch (e) {
-              return hljs.highlightAuto(code).value;
-
-      // Track the currently loaded markdown file
-      let currentMarkdownFile = "README.md";
-
-      // Handle brand/logo click to return to README
-      document.querySelectorAll(".brand").forEach((brand) => {
-        brand.addEventListener("click", (e) => {
-          if (brand.tagName === "A") {
-            e.preventDefault();
-            loadMarkdownFile("README.md");
-          }
-        });
-      });
-
-      // Smooth scroll for nav links
-      document.querySelectorAll(".nav-links a").forEach((link) => {
-        link.addEventListener("click", (e) => {
-          const href = link.getAttribute("href");
-          
-          // If link has target _blank or points to projects.html, let browser handle it
-          if (link.target === '_blank' || href === 'projects.html') {
-            return; // Don't intercept new-tab or projects page
-          }
-
-          // Allow fully qualified external links to work normally
-            if (href.startsWith("http://") || href.startsWith("https://")) {
-            return; // External link
-          }
-
-          // Only intercept internal hash navigation (href begins with '#')
-          if (!href.startsWith('#')) {
-            return; // Not a hash link we manage
-          }
-
-          e.preventDefault();
-
-          // For internal hash links, check if we need to reload README first
-          const id = href.slice(1);
-          
-          // If we're not on README, load it first, then scroll to the section
-          if (currentMarkdownFile !== "README.md") {
-            loadMarkdownFile("README.md", id);
-            return;
-          }
-          
-          // Otherwise, just scroll to the section
-          let element = document.getElementById(id);
-
-          // If element not found, try to find it by searching through headings
-          if (!element) {
-            const headings = document.querySelectorAll(
-              "#article h1, #article h2, #article h3, #article h4, #article h5, #article h6"
-            );
-            for (const heading of headings) {
-              const headingText = heading.textContent.trim().toLowerCase();
-              const cleanId = headingText
-                .replace(/[^a-z0-9]+/g, "-")
-                .replace(/^-+|-+$/g, "");
-              if (cleanId === id || heading.id === id) {
-                element = heading;
-                heading.id = id; // Ensure the ID is set correctly
-                break;
-              }
-            }
-          },
-        });
-
-        const html = marked.parse(md);
-        const article = document.getElementById("article");
-        article.innerHTML = html;
-
-        // Add anchors to headings and small animated anchor links
-        document
-          .querySelectorAll(
-            "#article h1, #article h2, #article h3, #article h4, #article h5, #article h6"
-          )
-          .forEach((h) => {
-            const id =
-              h.id ||
-              h.textContent
-                .trim()
-                .toLowerCase()
-                .replace(/[^a-z0-9]+/g, "-");
-            h.id = id;
-            const a = document.createElement("a");
-            a.className = "heading-anchor";
-            a.href = "#" + id;
-            a.title = "Link to " + h.textContent.trim();
-            a.innerHTML = "¶";
-            h.appendChild(a);
-          });
-      // Function to load any markdown file
-      async function loadMarkdownFile(filename, scrollToId = null) {
-        try {
-          const res = await fetch(filename);
-          if (!res.ok) throw new Error(`${filename} not found`);
-          const md = await res.text();
-
-          // Configure marked and highlight
-          marked.setOptions({
-            headerIds: true,
-            mangle: false,
-            highlight: function (code, lang) {
-              try {
-                return hljs.highlightAuto(code, lang ? [lang] : undefined)
-                  .value;
-              } catch (e) {
-                return hljs.highlightAuto(code).value;
-              }
-            },
-          });
-
-          const html = marked.parse(md);
-          const article = document.getElementById("article");
-          article.innerHTML = html;
-
-          // Add anchors to headings
-          document
-            .querySelectorAll(
-              "#article h1, #article h2, #article h3, #article h4, #article h5, #article h6"
-            )
-            .forEach((h) => {
-              const id =
-                h.id ||
-                h.textContent
-                  .trim()
-                  .toLowerCase()
-                  .replace(/[^a-z0-9]+/g, "-");
-              h.id = id;
-              const a = document.createElement("a");
-              a.className = "heading-anchor";
-              a.href = "#" + id;
-              a.title = "Link to " + h.textContent.trim();
-              a.innerHTML = "¶";
-              h.appendChild(a);
-            });
-
-          // Update current file tracker
-          currentMarkdownFile = filename;
-
-          // Scroll to specific section if requested, otherwise scroll to top
-          if (scrollToId) {
-            setTimeout(() => {
-              const element = document.getElementById(scrollToId);
-              if (element) {
-                element.scrollIntoView({ behavior: "smooth", block: "start" });
-                history.pushState(null, "", "#" + scrollToId);
-                element.classList.add("highlight-section");
-                setTimeout(() => element.classList.remove("highlight-section"), 1000);
-              }
-            }, 100);
-          } else {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }
-
-          buildTOC();
-          initSearch(md);
-          initActiveObserver();
-          hljs.highlightAll();
-
-          // Update URL
-          if (!scrollToId) {
-            history.pushState(null, "", filename === "README.md" ? "./" : `?file=${filename}`);
-          }
-        } catch (err) {
-          document.getElementById("article").innerHTML =
-            `<div class="error-panel"><h2>Unable to load ${filename}</h2><p>` +
-            err.message +
-            `</p><p><a href="${filename}">Open raw ${filename}</a></p></div>`;
-        }
-      }
-
-      // Enhanced renderReadme function
-      async function renderReadme() {
-        try {
-          const res = await fetch("README.md");
-          if (!res.ok) throw new Error("README.md not found");
-          const md = await res.text();
-
-          // Configure marked and highlight
-          marked.setOptions({
-            headerIds: true,
-            mangle: false,
-            highlight: function (code, lang) {
-              try {
-                return hljs.highlightAuto(code, lang ? [lang] : undefined)
-                  .value;
-              } catch (e) {
-                return hljs.highlightAuto(code).value;
-              }
-            },
-          });
-
-          const html = marked.parse(md);
-          const article = document.getElementById("article");
-          article.innerHTML = html;
-
-          // Add anchors to headings and small animated anchor links
-          document
-            .querySelectorAll(
-              "#article h1, #article h2, #article h3, #article h4, #article h5, #article h6"
-            )
-            .forEach((h) => {
-              const id =
-                h.id ||
-                h.textContent
-                  .trim()
-                  .toLowerCase()
-                  .replace(/[^a-z0-9]+/g, "-");
-              h.id = id;
-              const a = document.createElement("a");
-              a.className = "heading-anchor";
-              a.href = "#" + id;
-              a.title = "Link to " + h.textContent.trim();
-              a.innerHTML = "¶";
-              h.appendChild(a);
-            });
-
-          buildTOC();
-          initSearch(md);
-          initActiveObserver();
-          hljs.highlightAll();
-        } catch (err) {
-          document.getElementById("article").innerHTML =
-            '<div class="error-panel"><h2>Unable to load README</h2><p>' +
-            err.message +
-            '</p><p><a href="README.md">Open raw README.md</a></p></div>';
-        }
-      }
-
-      // If visiting index.html with a hash (e.g., index.html#resources), remember it
-      const initialHash = window.location.hash ? window.location.hash.slice(1) : null;
-
-      // Render README and, if there was an initial hash, scroll to that section after render
-      renderReadme().then(() => {
-        if (initialHash) {
-          // If the article is already rendered, try to find the element and scroll to it
-          const el = document.getElementById(initialHash);
-          if (el) {
-            setTimeout(() => {
-              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              history.replaceState(null, '', '#' + initialHash);
-              el.classList.add('highlight-section');
-              setTimeout(() => el.classList.remove('highlight-section'), 1000);
-            }, 120);
-          } else {
-            // If element not found, ensure loadMarkdownFile handles it by reloading README and passing id
-            loadMarkdownFile('README.md', initialHash);
-          }
-        }
-      });
-
-      // Theme toggle
-      const themeToggle = document.getElementById('theme-toggle');
-      const html = document.documentElement;
-      const savedTheme = localStorage.getItem('theme') || 'dark';
       
-      html.setAttribute('data-theme', savedTheme);
-      themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
-
-      themeToggle.addEventListener('click', () => {
-        const current = html.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
-        html.setAttribute('data-theme', next);
-        localStorage.setItem('theme', next);
-        themeToggle.textContent = next === 'dark' ? '🌙' : '☀️';
-      });
-    </script>
-
-        buildTOC();
-        initSearch(md);
-        initActiveObserver();
-        hljs.highlightAll();
-      } catch (err) {
-        document.getElementById("article").innerHTML =
-          '<div class="error-panel"><h2>Unable to load README</h2><p>' +
-          err.message +
-          '</p><p><a href="README.md">Open raw README.md</a></p></div>';
-      }
-    }
-
-    renderReadme();
-  </script>
 
   <!-- Footer Section  -->
   <footer class="site-footer">
