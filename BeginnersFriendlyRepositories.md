@@ -28,6 +28,8 @@ If you know any good repository for beginners, feel free to add it to this table
 | OpenSauce | [Link](https://github.com/TechnoBlogger14o3/OpenSauce) | Multiple Languages, DSA, Algorithms |
 | Awesome Lists | [Link](https://github.com/sindresorhus/awesome) | Markdown, Documentation |
 | 30 Seconds of Code | [Link](https://github.com/30-seconds/30-seconds-of-code) | JavaScript, TypeScript, Python |
+| Web Dev for Beginners | [Link](https://github.com/microsoft/Web-Dev-For-Beginners) | HTML, CSS, JavaScript |
+| Project Ideas and Resources | [Link](https://github.com/The-Cool-Coders/Project-Ideas-And-Resources?utm_source=chatgpt.com) | Multiple Languages, Starter Projects |
 
 
 
