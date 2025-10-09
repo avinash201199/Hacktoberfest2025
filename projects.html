@@ -67,6 +67,29 @@
   .no-results { text-align:center; padding:2rem; opacity:.6; font-size:.8rem; }
   footer { text-align:center; padding:2rem 1rem 3rem; font-size:.65rem; opacity:.7; }
   .chip { background:linear-gradient(135deg,var(--hf-orange),var(--hf-purple)); padding:.25rem .6rem; border-radius:999px; font-size:.55rem; letter-spacing:.1em; text-transform:uppercase; margin-left:.6rem; }
+  /* Floating Action Buttons */
+  .fab-container { position:fixed; bottom:20px; right:20px; display:flex; flex-direction:column; gap:10px; z-index:1001; }
+  .fab { background:linear-gradient(135deg,var(--hf-orange),var(--hf-purple)); color:var(--hf-light); border:none; width:50px; height:50px; border-radius:50%; cursor:pointer; font-size:1.5rem; box-shadow:0 8px 32px rgba(0,0,0,0.12); transition:all .3s ease; display:flex; align-items:center; justify-content:center; text-decoration:none; }
+  #back-to-top { display:none; }
+  .fab:hover { transform:translateY(-3px) scale(1.05); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
+  /* Light mode adjustments for FAB */
+  [data-theme="light"] .fab { color: #fff; }
+
+  /* Ensure correct text color on light theme for nav */
+  [data-theme="light"] .brand-text,
+  [data-theme="light"] .nav-links a,
+  [data-theme="light"] .nav-cta {
+    color: #fff;
+  }
+  [data-theme="light"] .nav-links a:hover {
+    color: var(--hf-orange);
+  }
+  [data-theme="light"] .nav-btn {
+    color: #eee;
+  }
+  [data-theme="light"] .nav-btn:hover {
+    color: #fff;
+  }
   @media (max-width:640px){ h1 { font-size:2.35rem;} .language-search-form { flex-direction:column; } .language-search-form button { width:100%; } }
 </style>
 </head>
@@ -119,6 +142,11 @@
     <div id="results-content"></div>
   </main>
   <footer>Hacktoberfest 2025 Project Explorer. <a href="index.html" style="color:var(--hf-orange);">Back to Guide</a></footer>
+
+  <!-- Floating Action Buttons -->
+  <div class="fab-container">
+    <button id="back-to-top" title="Back to top" class="fab">⬆️</button>
+  </div>
 <script>
   const PRESET_LANGUAGES = [
     { name:'JavaScript', icon:'🟨' },
@@ -267,6 +295,17 @@
       // If it's a plain 'index.html', leave as-is
     });
   });
+  // --- Back to Top Button ---
+  const backToTopButton = document.getElementById("back-to-top");
+
+  window.addEventListener("scroll", () => {
+    if (backToTopButton) backToTopButton.style.display = window.scrollY > 400 ? "flex" : "none";
+  });
+
+  backToTopButton.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
 </script>
 </body>
 </html>
