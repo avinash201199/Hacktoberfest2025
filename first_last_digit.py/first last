@@ -1,0 +1,11 @@
+def swap_first_last(num):
+    last = num % 10
+    n = num
+    pow10 = 1
+    while n >= 10:
+        n //= 10
+        pow10 *= 10
+    first = n
+    middle = (num % pow10) // 10
+    result = last * pow10 + middle * 10 + first
+    return result
