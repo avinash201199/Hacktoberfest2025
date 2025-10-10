@@ -30,6 +30,7 @@ Here’s a curated list of projects where you can start contributing:
 | Meme Generator           | [Link](https://github.com/avinash201199/MemeGenerator)            | HTML, CSS, JavaScript      |
 | Weather App              | [Link](https://github.com/avinash201199/weather-app)              | HTML, CSS, JavaScript, API |
 | My Gallery 4u            | [Link](https://github.com/avinash201199/My-Gallery-4u)            | HTML, CSS, JavaScript      |
+| ❌⭕ Tic Tac Toe | [Link](https://saisurya123658.github.io/javascript-mini-projects/tic-tac-toe-ai/index.html) | HTML, CSS, JavaScript |
 | Memory Game              | [Link](https://github.com/avinash201199/Memory-Game)              | HTML, CSS, JavaScript      |
 | Free Programming Books   | [Link](https://github.com/avinash201199/Free-programming-books)   | Various                    |
 
