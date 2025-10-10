@@ -184,6 +184,7 @@ Whether you’re a seasoned developer or just starting out, Hacktoberfest offers
 - 📘 [First Contributions](https://github.com/firstcontributions/first-contributions) — Beginner-friendly repo to learn the contribution workflow
 - 🌍 [EddieHub Community](https://github.com/EddieHubCommunity) — Welcoming open-source community for contributors of all levels
 - 🔌 [Public APIs](https://github.com/public-apis/public-apis) — Large collection of free APIs for developers
+- ⚡ [Google](https://opensource.google/projects) - Google open source projects
 
 ### 🎓 Learning Resources
 
