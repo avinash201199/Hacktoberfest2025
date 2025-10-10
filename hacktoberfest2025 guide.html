@@ -23,9 +23,9 @@
       line-height: 1.6;
       scroll-behavior: smooth;
       transition: background 0.3s, color 0.3s;
+      padding-top: 160px; 
     }
 
-    /* Dark Mode Overrides */
     body.dark {
       --hf-light: #1c1c1c;
       --hf-dark: #ffffff;
@@ -36,9 +36,14 @@
     header {
       background: var(--hf-purple);
       color: #fff;
-      padding: 2rem 1rem;
+      padding: 1rem 1rem; 
       text-align: center;
-      position: relative;
+      position: fixed; 
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
     }
     header h1 {
       margin: 0;
@@ -105,11 +110,11 @@
     }
 
     footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: var(--hf-dark);
-      color: #fff;
-    }
+   text-align: center;
+   padding: 2rem 1rem;
+   background: var(--hf-dark);
+    color: var(--hf-light); 
+   }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-20px); }
@@ -157,6 +162,29 @@
       z-index: 999;
     }
     #back-to-top:hover { background: var(--hf-orange); }
+    .social-links {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.social-links a {
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: transform 0.3s, color 0.3s;
+  color: inherit; 
+}
+
+.social-links a:hover {
+  transform: scale(1.2);
+  color: var(--hf-orange);
+}
+
+body.dark .social-links a {
+  color: var(--hf-light); 
+}
+
   </style>
 </head>
 <body>
@@ -211,9 +239,27 @@
 
   <footer>
     <p>Made with ❤️ for Hacktoberfest 2025 | Happy Coding!</p>
+    <div class="social-links">
+  <a href="https://github.com/avinash201199/Hacktoberfest2025" target="_blank" aria-label="GitHub">
+      <svg height="24" width="24" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.12 0 0 .67-.21 2.2.82A7.65 7.65 0 018 4.61c.68.003 1.36.092 2 .27 1.52-1.03 2.2-.82 2.2-.82.44 1.11.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+      </svg>
+  </a>
+  <a href="https://hacktoberfest.com/" target="_blank" aria-label="Hacktoberfest">
+       <svg height="24" width="24" viewBox="0 0 512 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M256 0C114.62 0 0 114.61 0 256s114.62 256 256 256 256-114.61 256-256S397.38 0 256 0zm0 472c-119.1 0-216-96.9-216-216S136.9 40 256 40s216 96.9 216 216-96.9 216-216 216zm0-376c-88.22 0-160 71.78-160 160s71.78 160 160 160 160-71.78 160-160S344.22 96 256 96zm0 288c-70.69 0-128-57.31-128-128s57.31-128 128-128 128 57.31 128 128-57.31 128-128 128z"/>
+      </svg>
+  </a>
+</div>
+
   </footer>
 
-  <button id="back-to-top" title="Back to top">⬆️</button>
+ <button id="back-to-top" title="Back to top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+    <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.59 5.58L20 12l-8-8-8 8z"/>
+  </svg>
+</button>
+
 
   <script>
     // Dark Mode Toggle
