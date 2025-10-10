@@ -271,12 +271,21 @@ body {
   font-style: italic;
 }
 
+/* Hide Button Styles*/
 .toc-toggle {
   border: 0;
-  background: transparent;
-  color: var(--muted);
-  padding: 8px;
+  background: linear-gradient(135deg, var(--accent-orange), var(--accent-purple));
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius-pill);
+  color: var(--on-accent);
+  text-decoration: none;
   cursor: pointer;
+  box-shadow: var(--soft-shadow);
+}
+
+.toc-toggle:hover {
+    transform: translateY(-3px);
+    transition: all 1s ease;
 }
 .sidebar-footer {
   display: flex;
