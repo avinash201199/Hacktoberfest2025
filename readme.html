@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacktoberfest 2025 – Beginner's Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --hf-orange: #ff8a65;
+            --hf-purple: #9b59b6;
+            --hf-dark: #183153;
+            --hf-light: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: var(--hf-dark);
+            line-height: 1.6;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--hf-dark) 0%, var(--hf-purple) 100%);
+            color: var(--hf-light);
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(37, 211, 102, 0.4);
+        }
+        
+        .quick-start {
+            background: var(--hf-light);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid var(--hf-orange);
+        }
+        
+        .quick-start h2 {
+            color: var(--hf-dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .step {
+            background: rgba(255, 138, 101, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .step:hover {
+            transform: translateY(-5px);
+        }
+        
+        .step-number {
+            background: var(--hf-orange);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+        }
+        
+        .section {
+            background: var(--hf-light);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section h2 {
+            color: var(--hf-purple);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(155, 89, 182, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        th {
+            background: rgba(155, 89, 182, 0.1);
+            color: var(--hf-purple);
+            font-weight: 600;
+        }
+        
+        tr:hover {
+            background: rgba(255, 138, 101, 0.05);
+        }
+        
+        .repo-link {
+            color: var(--hf-purple);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .repo-link:hover {
+            color: var(--hf-orange);
+            text-decoration: underline;
+        }
+        
+        .tech-stack {
+            background: rgba(24, 49, 83, 0.1);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+        }
+        
+        .timeline-table {
+            width: 100%;
+        }
+        
+        .timeline-table th:first-child,
+        .timeline-table td:first-child {
+            width: 30%;
+        }
+        
+        .do-dont {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .do, .dont {
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .do {
+            background: rgba(76, 175, 80, 0.1);
+            border-left: 5px solid #4CAF50;
+        }
+        
+        .dont {
+            background: rgba(244, 67, 54, 0.1);
+            border-left: 5px solid #F44336;
+        }
+        
+        .do h3, .dont h3 {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .do h3 {
+            color: #4CAF50;
+        }
+        
+        .dont h3 {
+            color: #F44336;
+        }
+        
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .resource-card {
+            background: var(--hf-light);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--hf-purple);
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .resource-card h3 {
+            color: var(--hf-purple);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .resource-card a {
+            color: var(--hf-dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .resource-card a:hover {
+            color: var(--hf-orange);
+        }
+        
+        .contributors {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .contributor {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .contributor:hover {
+            transform: scale(1.1);
+        }
+        
+        .contributor img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .commands {
+            background: rgba(24, 49, 83, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        pre {
+            background: var(--hf-dark);
+            color: var(--hf-light);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+        
+        code {
+            background: rgba(24, 49, 83, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .placement-resources {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .placement-resource {
+            background: rgba(255, 138, 101, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .placement-resource:hover {
+            transform: translateY(-3px);
+        }
+        
+        .tip-box {
+            background: linear-gradient(135deg, var(--hf-orange) 0%, var(--hf-purple) 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            color: var(--hf-dark);
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .do-dont {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-table th:first-child,
+            .timeline-table td:first-child {
+                width: 40%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🌍 Hacktoberfest 2025 – Beginner's Guide</h1>
+            <p class="subtitle">Your complete guide to participating in Hacktoberfest 2025</p>
+            
+            <div class="badges">
+                <div class="badge">Hacktoberfest 2025</div>
+                <div class="badge">Open Source</div>
+                <div class="badge">Contributions Welcome</div>
+            </div>
+            
+            <a href="https://chat.whatsapp.com/BfBWJhy4xj3CJFSGE2qBrL" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Join WhatsApp channel for any doubts
+            </a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="quick-start">
+            <h2><i class="fas fa-rocket"></i> 🚀 Quick Start – How to Contribute</h2>
+            <p>Follow these simple steps to make your first open source contribution during Hacktoberfest 2025:</p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Fork this repository</h3>
+                    <p>Create your own copy of the repository</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Add your repository</h3>
+                    <p>Add your beginner-friendly repository link in the table</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Submit a PR</h3>
+                    <p>Create and submit a Pull Request</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Celebrate! 🎉</h3>
+                    <p>Congratulations on your first open-source contribution!</p>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 15px;">
+                <a href="https://github.com/avinash201199/Hacktoberfest2025/blob/main/BeginnersFriendlyRepositories.md" class="repo-link">
+                    <i class="fas fa-plus-circle"></i> Add your repo here
+                </a>
+            </p>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-folder-open"></i> 📂 My Beginner-Friendly Repositories</h2>
+            <p>Here's a curated list of projects where you can start contributing:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>⭐ Repo Name</th>
+                        <th>🔗 URL</th>
+                        <th>⚡ Tech Stack</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Stopwatch</td>
+                        <td><a href="https://github.com/avinash201199/stopwatch" class="repo-link">Link</a></td>
+                        <td><span class="tech-stack">HTML, CSS, JavaScript</span></td>
+                    </tr>
+                    <tr>
+                        <td>Login-Signup Templates</td>
+                        <td><a href="https://github.com/avinash201199/Login-Signup-templates" class="repo-link">Link</a></td>
+                        <td><span class="tech-stack">HTML, CSS</span></td>
+                    </tr>
+                    <tr>
+                        <td>Meme Generator</td>
+                        <td><a href="https://github.com/avinash201199/MemeGenerator" class="repo-link">Link</a></td>
+                        <td><span class="tech-stack">HTML, CSS, JavaScript</span></td>
+                    </tr>
+                    <tr>
+                        <td>Weather App</td>
+                        <td><a href="https://github.com/avinash201199/weather-app" class="repo-link">Link</a></td>
+                        <td><span class="tech-stack">HTML, CSS, JavaScript, API</span></td>
+                    </tr>
+                    <tr>
+                        <td>My Gallery 4u</td>
+                        <td><a href="https://github.com/avinash201199/My-Gallery-4u" class="repo-link">Link</a></td>
+                        <td><span class="tech-stack">HTML, CSS, JavaScript</span></td>
+                    </tr>
+                    <tr>
+                        <td>Memory Game</td>
+                        <td><a href="https://github.com/avinash201199/Memory-Game" class="repo-link">Link</a></td>
+                        <td><span class="tech-stack">HTML, CSS, JavaScript</span></td>
+                    </tr>
+                    <tr>
+                        <td>Free Programming Books</td>
+                        <td><a href="https://github.com/avinash201199/Free-programming-books" class="repo-link">Link</a></td>
+                        <td><span class="tech-stack">Various</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-question-circle"></i> 🎉 What is Hacktoberfest?</h2>
+            <p>Hacktoberfest is a <em>month-long open-source celebration</em> organized every October by <em>DigitalOcean</em> (with community sponsors).<br>
+            It encourages developers, designers, writers, and everyone in tech to contribute to <em>open-source projects</em>.</p>
+            
+            <h3 style="margin-top: 20px; color: var(--hf-purple);">✨ Goals:</h3>
+            <ul style="padding-left: 20px; margin-top: 10px;">
+                <li>Encourage <em>meaningful contributions</em> to open source</li>
+                <li>Introduce <em>new contributors</em> to OSS</li>
+                <li>Reward contributors with <em>swag, badges & recognition</em></li>
+                <li>Grow global <em>developer communities</em> 🌐</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-calendar-alt"></i> 📅 Hacktoberfest 2025 Timeline</h2>
+            
+            <table class="timeline-table">
+                <thead>
+                    <tr>
+                        <th>🗓 Phase</th>
+                        <th>📌 What Happens</th>
+                        <th>🔑 Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><em>Pre-September (Preptember)</em></td>
+                        <td>Find projects, add hacktoberfest topic, prep Git basics</td>
+                        <td>Start early 📚</td>
+                    </tr>
+                    <tr>
+                        <td><em>Oct 1 – Oct 31</em></td>
+                        <td>Submit PRs, attend community events</td>
+                        <td>PRs must be merged/accepted</td>
+                    </tr>
+                    <tr>
+                        <td><em>Review Window</em></td>
+                        <td>PRs reviewed & merged by maintainers</td>
+                        <td>A few days grace after Oct</td>
+                    </tr>
+                    <tr>
+                        <td><em>Afterwards</em></td>
+                        <td>Swag & badge distribution 🎁</td>
+                        <td>Stories, blogs & celebration</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p style="margin-top: 15px;"><em>👉 Kickoff: October 1st, 2025 – Global virtual event "From Code to Community" 🎙</em></p>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-tools"></i> 🛠 How to Participate</h2>
+            
+            <h3 style="margin-top: 20px; color: var(--hf-purple);">1️⃣ <strong>Register / Sign Up</strong></h3>
+            <ul style="padding-left: 20px; margin-top: 10px;">
+                <li>Visit <a href="https://hacktoberfest.com" class="repo-link">Hacktoberfest.com</a></li>
+                <li>Sign in with GitHub / GitLab</li>
+                <li>Start earning your <em>digital badge</em></li>
+            </ul>
+            
+            <h3 style="margin-top: 20px; color: var(--hf-purple);">2️⃣ <strong>Find Suitable Projects</strong></h3>
+            <ul style="padding-left: 20px; margin-top: 10px;">
+                <li>Only repositories that have opted in (i.e. have the <code>hacktoberfest</code> topic) count as eligible.</li>
+                <li>Many projects label beginner-friendly issues as <strong>"good first issue"</strong> or <strong>"help wanted"</strong>. These are great for newcomers.</li>
+                <li>You can contribute to non-code areas as well: docs, translation, design, writing, tutorials, etc.</li>
+                <li>Keep your eyes on Hacktoberfest's official event listings and community shared project lists.</li>
+            </ul>
+            
+            <h3 style="margin-top: 20px; color: var(--hf-purple);">3️⃣ <strong>Make PRs</strong></h3>
+            <ul style="padding-left: 20px; margin-top: 10px;">
+                <li>Fork → Branch → Commit → PR</li>
+                <li>Follow repo <em>CONTRIBUTING.md</em></li>
+                <li>Use clear <em>commit messages & PR descriptions</em></li>
+                <li>Be sure to follow the project's contribution guidelines</li>
+                <li>Engage with maintainers: respond to feedback and revise if needed</li>
+            </ul>
+            
+            <h3 style="margin-top: 20px; color: var(--hf-purple);">4️⃣ <strong>Get PRs Accepted</strong></h3>
+            <ul style="padding-left: 20px; margin-top: 10px;">
+                <li>✅ Repo must have hacktoberfest topic</li>
+                <li>✅ PR should be <em>merged</em> or labeled hacktoberfest-accepted</li>
+                <li>✅ Aim for <em>6 accepted PRs</em> in 2025</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-gift"></i> 🎁 Rewards in 2025</h2>
+            <ul style="padding-left: 20px; margin-top: 10px;">
+                <li>🪪 <em>Holopin Badge</em> – Digital collectible for your profile</li>
+                <li>👕 <em>Hacktoberfest T-Shirt</em> – For <em>Super Contributors</em> (first 10k who complete)</li>
+                <li>🌱 <em>Tree Plantation</em> – A tree planted in your name via TreeNation</li>
+                <li>📜 <em>Global Recognition</em> – Showcase in OSS community</li>
+            </ul>
+            
+            <p style="margin-top: 15px;"><em>👉 Even if you don't hit the T-shirt tier, every contributor gets digital recognition and a chance to showcase their journey!</em></p>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-lightbulb"></i> Why You Should Join Hacktoberfest</h2>
+            <p>Whether you're a seasoned developer or just starting out, Hacktoberfest offers many benefits:</p>
+            
+            <ul style="padding-left: 20px; margin-top: 10px;">
+                <li><strong>Skill growth & learning</strong> — working on real projects improves your coding, collaboration, and review skills</li>
+                <li><strong>Portfolio & visibility</strong> — your GitHub contributions are public and can be shown to employers</li>
+                <li><strong>Community & networking</strong> — meet contributors, maintainers, and mentors worldwide</li>
+                <li><strong>Giving back</strong> — open-source projects power much of the tech stack we rely on</li>
+                <li><strong>Fun & motivation</strong> — friendly challenge, rewards, and shared energy through October</li>
+                <li><strong>Non-code opportunities</strong> — docs, design, translation, writing, testing are also valid ways to contribute.</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-check-circle"></i> ✅ Best Practices (Avoid "Spamtoberfest")</h2>
+            
+            <div class="do-dont">
+                <div class="dont">
+                    <h3><i class="fas fa-times-circle"></i> 🔴 Don't:</h3>
+                    <ul>
+                        <li>Submit meaningless PRs (typo, whitespace only)</li>
+                        <li>Contribute to ineligible repos</li>
+                        <li>Ignore maintainer feedback</li>
+                    </ul>
+                </div>
+                
+                <div class="do">
+                    <h3><i class="fas fa-check-circle"></i> 🟢 Do:</h3>
+                    <ul>
+                        <li>Focus on <em>quality, not quantity</em></li>
+                        <li>Read repo's <em>guidelines</em></li>
+                        <li>Open issues / communicate before PRs</li>
+                        <li>Write <em>clear PR titles & descriptions</em></li>
+                        <li>Engage with the community</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-code"></i> Quick Git Commands for Hacktoberfest</h2>
+            <p>For beginners who are new to Git and GitHub, here are essential commands to get started:</p>
+            
+            <div class="commands">
+                <h3>Setting up your contribution</h3>
+                <pre><code># Fork the repository on GitHub, then clone your fork
+git clone https://github.com/YOUR_USERNAME/REPO_NAME.git
+cd REPO_NAME
+
+# Add the original repository as upstream
+git remote add upstream https://github.com/ORIGINAL_OWNER/REPO_NAME.git
+
+# Create a new branch for your feature
+git checkout -b feature/your-feature-name</code></pre>
+                
+                <h3>Making changes and submitting</h3>
+                <pre><code># Check status of your changes
+git status
+
+# Add your changes
+git add .
+
+# Commit with a meaningful message
+git commit -m "Add: brief description of changes"
+
+# Push to your fork
+git push origin feature/your-feature-name</code></pre>
+                
+                <h3>Keeping your fork updated</h3>
+                <pre><code># Fetch changes from original repository
+git fetch upstream
+
+# Switch to main branch
+git checkout main
+
+# Merge upstream changes
+git merge upstream/main
+
+# Push updates to your fork
+git push origin main</code></pre>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-users"></i> 👥 Contributors</h2>
+            <p>Thanks to all the amazing contributors 💜</p>
+            
+            <div class="contributors">
+                <!-- This would be replaced with actual contributor images -->
+                <div class="contributor" style="background: var(--hf-orange); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">A</div>
+                <div class="contributor" style="background: var(--hf-purple); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">B</div>
+                <div class="contributor" style="background: var(--hf-dark); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">C</div>
+                <div class="contributor" style="background: var(--hf-orange); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">D</div>
+                <div class="contributor" style="background: var(--hf-purple); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">E</div>
+                <div class="contributor" style="background: var(--hf-dark); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">F</div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 15px;">
+                <a href="https://github.com/avinash201199/Hacktoberfest2025/graphs/contributors" class="repo-link">
+                    View all contributors on GitHub
+                </a>
+            </p>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-briefcase"></i> 🧰 Bonus: Placement Prep Resources</h2>
+            
+            <div class="placement-resources">
+                <div class="placement-resource">
+                    <h3>Mock Tests</h3>
+                    <a href="https://www.lets-code.co.in/dashboard/mocktest/" class="repo-link">Access Now</a>
+                </div>
+                <div class="placement-resource">
+                    <h3>Resume Optimizer</h3>
+                    <a href="https://www.lets-code.co.in/dashboard/optimizeresume/" class="repo-link">Access Now</a>
+                </div>
+                <div class="placement-resource">
+                    <h3>Roadmaps</h3>
+                    <a href="https://www.lets-code.co.in/articles/roadmap/" class="repo-link">Access Now</a>
+                </div>
+                <div class="placement-resource">
+                    <h3>Coding PYQs</h3>
+                    <a href="https://lets-code.co.in/previousyearcodingquestion/pyqs/" class="repo-link">Access Now</a>
+                </div>
+                <div class="placement-resource">
+                    <h3>Interview Questions</h3>
+                    <a href="https://www.lets-code.co.in/interview/interviewquestions/" class="repo-link">Access Now</a>
+                </div>
+                <div class="placement-resource">
+                    <h3>Free Drive Materials</h3>
+                    <a href="https://www.lets-code.co.in/articles/free-placement-google-drive-links/" class="repo-link">Access Now</a>
+                </div>
+                <div class="placement-resource">
+                    <h3>3000+ Startups List</h3>
+                    <a href="https://www.lets-code.co.in/startups-list/" class="repo-link">Access Now</a>
+                </div>
+                <div class="placement-resource">
+                    <h3>Interview Experience</h3>
+                    <a href="https://www.lets-code.co.in/interview-experience/" class="repo-link">Access Now</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tip-box">
+            <h2><i class="fas fa-lightbulb"></i> 🎯 Final Tip</h2>
+            <p>Contribute with <em>curiosity & respect</em> ❤<br>
+            Every meaningful PR = <em>a step forward in your journey as an open-source contributor</em> 🚀</p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Made with ❤️ for the Hacktoberfest 2025 Community</p>
+    </footer>
+</body>
+</html>
