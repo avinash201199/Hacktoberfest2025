@@ -269,150 +269,150 @@
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-      }
+        }
 
-      #article h2 {
+        #article h2 {
         font-size: 1.8rem;
         margin: 2rem 0 1rem;
         color: var(--hf-light);
-      }
+        }
 
-      #article h3 {
+        #article h3 {
         font-size: 1.4rem;
         margin: 1.5rem 0 1rem;
         color: var(--hf-orange);
-      }
+        }
 
-      #article p {
+        #article p {
         margin-bottom: 1.2rem;
         font-size: 1.1rem;
         color: rgba(255, 255, 255, 0.9);
-      }
+        }
 
-      #article ul,
-      #article ol {
+        #article ul,
+        #article ol {
         padding-left: 1.5rem;
         margin-bottom: 1.2rem;
-      }
+        }
 
-      #article li {
+        #article li {
         margin-bottom: 0.5rem;
-      }
+        }
 
-      #article code {
+        #article code {
         background: rgba(155, 89, 182, 0.1);
         padding: 0.2em 0.4em;
         border-radius: 3px;
         font-size: 0.9em;
-      }
+        }
 
-      #article pre {
+        #article pre {
         margin: 1.5rem 0;
         padding: 1rem;
         border-radius: 8px;
         background: rgba(0, 0, 0, 0.3);
-      }
+        }
 
-      #article table {
+        #article table {
         width: 100%;
         margin: 1.5rem 0;
         border-collapse: collapse;
-      }
+        }
 
-      #article th,
-      #article td {
+        #article th,
+        #article td {
         padding: 0.8rem;
         border: 1px solid rgba(255, 255, 255, 0.1);
         background: rgba(255, 255, 255, 0.02);
-      }
+        }
 
-      #article th {
+        #article th {
         background: rgba(155, 89, 182, 0.1);
         color: var(--hf-orange);
-      }
+        }
 
-      /* Enhanced search results */
-      .search-highlight {
+        /* Enhanced search results */
+        .search-highlight {
         background: linear-gradient(
-          120deg,
-          rgba(255, 138, 101, 0.2),
-          rgba(155, 89, 182, 0.2)
+        120deg,
+        rgba(255, 138, 101, 0.2),
+        rgba(155, 89, 182, 0.2)
         );
         border-radius: 3px;
         padding: 0.2em 0;
-      }
+        }
 
-      .search-wrapper input:focus + .search-ico {
+        .search-wrapper input:focus + .search-ico {
         color: var(--hf-orange);
         opacity: 1;
-      }
+        }
 
-      /* Smooth scroll padding for header */
-      html {
+        /* Smooth scroll padding for header */
+        html {
         scroll-padding-top: 80px;
-      }
+        }
 
-      /* Mobile optimizations */
-      @media (max-width: 768px) {
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
         #article {
-          font-size: 15px;
-          padding: 0 1rem;
+        font-size: 15px;
+        padding: 0 1rem;
         }
 
         #article h1 {
-          font-size: 2rem;
+        font-size: 2rem;
         }
         #article h2 {
-          font-size: 1.5rem;
+        font-size: 1.5rem;
         }
         #article h3 {
-          font-size: 1.2rem;
+        font-size: 1.2rem;
         }
-      }
+        }
 
-      /* Sidebar styles for collapsed state */
-      .sidebar.collapsed {
+        /* Sidebar styles for collapsed state */
+        .sidebar.collapsed {
         width: 80px;
-      }
+        }
 
-      .sidebar.collapsed .brand {
+        .sidebar.collapsed .brand {
         justify-content: center;
-      }
+        }
 
-      .sidebar.collapsed .brand .logo-blob {
+        .sidebar.collapsed .brand .logo-blob {
         margin-right: 0;
-      }
+        }
 
-      .sidebar.collapsed .brand .brand-text {
+        .sidebar.collapsed .brand .brand-text {
         display: none;
-      }
+        }
 
-      .sidebar.collapsed #toc {
+        .sidebar.collapsed #toc {
         display: none;
-      }
+        }
 
-      .sidebar.collapsed .toc-toggle {
+        .sidebar.collapsed .toc-toggle {
         display: none;
-      }
+        }
 
-      .sidebar.collapsed .sidebar-footer {
+        .sidebar.collapsed .sidebar-footer {
         display: none;
-      }
+        }
 
-      .sidebar.collapsed .search-wrapper {
+        .sidebar.collapsed .search-wrapper {
         display: none;
-      }
+        }
 
-      .sidebar.collapsed .nav-btn {
+        .sidebar.collapsed .nav-btn {
         display: none;
-      }
+        }
 
-      .sidebar.collapsed .nav-cta {
+        .sidebar.collapsed .nav-cta {
         display: none;
-      }
+        }
 
-      /* Show/Hide arrow button styles */
-      .show-sidebar-btn {
+        /* Show/Hide arrow button styles */
+        .show-sidebar-btn {
         position: fixed;
         top: 50%;
         left: 20px;
@@ -431,83 +431,83 @@
         display: none;
         align-items: center;
         justify-content: center;
-      }
+        }
 
-      .show-sidebar-btn:hover {
+        .show-sidebar-btn:hover {
         transform: translateY(-50%) scale(1.1);
         box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
-      }
+        }
 
-      .show-sidebar-btn.visible {
+        .show-sidebar-btn.visible {
         display: flex;
-      }
+        }
 
-      .show-sidebar-btn::before {
+        .show-sidebar-btn::before {
         content: "→";
         transition: transform 0.3s ease;
-      }
+        }
 
-      .show-sidebar-btn:hover::before {
+        .show-sidebar-btn:hover::before {
         transform: translateX(3px);
-      }
+        }
 
-      @keyframes fadeIn {
+        @keyframes fadeIn {
         from {
-          opacity: 0;
-          transform: translateY(20px);
+        opacity: 0;
+        transform: translateY(20px);
         }
         to {
-          opacity: 1;
-          transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
         }
-      }
+        }
 
-      .fade-in {
+        .fade-in {
         animation: fadeIn 0.8s ease-out forwards;
-      }
+        }
 
-      /* Smooth transitions */
-      .toc-item a {
+        /* Smooth transitions */
+        .toc-item a {
         transition: all 0.3s ease;
-      }
+        }
 
-      .toc-item a:hover {
+        .toc-item a:hover {
         transform: translateX(10px);
         color: var(--hf-orange);
-      }
+        }
 
-      /* Active link indicator */
-      .toc-item a.active {
+        /* Active link indicator */
+        .toc-item a.active {
         color: var(--hf-orange);
         font-weight: 600;
         padding-left: 1rem;
         border-left: 3px solid var(--hf-orange);
-      }
+        }
 
-      /* Search results highlight */
-      mark {
+        /* Search results highlight */
+        mark {
         background: linear-gradient(120deg, var(--hf-orange), var(--hf-purple));
         padding: 0.1em 0.3em;
         border-radius: 3px;
         color: var(--hf-light);
-      }
+        }
 
-      /* Section highlight animation */
-      .highlight-section {
+        /* Section highlight animation */
+        .highlight-section {
         animation: highlight-pulse 1s ease-out;
-      }
+        }
 
-      @keyframes highlight-pulse {
+        @keyframes highlight-pulse {
         0% {
-          background: rgba(255, 138, 101, 0.2);
+        background: rgba(255, 138, 101, 0.2);
         }
         100% {
-          background: transparent;
+        background: transparent;
         }
-      }
+        }
 
-      /* Better sidebar positioning */
-      .sidebar {
+        /* Better sidebar positioning */
+        .sidebar {
         position: sticky;
         top: 60px;
         height: calc(100vh - 60px);
@@ -515,156 +515,156 @@
         background: rgba(24, 49, 83, 0.95);
         backdrop-filter: blur(10px);
         padding: 1rem;
-      }
+        }
 
-      /* Resources Section Styles */
-      .resources-section {
+        /* Resources Section Styles */
+        .resources-section {
         padding: var(--spacing-lg) 0;
         background: linear-gradient(
-          135deg,
-          rgba(24, 49, 83, 0.1),
-          rgba(155, 89, 182, 0.05)
+        135deg,
+        rgba(24, 49, 83, 0.1),
+        rgba(155, 89, 182, 0.05)
         );
         margin: var(--spacing-lg) 0;
         border-radius: 20px;
-      }
+        }
 
-      .resources-grid {
+        .resources-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         gap: var(--spacing-lg);
         margin-top: var(--spacing-lg);
-      }
+        }
 
-      .resource-category {
+        .resource-category {
         background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(10px);
         border-radius: 15px;
         padding: var(--spacing-lg);
         border: 1px solid rgba(255, 255, 255, 0.1);
         transition: all 0.3s ease;
-      }
+        }
 
-      .resource-category:hover {
+        .resource-category:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 30px rgba(155, 89, 182, 0.2);
         border-color: rgba(255, 138, 101, 0.3);
-      }
+        }
 
-      .resource-category h4 {
+        .resource-category h4 {
         display: flex;
         align-items: center;
         gap: 0.5rem;
         margin-bottom: var(--spacing-md);
         color: var(--hf-orange);
         font-size: 1.3rem;
-      }
+        }
 
-      .resource-category h4::before {
+        .resource-category h4::before {
         content: attr(data-icon);
         font-size: 1.5rem;
-      }
+        }
 
-      .resource-list {
+        .resource-list {
         list-style: none;
         padding: 0;
         margin: 0;
-      }
+        }
 
-      .resource-item {
+        .resource-item {
         margin-bottom: var(--spacing-sm);
         padding: 0.8rem;
         background: rgba(255, 255, 255, 0.03);
         border-radius: 8px;
         border-left: 3px solid transparent;
         transition: all 0.3s ease;
-      }
+        }
 
-      .resource-item:hover {
+        .resource-item:hover {
         background: rgba(255, 138, 101, 0.1);
         border-left-color: var(--hf-orange);
         transform: translateX(5px);
-      }
+        }
 
-      .resource-item a {
+        .resource-item a {
         color: rgba(255, 255, 255, 0.9);
         text-decoration: none;
         display: flex;
         align-items: flex-start;
         gap: 0.8rem;
         line-height: 1.5;
-      }
+        }
 
-      .resource-item a:hover {
+        .resource-item a:hover {
         color: var(--hf-light);
-      }
+        }
 
-      .resource-emoji {
+        .resource-emoji {
         font-size: 1.2rem;
         min-width: 1.5rem;
-      }
+        }
 
-      .resource-content {
+        .resource-content {
         flex: 1;
-      }
+        }
 
-      .resource-title {
+        .resource-title {
         font-weight: 600;
         margin-bottom: 0.2rem;
-      }
+        }
 
-      .resource-desc {
+        .resource-desc {
         font-size: 0.9rem;
         color: rgba(255, 255, 255, 0.7);
         line-height: 1.4;
-      }
+        }
 
-      .resource-tags {
+        .resource-tags {
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
         margin-top: 0.5rem;
-      }
+        }
 
-      .resource-tag {
+        .resource-tag {
         background: rgba(155, 89, 182, 0.2);
         color: var(--hf-light);
         padding: 0.2rem 0.6rem;
         border-radius: 12px;
         font-size: 0.75rem;
         border: 1px solid rgba(155, 89, 182, 0.3);
-      }
+        }
 
-      .resources-intro {
+        .resources-intro {
         text-align: center;
         margin-bottom: var(--spacing-lg);
         padding: var(--spacing-md);
         background: rgba(255, 138, 101, 0.1);
         border-radius: 12px;
         border: 1px solid rgba(255, 138, 101, 0.2);
-      }
+        }
 
-      .resources-intro p {
+        .resources-intro p {
         margin: 0;
         font-size: 1.1rem;
         color: rgba(255, 255, 255, 0.9);
-      }
+        }
 
-      /* Footer Styles */
-      .site-footer {
+        /* Footer Styles */
+        .site-footer {
         background: linear-gradient(
-          135deg,
-          rgba(24, 49, 83, 0.96),
-          rgba(155, 89, 182, 0.92)
+        135deg,
+        rgba(24, 49, 83, 0.96),
+        rgba(155, 89, 182, 0.92)
         );
         backdrop-filter: blur(12px);
         color: var(--hf-light);
         margin-top: var(--spacing-lg);
         box-shadow: 0 -6px 25px rgba(0, 0, 0, 0.22);
         padding: var(--spacing-lg) 0 var(--spacing-md);
-      }
+        }
 
-      .footer-inner {
+        .footer-inner {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 var(--spacing-lg);
@@ -672,75 +672,75 @@
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: var(--spacing-lg);
         align-items: start;
-      }
+        }
 
-      .footer-brand {
+        .footer-brand {
         display: flex;
         gap: 0.9rem;
         align-items: flex-start;
-      }
+        }
 
-      .footer-brand .logo-blob {
+        .footer-brand .logo-blob {
         width: 2.4em;
         height: 2.4em;
         margin-right: 0;
         box-shadow: 0 0 24px rgba(255, 138, 101, 0.18);
-      }
+        }
 
-      .footer-col h4 {
+        .footer-col h4 {
         margin: 0 0 var(--spacing-sm);
         font-size: 1.15rem;
         color: var(--hf-orange);
-      }
+        }
 
-      .footer-title {
+        .footer-title {
         font-size: 1.25rem;
         font-weight: 600;
-      }
+        }
 
-      .footer-desc {
+        .footer-desc {
         margin: 0.45rem 0 0;
         color: rgba(255, 255, 255, 0.86);
         font-size: 0.96rem;
         line-height: 1.6;
-      }
+        }
 
-      .footer-links {
+        .footer-links {
         display: flex;
         flex-direction: column;
         gap: 0.6rem;
         margin: 0;
-      }
+        }
 
-      .footer-links a {
+        .footer-links a {
         color: rgba(255, 255, 255, 0.85);
         text-decoration: none;
         transition: color 0.22s ease, transform 0.22s ease;
-      }
+        }
 
-      .footer-links a:hover {
+        .footer-links a:hover {
         color: var(--hf-orange);
         transform: translateX(4px);
-      }
+        }
 
-      .footer-socials {
+        .footer-socials {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
-      }
+        }
 
-      .footer-socials a {
+        .footer-socials a {
         color: rgba(255, 255, 255, 0.88);
         text-decoration: none;
         transition: transform 0.18s ease, color 0.18s ease;
-      }
+        }
 
-      .footer-socials a:hover {
+        .footer-socials a:hover {
         color: var(--hf-orange);
         transform: translateX(6px);
-      }
+        }
 
-      .footer-bottom {
+        .footer-bottom {
         max-width: 1200px;
         margin: 1.25rem auto 0;
         padding: var(--spacing-sm) var(--spacing-lg) 0;
@@ -748,52 +748,76 @@
         text-align: center;
         color: rgba(255, 255, 255, 0.72);
         font-size: 0.95rem;
-      }
-    </style>
-  </head>
-  <body>
-    <header class="topnav" role="banner">
-      <div class="topnav-inner">
-        <a class="brand" href="./" title="Home"
-          ><span class="logo-blob" aria-hidden="true"></span
-          ><span class="brand-text">Hacktoberfest 2025</span></a
-        >
+        }
 
-        <nav class="nav-links" aria-label="Main navigation">
-          <a href="#what-is-hacktoberfest">Overview</a>
-          <a href="projects.html">Projects</a>
-          <a href="#how-to-participate">How To</a>
-          <a href="#resources">Resources</a>
-        </nav>
+        /* Focus styles for accessibility */
+        :focus-visible {
+        outline: 2px solid var(--accent-orange);
+        outline-offset: 2px;
+        border-radius: 4px;
+        }
 
-        <div class="nav-actions">
-          <button
-            id="nav-search-btn"
-            class="nav-btn"
-            title="Search (/)"
-            aria-label="Open search"
-          >
-            🔎
-          </button>
-          <button
-            id="theme-toggle"
-            class="nav-btn"
-            title="Toggle theme"
-            aria-label="Toggle dark/light mode"
-          >
-            🌙
-          </button>
-          <a
-            class="nav-cta"
-            href="https://github.com/avinash201199/Hacktoberfest2025"
-            target="_blank"
-            rel="noopener"
-            >GitHub</a
-          >
-          <button id="hamburger" class="nav-btn" aria-label="Toggle sidebar">
-            ☰
-          </button>
-        </div>
+        /* For better visibility on buttons */
+        .nav-btn:focus-visible,
+        button:focus-visible {
+        outline: 2px solid var(--accent-orange);
+        outline-offset: 2px;
+        box-shadow: 0 0 0 4px rgba(255, 138, 101, 0.2);
+        }
+
+        /* For links */
+        a:focus-visible {
+        outline: 2px solid var(--accent-purple);
+        outline-offset: 2px;
+        }
+        .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: var(--accent-orange);
+        color: var(--on-accent);
+        padding: 8px 16px;
+        text-decoration: none;
+        border-radius: 0 0 4px 0;
+        z-index: 9999;
+        }
+
+        .skip-link:focus {
+        top: 0;
+        }
+
+
+        </style>
+        </head>
+
+        <body>
+          <a href="#content" class="skip-link">Skip to main content</a>
+          <header class="topnav" role="banner">
+            <div class="topnav-inner">
+              <a class="brand" href="./" title="Home"><span class="logo-blob" aria-hidden="true"></span><span
+                  class="brand-text">Hacktoberfest 2025</span></a>
+
+              <nav class="nav-links" aria-label="Main navigation">
+                <a href="#what-is-hacktoberfest">Overview</a>
+                <a href="projects.html">Projects</a>
+                <a href="#how-to-participate">How To</a>
+                <a href="#resources">Resources</a>
+              </nav>
+
+              <div class="nav-actions">
+                <button id="nav-search-btn" class="nav-btn" title="Search (/)" aria-label="Open search">
+                  🔎
+                </button>
+                <button id="theme-toggle" class="nav-btn" title="Toggle theme" aria-label="Toggle dark/light mode">
+                  🌙      
+                </button>
+                <a class="nav-cta" href="https://github.com/avinash201199/Hacktoberfest2025" target="_blank"
+                  rel="noopener">GitHub</a>
+                <button id="hamburger" class="nav-btn" aria-label="Toggle sidebar menu" aria-expanded="false">
+                  ☰
+                </button>
+              </div>
+            </div>
       </div>
     </header>
 
