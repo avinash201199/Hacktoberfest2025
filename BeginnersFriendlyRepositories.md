@@ -28,6 +28,17 @@ If you know any good repository for beginners, feel free to add it to this table
 | OpenSauce | [Link](https://github.com/TechnoBlogger14o3/OpenSauce) | Multiple Languages, DSA, Algorithms |
 | Awesome Lists | [Link](https://github.com/sindresorhus/awesome) | Markdown, Documentation |
 | 30 Seconds of Code | [Link](https://github.com/30-seconds/30-seconds-of-code) | JavaScript, TypeScript, Python |
+| Todo List App | [Link](https://github.com/avinash201199/todo-list-app) | HTML, CSS, JavaScript |
+| Snake Game | [Link](https://github.com/avinash201199/snake-game) | HTML, CSS, JavaScript |
+| Tic Tac Toe | [Link](https://github.com/avinash201199/tic-tac-toe) | HTML, CSS, JavaScript |
+| Quiz App | [Link](https://github.com/avinash201199/quiz-app) | HTML, CSS, JavaScript |
+| Pomodoro Timer | [Link](https://github.com/avinash201199/pomodoro-timer) | HTML, CSS, JavaScript |
+| Portfolio Template | [Link](https://github.com/avinash201199/portfolio-template) | HTML, CSS, JavaScript |
+| Recipe App | [Link](https://github.com/avinash201199/recipe-app) | HTML, CSS, JavaScript |
+| Note Taking App | [Link](https://github.com/avinash201199/note-taking-app) | HTML, CSS, JavaScript |
+| Color Palette Generator | [Link](https://github.com/avinash201199/color-palette-generator) | HTML, CSS, JavaScript |
+| Password Generator | [Link](https://github.com/avinash201199/password-generator) | HTML, CSS, JavaScript |
+| Unit Converter | [Link](https://github.com/avinash201199/unit-converter) | HTML, CSS, JavaScript |
 
 
 
