@@ -770,6 +770,107 @@
         outline: 2px solid var(--accent-purple);
         outline-offset: 2px;
         }
+
+        /* Back to Top Button Styles */
+        .back-to-top {
+          position: fixed;
+          bottom: 2rem;
+          right: 2rem;
+          padding: 12px 20px;
+          background: linear-gradient(135deg, var(--hf-orange), var(--hf-purple));
+          border: none;
+          border-radius: 25px;
+          color: var(--hf-light);
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 600;
+          font-family: inherit;
+          box-shadow: 0 4px 20px rgba(155, 89, 182, 0.3);
+          transition: all 0.3s ease;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(20px);
+          z-index: 1000;
+          white-space: nowrap;
+        }
+
+        .back-to-top.visible {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 6px 25px rgba(155, 89, 182, 0.4);
+          background: linear-gradient(135deg, var(--hf-purple), var(--hf-orange));
+        }
+
+        .back-to-top:active {
+          transform: translateY(-1px);
+        }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+          .back-to-top {
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 10px 16px;
+            font-size: 13px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .back-to-top {
+            bottom: 1rem;
+            right: 1rem;
+            padding: 8px 14px;
+            font-size: 12px;
+          }
+        }
+
+        .back-to-top.visible {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 6px 25px rgba(155, 89, 182, 0.4);
+          background: linear-gradient(135deg, var(--hf-purple), var(--hf-orange));
+        }
+
+        .back-to-top:active {
+          transform: translateY(-1px);
+        }
+
+        .back-to-top svg {
+          transition: transform 0.3s ease;
+        }
+
+        .back-to-top:hover svg {
+          transform: translateY(-2px);
+        }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+          .back-to-top {
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 45px;
+            height: 45px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .back-to-top {
+            bottom: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+          }
+        }
         .skip-link {
         position: absolute;
         top: -40px;
@@ -1490,6 +1591,38 @@
         localStorage.setItem('theme', next);
         themeToggle.textContent = next === 'dark' ? '🌙' : '☀️';
       });
+
+      // Back to Top Button Functionality
+      const backToTopButton = document.getElementById('back-to-top');
+      
+      // Show/hide button based on scroll position
+      function toggleBackToTopButton() {
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.add('visible');
+        } else {
+          backToTopButton.classList.remove('visible');
+        }
+      }
+
+      // Smooth scroll to top when button is clicked
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+
+      // Add event listeners
+      window.addEventListener('scroll', toggleBackToTopButton);
+      backToTopButton.addEventListener('click', scrollToTop);
+
+      // Also support keyboard navigation
+      backToTopButton.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          scrollToTop();
+        }
+      });
     </script>
 
     <!-- Footer Section  -->
@@ -1556,5 +1689,10 @@
         </p>
       </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top" title="Back to top">
+      to the top
+    </button>
   </body>
 </html>
