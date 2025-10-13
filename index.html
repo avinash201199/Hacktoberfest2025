@@ -893,6 +893,8 @@
           </article>
         </div>
       </main>
+            <!-- Back to Top Button -->
+<button id="back-to-top" title="Go to top" aria-label="Back to top">Back to Top (↑)</button>
     </div>
 
     <noscript>
@@ -909,6 +911,9 @@
         JavaScript is required to render this site preview. Open
         <a href="README.md">README.md</a> directly to view the content.
       </div>
+
+
+
     </noscript>
 
     <script>
@@ -1475,6 +1480,42 @@
         }
       });
 
+      // Back-to-top button behavior
+      (function () {
+        const btn = document.getElementById('back-to-top');
+        if (!btn) return;
+
+        // Show after user scrolls down by 300px
+        function checkScroll() {
+          const show = window.scrollY > 300;
+          if (show) btn.classList.add('visible');
+          else btn.classList.remove('visible');
+        }
+
+        // Smooth scroll to top on click
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          // Optionally remove visible immediately for quick feedback
+          btn.classList.remove('visible');
+        });
+
+        // Throttle scroll handler for performance
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              checkScroll();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        });
+
+        // Initial check in case page loads mid-scroll
+        checkScroll();
+      })();
+
       // Theme toggle
       const themeToggle = document.getElementById('theme-toggle');
       const html = document.documentElement;
@@ -1556,5 +1597,6 @@
         </p>
       </div>
     </footer>
+
   </body>
 </html>

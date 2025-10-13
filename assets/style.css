@@ -1339,3 +1339,44 @@ mark {
     background: linear-gradient(180deg, rgba(248, 250, 252, 0.98), rgba(248, 250, 252, 0.95));
   }
 }
+
+/* Back-to-top button styles */
+#back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1200;
+  background: linear-gradient(135deg, var(--hf-left), var(--hf-right));
+  color: #021025;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 999px;
+  box-shadow: 0 8px 28px rgba(11, 17, 40, 0.45);
+  cursor: pointer;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateY(8px);
+  opacity: 0;
+  transition: opacity 0.26s ease, transform 0.26s ease, box-shadow 0.2s ease;
+}
+
+#back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#back-to-top:focus {
+  outline: 3px solid rgba(125, 211, 252, 0.18);
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  #back-to-top {
+    right: 12px;
+    bottom: 12px;
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+}
