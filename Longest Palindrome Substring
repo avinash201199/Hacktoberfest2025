@@ -1,0 +1,36 @@
+#include <stdlib.h>
+#include <string.h>
+
+static void expand(const char* s, int n, int left, int right, int* bestStart, int* bestLen) {
+    while (left >= 0 && right < n && s[left] == s[right]) {
+        left--;
+        right++;
+    }
+    int curLen = right - left - 1;
+    int curStart = left + 1;
+    if (curLen > *bestLen) {
+        *bestLen = curLen;
+        *bestStart = curStart;
+    }
+}
+
+char* longestPalindrome(char* s) {
+    int n = (int)strlen(s);
+    if (n < 2) {
+        char* out = (char*)malloc(n + 1);
+        memcpy(out, s, n + 1);
+        return out;
+    }
+
+    int bestStart = 0, bestLen = 1;
+
+    for (int i = 0; i < n; i++) {
+        expand(s, n, i, i, &bestStart, &bestLen);       // odd
+        expand(s, n, i, i + 1, &bestStart, &bestLen);   // even
+    }
+
+    char* out = (char*)malloc(bestLen + 1);
+    memcpy(out, s + bestStart, bestLen);
+    out[bestLen] = '\0';
+    return out;
+}
