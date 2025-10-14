@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .input-area {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        #taskInput {
+            flex-grow: 1;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            font-size: 16px;
+        }
+
+        #addButton {
+            padding: 10px 15px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 0 5px 5px 0;
+            font-size: 16px;
+        }
+
+        #addButton:hover {
+            background-color: #4cae4c;
+        }
+
+        .task-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 16px;
+        }
+
+        .task-item:last-child {
+            border-bottom: none;
+        }
+
+        .task-item.completed span {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            color: #d9534f;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .toggle-btn {
+            background: none;
+            border: none;
+            color: #5cb85c;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>My To-Do List 📝</h1>
+
+        <div class="input-area">
+            <input type="text" id="taskInput" placeholder="Enter a new task..." maxlength="50">
+            <button id="addButton">Add</button>
+        </div>
+
+        <ul id="taskList" class="task-list">
+            </ul>
+    </div>
+
+    <script>
+        const taskInput = document.getElementById('taskInput');
+        const addButton = document.getElementById('addButton');
+        const taskList = document.getElementById('taskList');
+
+        // Function to create a new task item
+        function addTask() {
+            const taskText = taskInput.value.trim();
+
+            if (taskText === "") {
+                alert("Please enter a task!");
+                return;
+            }
+
+            // 1. Create the list item element
+            const listItem = document.createElement('li');
+            listItem.classList.add('task-item');
+
+            // 2. Create the text span
+            const taskSpan = document.createElement('span');
+            taskSpan.textContent = taskText;
+
+            // 3. Create the actions container (for buttons)
+            const actionsDiv = document.createElement('div');
+            actionsDiv.classList.add('task-actions');
+
+            // 4. Create the 'Done' button
+            const toggleButton = document.createElement('button');
+            toggleButton.textContent = 'Toggle';
+            toggleButton.classList.add('toggle-btn');
+            toggleButton.onclick = function() {
+                listItem.classList.toggle('completed');
+            };
+
+            // 5. Create the 'Delete' button
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'X';
+            deleteButton.classList.add('delete-btn');
+            deleteButton.onclick = function() {
+                taskList.removeChild(listItem);
+            };
+
+            // 6. Assemble the elements
+            actionsDiv.appendChild(toggleButton);
+            actionsDiv.appendChild(deleteButton);
+
+            listItem.appendChild(taskSpan);
+            listItem.appendChild(actionsDiv);
+
+            // 7. Add the new item to the list
+            taskList.appendChild(listItem);
+
+            // 8. Clear the input field and focus for next entry
+            taskInput.value = '';
+            taskInput.focus();
+        }
+
+        // Event listener for the 'Add' button click
+        addButton.addEventListener('click', addTask);
+
+        // Event listener for the 'Enter' key press on the input field
+        taskInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                addTask();
+            }
+        });
+    </script>
+
+</body>
+</html>
