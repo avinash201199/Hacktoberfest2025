@@ -40,24 +40,361 @@
         --spacing-lg: 2rem;
       }
 
-      .logo-blob {
-        display: inline-block;
-        width: 2em;
-        height: 2em;
-        margin-right: 0.5em;
-        background: linear-gradient(135deg, var(--hf-orange), var(--hf-purple));
-        border-radius: 50%;
-        animation: blob 2.5s infinite ease-in-out;
-        box-shadow: 0 0 15px rgba(255, 138, 101, 0.3);
+      /* Responsive Logo Adjustments */
+      @media (max-width: 480px) {
+        .logo-container {
+          width: 3em;
+          height: 2.6em;
+        }
+        
+        .logo-text-main {
+          font-size: 0.32em;
+          letter-spacing: 0.008em;
+          word-spacing: -0.1em;
+        }
+        
+        .logo-text-year {
+          font-size: 0.45em;
+        }
+        
+        .particle {
+          width: 4px;
+          height: 4px;
+        }
       }
 
-      @keyframes blob {
-        0%,
-        100% {
+      @media (max-width: 768px) {
+        .footer-brand .logo-container {
+          width: 4em;
+          height: 3.5em;
+        }
+        .footer-brand .logo-text-main {
+          font-size: 0.38em;
+          letter-spacing: 0.01em;
+          word-spacing: -0.08em;
+        }
+        
+        .footer-brand .logo-text-year {
+          font-size: 0.52em;
+        }
+        
+        .footer-brand .particle {
+          width: 4px;
+          height: 4px;
+        }
+
+      }
+
+      @media (min-width: 1024px) {
+        .sidebar.collapsed .logo-container {
+          width: 4em;
+          height: 3.5em;
+        }
+      }
+
+      /* 3D Hexagonal Hacktoberfest Logo */
+      .logo-container {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 4em;
+        height: 3.5em;
+        margin-right: 0.8em;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.2, 0.9, 0.2, 1);
+        perspective: 1000px;
+        overflow: visible;
+      }
+
+      .logo-main {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        animation: logo-float-3d 6s ease-in-out infinite;
+        overflow: visible;
+      }
+
+      .hexagon-base {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, 
+          #00d4ff 0%,
+          #0099cc 20%,
+          #7c3aed 40%,
+          #a855f7 60%,
+          #f97316 80%,
+          #fb923c 100%);
+        clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
+        position: relative;
+        box-shadow: 
+          0 15px 35px rgba(0, 212, 255, 0.3),
+          0 25px 50px rgba(124, 58, 237, 0.2),
+          0 35px 65px rgba(249, 115, 22, 0.15),
+          inset 0 2px 10px rgba(255, 255, 255, 0.3),
+          inset 0 -5px 15px rgba(0, 0, 0, 0.2);
+        filter: brightness(1.1) saturate(1.2);
+      }
+
+      .hexagon-depth {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        width: calc(100% - 16px);
+        height: calc(100% - 16px);
+        background: linear-gradient(225deg, 
+          rgba(0, 0, 0, 0.8) 0%,
+          rgba(124, 58, 237, 0.9) 50%,
+          rgba(0, 0, 0, 0.8) 100%);
+        clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
+        z-index: 1;
+      }
+
+      .hexagon-inner {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        width: calc(100% - 24px);
+        height: calc(100% - 24px);
+        background: linear-gradient(45deg, 
+          rgba(0, 212, 255, 0.1) 0%,
+          rgba(124, 58, 237, 0.2) 50%,
+          rgba(249, 115, 22, 0.1) 100%);
+        clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
+        z-index: 2;
+        animation: inner-glow 4s ease-in-out infinite;
+      }
+
+      .logo-text-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        text-align: center;
+        width: 120%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: visible;
+        white-space: nowrap;
+      }
+
+      .logo-text-main {
+        font-family: 'Arial Black', sans-serif;
+        font-weight: 900;
+        font-size: 0.38em;
+        background: linear-gradient(45deg, 
+          #ffffff 0%,
+          #f0f0f0 30%,
+          #ffffff 50%,
+          #e0e0e0 70%,
+          #ffffff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 
+          0 2px 4px rgba(0, 0, 0, 0.9),
+          0 3px 8px rgba(0, 0, 0, 0.7),
+          0 4px 12px rgba(0, 0, 0, 0.5);
+        letter-spacing: 0.01em;
+        line-height: 0.85;
+        text-transform: uppercase;
+        animation: text-shine 3s ease-in-out infinite;
+        word-spacing: -0.08em;
+        position: relative;
+        z-index: 100;
+        display: block;
+      }
+
+      .logo-text-year {
+        font-family: 'Arial Black', sans-serif;
+        font-weight: 900;
+        font-size: 0.52em;
+        background: linear-gradient(45deg, 
+          #00d4ff 0%,
+          #7c3aed 50%,
+          #f97316 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 
+          0 2px 6px rgba(0, 0, 0, 0.9),
+          0 3px 12px rgba(124, 58, 237, 0.6);
+        letter-spacing: 0.06em;
+        margin-top: -0.06em;
+        animation: year-glow 4s ease-in-out infinite;
+        position: relative;
+        z-index: 100;
+        display: block;
+      }
+
+      .logo-particles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 150%;
+        height: 150%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .particle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        opacity: 0;
+        animation: particle-orbit 8s ease-in-out infinite;
+      }
+
+      .particle:nth-child(1) {
+        top: 10%;
+        left: 20%;
+        background: radial-gradient(circle, #00d4ff, transparent);
+        animation-delay: 0s;
+      }
+
+      .particle:nth-child(2) {
+        top: 20%;
+        right: 15%;
+        background: radial-gradient(circle, #7c3aed, transparent);
+        animation-delay: 1.5s;
+      }
+
+      .particle:nth-child(3) {
+        bottom: 25%;
+        left: 10%;
+        background: radial-gradient(circle, #f97316, transparent);
+        animation-delay: 3s;
+      }
+
+      .particle:nth-child(4) {
+        bottom: 15%;
+        right: 20%;
+        background: radial-gradient(circle, #a855f7, transparent);
+        animation-delay: 4.5s;
+      }
+
+      .particle:nth-child(5) {
+        top: 50%;
+        left: 5%;
+        background: radial-gradient(circle, #00d4ff, transparent);
+        animation-delay: 6s;
+      }
+
+      .particle:nth-child(6) {
+        top: 50%;
+        right: 5%;
+        background: radial-gradient(circle, #fb923c, transparent);
+        animation-delay: 7.5s;
+      }
+
+      /* Hover Effects */
+      .logo-container:hover .logo-main {
+        animation-play-state: paused;
+        transform: scale(1.1) rotateY(15deg) rotateX(5deg);
+      }
+
+      .logo-container:hover .hexagon-base {
+        filter: brightness(1.3) saturate(1.4);
+        box-shadow: 
+          0 20px 45px rgba(0, 212, 255, 0.5),
+          0 30px 65px rgba(124, 58, 237, 0.3),
+          0 40px 80px rgba(249, 115, 22, 0.2);
+      }
+
+      .logo-container:hover .logo-text-main,
+      .logo-container:hover .logo-text-year {
+        animation-play-state: paused;
+        text-shadow: 
+          0 0 10px rgba(255, 255, 255, 0.8),
+          0 2px 4px rgba(0, 0, 0, 0.8),
+          0 4px 8px rgba(0, 0, 0, 0.6);
+      }
+
+      .logo-container:hover .particle {
+        animation-duration: 3s;
+      }
+
+      /* Click Effect */
+      .logo-container:active .logo-main {
+        transform: scale(0.95) rotateY(5deg);
+        transition: transform 0.1s ease;
+      }
+
+      /* Animations */
+      @keyframes logo-float-3d {
+        0%, 100% {
+          transform: translateY(0) rotateY(0deg) rotateX(0deg);
+        }
+        25% {
+          transform: translateY(-8px) rotateY(5deg) rotateX(2deg);
+        }
+        50% {
+          transform: translateY(-12px) rotateY(0deg) rotateX(0deg);
+        }
+        75% {
+          transform: translateY(-8px) rotateY(-5deg) rotateX(-2deg);
+        }
+      }
+
+      @keyframes inner-glow {
+        0%, 100% {
+          opacity: 0.2;
           transform: scale(1);
         }
         50% {
-          transform: scale(1.1);
+          opacity: 0.4;
+          transform: scale(1.05);
+        }
+      }
+
+      @keyframes text-shine {
+        0%, 100% {
+          background-position: -200% center;
+        }
+        50% {
+          background-position: 200% center;
+        }
+      }
+
+      @keyframes year-glow {
+        0%, 100% {
+          filter: brightness(1);
+          text-shadow: 
+            0 2px 6px rgba(0, 0, 0, 0.9),
+            0 4px 12px rgba(124, 58, 237, 0.5);
+        }
+        50% {
+          filter: brightness(1.3);
+          text-shadow: 
+            0 0 10px rgba(0, 212, 255, 0.8),
+            0 2px 6px rgba(0, 0, 0, 0.9),
+            0 4px 12px rgba(249, 115, 22, 0.6);
+        }
+      }
+
+      @keyframes particle-orbit {
+        0%, 100% {
+          opacity: 0;
+          transform: scale(0) rotate(0deg) translateX(0);
+        }
+        25% {
+          opacity: 1;
+          transform: scale(1) rotate(90deg) translateX(30px);
+        }
+        50% {
+          opacity: 0.8;
+          transform: scale(1.2) rotate(180deg) translateX(25px);
+        }
+        75% {
+          opacity: 0.6;
+          transform: scale(0.8) rotate(270deg) translateX(35px);
         }
       }
 
@@ -395,8 +732,10 @@
         justify-content: center;
         }
 
-        .sidebar.collapsed .brand .logo-blob {
+        .sidebar.collapsed .brand .logo-container {
         margin-right: 0;
+        width: 4em;
+        height: 3.5em;
         }
 
         .sidebar.collapsed .brand .brand-text {
@@ -756,13 +1095,6 @@
         align-items: flex-start;
         }
 
-        .footer-brand .logo-blob {
-        width: 2.4em;
-        height: 2.4em;
-        margin-right: 0;
-        box-shadow: 0 0 24px rgba(255, 138, 101, 0.18);
-        }
-
         .footer-col h4 {
         margin: 0 0 var(--spacing-sm);
         font-size: 1.15rem;
@@ -870,8 +1202,28 @@
           <a href="#content" class="skip-link">Skip to main content</a>
           <header class="topnav" role="banner">
             <div class="topnav-inner">
-              <a class="brand" href="./" title="Home"><span class="logo-blob" aria-hidden="true"></span><span
-                  class="brand-text">Hacktoberfest 2025</span></a>
+              <a class="brand" href="./" title="Home">
+                <div class="logo-container">
+                  <div class="logo-main">
+                    <div class="hexagon-base"></div>
+                    <div class="hexagon-depth"></div>
+                    <div class="hexagon-inner"></div>
+                    <div class="logo-text-container">
+                      <div class="logo-text-main">HACKTOBERFEST</div>
+                      <div class="logo-text-year">2025</div>
+                    </div>
+                  </div>
+                  <div class="logo-particles">
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                    <div class="particle"></div>
+                  </div>
+                </div>
+                <span class="brand-text">Hacktoberfest 2025</span>
+              </a>
 
               <nav class="nav-links" aria-label="Main navigation">
                 <a href="#what-is-hacktoberfest">Overview</a>
@@ -900,10 +1252,28 @@
     <div class="site">
       <aside class="sidebar" id="sidebar" aria-label="Table of contents">
         <div class="brand">
-          <a href="./" title="Home"
-            ><span class="logo-blob" aria-hidden="true"></span
-            ><span class="brand-text">Hacktoberfest 2025</span></a
-          >
+          <a href="./" title="Home">
+            <div class="logo-container">
+              <div class="logo-main">
+                <div class="hexagon-base"></div>
+                <div class="hexagon-depth"></div>
+                <div class="hexagon-inner"></div>
+                <div class="logo-text-container">
+                  <div class="logo-text-main">HACKTOBERFEST</div>
+                  <div class="logo-text-year">2025</div>
+                </div>
+              </div>
+              <div class="logo-particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+              </div>
+            </div>
+            <span class="brand-text">Hacktoberfest 2025</span>
+          </a>
         </div>
 
         <div class="search-wrapper">
@@ -1614,7 +1984,25 @@
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-col footer-brand">
-          <span class="logo-blob" aria-hidden="true"></span>
+          <div class="logo-container">
+            <div class="logo-main">
+              <div class="hexagon-base"></div>
+              <div class="hexagon-depth"></div>
+              <div class="hexagon-inner"></div>
+              <div class="logo-text-container">
+                <div class="logo-text-main">HACKTOBERFEST</div>
+                <div class="logo-text-year">2025</div>
+              </div>
+            </div>
+            <div class="logo-particles">
+              <div class="particle"></div>
+              <div class="particle"></div>
+              <div class="particle"></div>
+              <div class="particle"></div>
+              <div class="particle"></div>
+              <div class="particle"></div>
+            </div>
+          </div>
           <span class="footer-title">Hacktoberfest 2025</span>
         </div>
 
