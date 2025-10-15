@@ -368,6 +368,22 @@
         #article h3 {
         font-size: 1.2rem;
         }
+
+        /* Adjust go-to-top button for mobile */
+        .go-top-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+        }
+
+        /* Adjust show sidebar button for mobile */
+        .show-sidebar-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+        }
         }
 
         /* Sidebar styles for collapsed state */
@@ -449,6 +465,66 @@
 
         .show-sidebar-btn:hover::before {
         transform: translateX(3px);
+        }
+
+        /* Go to top button styles */
+        .go-top-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: linear-gradient(135deg, var(--hf-orange), var(--hf-purple));
+        border: none;
+        color: var(--hf-light);
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.4rem;
+        box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+        transition: all 0.3s ease;
+        z-index: 1002;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+
+        .go-top-btn.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        }
+
+        .go-top-btn:hover {
+        transform: translateY(-5px) scale(1.1);
+        box-shadow: 0 8px 25px rgba(155, 89, 182, 0.5);
+        }
+
+        .go-top-btn::before {
+        content: "↑";
+        transition: transform 0.3s ease;
+        font-weight: bold;
+        }
+
+        .go-top-btn:hover::before {
+        transform: translateY(-2px);
+        }
+
+        /* Pulse animation for go-top button when first shown */
+        .go-top-btn.pulse {
+        animation: pulse-glow 2s ease-in-out;
+        }
+
+        @keyframes pulse-glow {
+        0%, 100% {
+        box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+        }
+        50% {
+        box-shadow: 0 4px 25px rgba(155, 89, 182, 0.6);
+        transform: scale(1.05);
+        }
         }
 
         @keyframes fadeIn {
@@ -869,6 +945,14 @@
         title="Show sidebar"
       ></button>
 
+      <!-- Go to top button -->
+      <button 
+        id="go-top-btn" 
+        class="go-top-btn" 
+        aria-label="Go to top"
+        title="Go to top"
+      ></button>
+
       <main class="content" id="content" role="main">
         <div class="bg-decor" aria-hidden="true">
           <svg viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -1144,6 +1228,40 @@
         tocToggle.textContent = "Hide";
         tocToggle.setAttribute("aria-expanded", "true");
       });
+
+      // Go to top button functionality
+      const goTopBtn = document.getElementById("go-top-btn");
+      let isGoTopVisible = false;
+
+      // Show/hide go-to-top button based on scroll position
+      function toggleGoTopButton() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const shouldShow = scrollTop > 300; // Show after scrolling 300px
+
+        if (shouldShow && !isGoTopVisible) {
+          goTopBtn.classList.add("visible", "pulse");
+          isGoTopVisible = true;
+          // Remove pulse animation after it completes
+          setTimeout(() => goTopBtn.classList.remove("pulse"), 2000);
+        } else if (!shouldShow && isGoTopVisible) {
+          goTopBtn.classList.remove("visible");
+          isGoTopVisible = false;
+        }
+      }
+
+      // Smooth scroll to top when button is clicked
+      goTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      });
+
+      // Listen for scroll events
+      window.addEventListener("scroll", toggleGoTopButton);
+
+      // Initial check
+      toggleGoTopButton();
 
       // Navbar interactions: focus search and toggle sidebar
       document
