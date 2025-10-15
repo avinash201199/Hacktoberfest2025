@@ -40,6 +40,12 @@
         --spacing-lg: 2rem;
       }
 
+      /* Global body styles for fixed header */
+      body {
+        padding-top: 80px; /* Add space for fixed header */
+        margin: 0;
+      }
+
       /* Responsive Logo Adjustments */
       @media (max-width: 480px) {
         .logo-container {
@@ -471,10 +477,14 @@
         background: linear-gradient(135deg, var(--hf-dark), var(--hf-purple));
         color: var(--hf-light);
         padding: var(--spacing-md) var(--spacing-lg);
-        position: sticky;
+        position: fixed;
         top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
         z-index: 1000;
         box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, opacity 0.3s ease;
       }
 
       .topnav-inner {
@@ -1630,8 +1640,35 @@
       // Listen for scroll events
       window.addEventListener("scroll", toggleGoTopButton);
 
+      // Enhanced header scroll behavior
+      let lastScrollTop = 0;
+      const header = document.querySelector('.topnav');
+      
+      function handleHeaderScroll() {
+        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Always keep header visible and stable
+        if (header) {
+          header.style.transform = 'translateY(0)';
+          header.style.opacity = '1';
+          
+          // Add subtle shadow when scrolled
+          if (currentScrollTop > 10) {
+            header.style.boxShadow = '0 4px 25px rgba(0, 0, 0, 0.3)';
+          } else {
+            header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.2)';
+          }
+        }
+        
+        lastScrollTop = currentScrollTop;
+      }
+
+      // Listen for scroll events for header
+      window.addEventListener("scroll", handleHeaderScroll);
+
       // Initial check
       toggleGoTopButton();
+      handleHeaderScroll();
 
       // Navbar interactions: focus search and toggle sidebar
       document
