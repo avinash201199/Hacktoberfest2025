@@ -24,7 +24,8 @@ body {
   margin: 0;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
     Roboto, "Helvetica Neue", Arial;
-  background: linear-gradient(180deg, #071126 0%, #071b2a 100%);
+  /* Blue site background (updated) */
+  background: linear-gradient(180deg, #0b3d91 0%, #022f6f 100%);
   color: #e6eef6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -274,7 +275,11 @@ body {
 /* Hide Button Styles*/
 .toc-toggle {
   border: 0;
-  background: linear-gradient(135deg, var(--accent-orange), var(--accent-purple));
+  background: linear-gradient(
+    135deg,
+    var(--accent-orange),
+    var(--accent-purple)
+  );
   padding: 0.7rem 1rem;
   border-radius: var(--radius-pill);
   color: var(--on-accent);
@@ -284,8 +289,8 @@ body {
 }
 
 .toc-toggle:hover {
-    transform: translateY(-3px);
-    transition: all 1s ease;
+  transform: translateY(-3px);
+  transition: all 1s ease;
 }
 .sidebar-footer {
   display: flex;
@@ -1188,7 +1193,8 @@ mark {
 }
 
 [data-theme="light"] body {
-  background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%);
+  /* Light theme: soft blue background */
+  background: linear-gradient(180deg, #e6f0ff 0%, #cfe6ff 100%);
   color: #1e293b;
 }
 
@@ -1198,7 +1204,11 @@ mark {
 }
 
 [data-theme="light"] .sidebar {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95));
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(255, 255, 255, 0.95)
+  );
   border-right: 1px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -1236,7 +1246,11 @@ mark {
 }
 
 [data-theme="light"] .content {
-  background: linear-gradient(135deg, rgba(249, 115, 22, 0.05), rgba(168, 85, 247, 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(249, 115, 22, 0.05),
+    rgba(168, 85, 247, 0.05)
+  );
 }
 
 [data-theme="light"] .content-inner {
@@ -1309,7 +1323,11 @@ mark {
 }
 
 [data-theme="light"] .site-footer {
-  background: linear-gradient(135deg, rgba(248, 250, 252, 0.96), rgba(226, 232, 240, 0.92));
+  background: linear-gradient(
+    135deg,
+    rgba(248, 250, 252, 0.96),
+    rgba(226, 232, 240, 0.92)
+  );
   box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.08);
   color: #1e293b;
 }
@@ -1336,6 +1354,10 @@ mark {
 
 @media (max-width: 900px) {
   [data-theme="light"] .sidebar {
-    background: linear-gradient(180deg, rgba(248, 250, 252, 0.98), rgba(248, 250, 252, 0.95));
+    background: linear-gradient(
+      180deg,
+      rgba(248, 250, 252, 0.98),
+      rgba(248, 250, 252, 0.95)
+    );
   }
 }
