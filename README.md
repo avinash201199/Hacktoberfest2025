@@ -32,7 +32,7 @@ Here’s a curated list of projects where you can start contributing:
 | My Gallery 4u            | [Link](https://github.com/avinash201199/My-Gallery-4u)            | HTML, CSS, JavaScript      |
 | Memory Game              | [Link](https://github.com/avinash201199/Memory-Game)              | HTML, CSS, JavaScript      |
 | Free Programming Books   | [Link](https://github.com/avinash201199/Free-programming-books)   | Various                    |
-
+| Quote generator|.        | .[Link](https://github.com/CodeWithAdnaan/Quote-genetrator/tree/main)
 ---
 
 ## 🎉 What is Hacktoberfest?
@@ -274,3 +274,4 @@ Thanks to all the amazing contributors 💜
 
 Contribute with _curiosity & respect_ ❤  
 Every meaningful PR = _a step forward in your journey as an open-source contributor_ 🚀
+contributorshttps://github.com/CodeWithAdnaan/Quote-genetrator/tree/main
