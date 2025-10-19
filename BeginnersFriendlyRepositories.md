@@ -28,6 +28,7 @@ If you know any good repository for beginners, feel free to add it to this table
 | OpenSauce | [Link](https://github.com/TechnoBlogger14o3/OpenSauce) | Multiple Languages, DSA, Algorithms |
 | Awesome Lists | [Link](https://github.com/sindresorhus/awesome) | Markdown, Documentation |
 | 30 Seconds of Code | [Link](https://github.com/30-seconds/30-seconds-of-code) | JavaScript, TypeScript, Python |
+| Learn Git and Github In One Minute | [Link](https://github.com/mujeebarshad007/Git-And-Github) | Html,Markdown |
 
 
 
