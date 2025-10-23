@@ -18,7 +18,7 @@
     body {
       margin: 0;
       font-family: "Segoe UI", system-ui, sans-serif;
-      background: var(--hf-light);
+      background: radial-gradient(circle at 30% 30%, rgba(155, 89, 182, .15), transparent), linear-gradient(135deg, #182c4f, #3d2f67 60%, #532d72);;
       color: var(--hf-dark);
       line-height: 1.6;
       scroll-behavior: smooth;
@@ -29,16 +29,21 @@
     body.dark {
       --hf-light: #1c1c1c;
       --hf-dark: #ffffff;
-      background: #111;
-      color: #eee;
+      background: #ffffff;
+      color: #000000;
     }
+    
 
     header {
-      background: var(--hf-purple);
+      background: linear-gradient(135deg, #0e1b33,#9b59b6);
       color: #fff;
       padding: 2rem 1rem;
       text-align: center;
       position: relative;
+      color: var(--hf-light);
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
     }
     header h1 {
       margin: 0;
@@ -107,7 +112,7 @@
     footer {
       text-align: center;
       padding: 2rem 1rem;
-      background: var(--hf-dark);
+      background: #36113b;
       color: #fff;
     }
 
@@ -115,6 +120,11 @@
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+/* Cards stay white in dark mode */
+body.dark .card {
+  background: #fff;
+  color: #222;
+}
 
     /* Shine Animation Fix */
     .site {
@@ -157,6 +167,22 @@
       z-index: 999;
     }
     #back-to-top:hover { background: var(--hf-orange); }
+    /* Card Entrance Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
   </style>
 </head>
 <body>
@@ -215,21 +241,28 @@
 
   <button id="back-to-top" title="Back to top">⬆️</button>
 
-  <script>
-    // Dark Mode Toggle
-    const toggle = document.getElementById('dark-toggle');
-    toggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-    });
+ <script>
+  const toggle = document.getElementById('dark-toggle');
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
 
-    // Back to Top Button
-    const backBtn = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-      backBtn.style.display = window.scrollY > 400 ? 'block' : 'none';
-    });
-    backBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  </script>
+    // Change symbol based on dark mode
+    if (document.body.classList.contains('dark')) {
+      toggle.textContent = '☀️'; // light mode symbol
+    } else {
+      toggle.textContent = '🌙'; // dark mode symbol
+    }
+  });
+
+  // Back to Top Button
+  const backBtn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    backBtn.style.display = window.scrollY > 400 ? 'block' : 'none';
+  });
+  backBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
 </body>
 </html>
