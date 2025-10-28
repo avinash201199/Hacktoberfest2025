@@ -1491,6 +1491,118 @@
         themeToggle.textContent = next === 'dark' ? '🌙' : '☀️';
       });
     </script>
+    <!-- 🌟 REPORT AN ISSUE SECTION START -->
+<section id="report-issue" class="report-issue-section">
+  <div class="report-container">
+    <h2>🛠️ Report an Issue</h2>
+    <p>If you found a problem or bug on this website, please let us know! You can submit it directly below.</p>
+
+    <!-- 
+      This form opens the GitHub Issues page.
+      You can later replace the URL below with a backend link if needed.
+    -->
+    <form action="https://github.com/avinash201199/Hacktoberfest2025/issues/new" method="get" target="_blank">
+      <label for="issue-title">Issue Title:</label>
+      <input type="text" id="issue-title" name="title" placeholder="Short title (e.g. Broken link on homepage)" required>
+
+      <label for="issue-desc">Issue Description:</label>
+      <textarea id="issue-desc" name="body" placeholder="Describe the problem..." rows="5" required></textarea>
+
+      <button type="submit" class="report-btn">Submit on GitHub</button>
+    </form>
+  </div>
+</section>
+<!-- 🌟 REPORT AN ISSUE SECTION END -->
+
+<style>
+/* 🌈 Report Issue Section Styles */
+.report-issue-section {
+  background: linear-gradient(135deg, rgba(155, 89, 182, 0.15), rgba(255, 138, 101, 0.15));
+  padding: 3rem 1rem;
+  border-radius: 20px;
+  margin: 3rem auto;
+  max-width: 800px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  font-family: "Poppins", sans-serif;
+}
+
+.report-container h2 {
+  color: #ff8c42;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.report-container p {
+  text-align: center;
+  color: #444;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.report-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.report-container label {
+  font-weight: 600;
+  color: #333;
+}
+
+.report-container input,
+.report-container textarea {
+  background: #fff;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 0.8rem;
+  color: #333;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.report-container input:focus,
+.report-container textarea:focus {
+  border-color: #9b59b6;
+  box-shadow: 0 0 10px rgba(155, 89, 182, 0.3);
+}
+
+.report-btn {
+  background: linear-gradient(135deg, #ff8c42, #9b59b6);
+  border: none;
+  color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.report-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 600px) {
+  .report-issue-section {
+    padding: 2rem 1rem;
+    margin: 2rem 1rem;
+  }
+
+  .report-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .report-container p {
+    font-size: 0.95rem;
+  }
+}
+</style>
+
 
     <!-- Footer Section  -->
     <footer class="site-footer">
@@ -1506,6 +1618,7 @@
             <a href="#what-is-hacktoberfest">Overview</a>
             <a href="projects.html" target="_blank" rel="noopener">Projects</a>
             <a href="#resources">Resources</a>
+            <a href="#report-issue">Report Issue</a>
           </nav>
         </div>
 
